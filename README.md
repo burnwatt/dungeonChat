@@ -76,6 +76,7 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 * Node.js
 
 # Technological Challenges
+* Using git branches with team
 
 # Alternative Ideas
 1. aADevs - 'Rovr/Fiverr' clone for App Academy grads
