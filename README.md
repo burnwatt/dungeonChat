@@ -70,6 +70,10 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 
 # Technologies Used
+* MongoDB
+* Express
+* React
+* Node.js
 
 # Technological Challenges
 
