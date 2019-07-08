@@ -80,4 +80,5 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 # Alternative Ideas
 1. aADevs - 'Rovr/Fiverr' clone for App Academy grads
-1. TrapAcademy - 'aA Online' clone for aspiring rappers
+2. TrapAcademy - 'aA Online' clone for aspiring rappers
+3. Yo
