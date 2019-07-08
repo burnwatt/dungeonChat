@@ -68,7 +68,6 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 ## Weekend
 * Catchup
 
-
 # Technologies Used
 * MongoDB
 * Express
