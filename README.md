@@ -44,14 +44,14 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 # Work Breakdown
 ## July 8 (**all**)
-* Develop Project Proposal
-* Determine initial schema/routes
-* Project Setup
-   * MongoDB (**Steven**)
-   * Nodes
-   * Webpack
-* Backend User Auth
-* Determine individual tasks for coming days
+* [x] Develop Project Proposal (**Group**)
+* [x] Determine initial schema/routes (**Group**)
+* [x] Project Setup (**Steven**)
+   * [x] MongoDB
+   * [x] Nodes
+   * [x] server/webpack
+* [x] Backend User Auth  (**Steven**)
+* [ ] Determine individual tasks for coming days (**Group**)
 
 ## July 9
 * Setup Redux Backend
@@ -76,8 +76,3 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 # Technological Challenges
 * Using git branches with team
-
-# Alternative Ideas
-1. aADevs - 'Rovr/Fiverr' clone for App Academy grads
-2. TrapAcademy - 'aA Online' clone for aspiring rappers
-3. Yo
