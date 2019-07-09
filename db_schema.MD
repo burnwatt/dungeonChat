@@ -7,6 +7,8 @@
 | `handle`          | string    | not null, indexed, unique |
 | `email`           | string    | not null, indexed, unique |
 | `password`        | string    | not null                  |
+| `campaign_ids`    | array     |                           |
+| `character_ids`   | array     |                           |
 | `date`            | Date      | not null, default Now     |
 
 + index on `handle, unique: true`
@@ -25,6 +27,9 @@
 | `description`        | string    |                           |
 | `rules`              | string    |                           |
 | `character_sheet_id` | ObjectID  | not null                  |
+| `message_ids`        | array     |                           |
+| `character_ids`      | array     |                           |
+| `user_ids`           | array     |                           |
 | `created_by`         | hash      | not null                  |
 | `characters`         | array     | not null, default []      |
 | `is_private`         | boolean   | not null, default false   |
@@ -41,6 +46,7 @@
 | `campaign_id`     | ObjectID  | not null                  |
 | `character_id`    | ObjectID  |                           |
 | `user_id`         | ObjectID  | indexed                   |
+| `type`            | string    | not null                  |
 | `body`            | string    | not null                  |
 | `password`        | string    | not null                  |
 | `date`            | Date      | not null, default Now     |

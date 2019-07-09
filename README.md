@@ -50,25 +50,27 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
    * [x] Nodes
    * [x] server/webpack
 * [x] Backend User Auth  (**Steven**)
-* [ ] Determine individual tasks for coming days (**Group**)
+* [x] Determine individual tasks for coming days (**Group**)
 
 ## July 9
-* Splash Page frontend/backend
-* Campaigns backend/routes 
-* Chat backend/routes
+* [x] Finalize schema (**Group**)
+* [ ] Splash Page frontend/styling (**Brad/Josh**)
+* [ ] Campaign Backend/Landing Page (**Michael/Steven**)
+
 
 ## July 10
-* Chat
+* [ ] Campaigns backend/routes 
+* [ ] Chat backend/routes
 
 
 ## July 11
-* Setup Frontend Components
+* [ ] Setup Frontend Components
 
 ## July 12
-* Styling
+* [ ] Styling
 
 ## Weekend
-* Catchup
+* [ ] Catchup
 
 # Technologies Used
 * MongoDB
