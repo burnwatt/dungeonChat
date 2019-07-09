@@ -4,7 +4,7 @@ import SignupForm from "./signup_form";
 
 const mSP = state => ({
   signedIn: state.session.isSignedIn,
-  errors: state.session.errors
+  errors: state.errors
 });
 
 const mDP = dispatch => ({

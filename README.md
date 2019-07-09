@@ -53,13 +53,16 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 * [ ] Determine individual tasks for coming days (**Group**)
 
 ## July 9
-* Setup Redux Backend
+* Splash Page frontend/backend
+* Campaigns backend/routes 
+* Chat backend/routes
 
 ## July 10
-* Setup Frontend Components
+* Chat
+
 
 ## July 11
-* Chat
+* Setup Frontend Components
 
 ## July 12
 * Styling

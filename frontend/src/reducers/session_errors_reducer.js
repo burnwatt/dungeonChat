@@ -3,7 +3,7 @@ import {
   RECEIVE_CURRENT_USER
 } from "../actions/session_actions";
 
-const _nullErr = [];
+const _nullErr = {};
 
 const SessionErrorsReducer = (state = _nullErr, action) => {
   Object.freeze(state);
