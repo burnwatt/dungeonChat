@@ -71,6 +71,9 @@ table {
   text-decoration: none;
   padding: 5px 10px; }
 
+.null-div {
+  display: none; }
+
 body {
   background-color: #2d2d30;
   font-family: 'Roboto', sans-serif; }

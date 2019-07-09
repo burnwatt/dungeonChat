@@ -15,6 +15,9 @@ class NavBar extends React.Component {
   }
 
   getLinks() {
+    if (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup'){
+      return <div className='null-div'></div>
+    }
     if (this.props.loggedIn) {
       return (
         <nav className='nav-bar'>
