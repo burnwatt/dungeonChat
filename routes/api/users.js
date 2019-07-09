@@ -106,11 +106,4 @@ router.get("/current", passport.authenticate("jwt", { session: false }), (req, r
 // End User
 
 
-
-
-
-
-
-
-
 module.exports = router;

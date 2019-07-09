@@ -66,9 +66,8 @@
 | column name       | data type | details                   |
 |:------------------|:---------:|:--------------------------|
 | `id`              | hash      | not null, primary key     |
-| `handle`          | string    | not null, indexed, unique |
-| `email`           | string    | not null, indexed, unique |
-| `password`        | string    | not null                  |
+| `name`            | string    | not null, indexed, unique |
+| `form_html`       | string    | not null                  |
 | `date`            | Date      | not null, default Now     |
 
 <!-- belongs to users and campaigns -->
