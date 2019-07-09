@@ -41,7 +41,6 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 ## Search
 * Users can search for games by title
 
-
 # Work Breakdown
 ## July 8 (**all**)
 * Develop Project Proposal
