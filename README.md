@@ -54,6 +54,7 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 ## July 9
 * [x] Finalize schema (**Group**)
+* [ ] Setup initial branching(**Group**)
 * [ ] Splash Page frontend/styling (**Brad/Josh**)
 * [ ] Campaign Backend/Landing Page (**Michael/Steven**)
 
