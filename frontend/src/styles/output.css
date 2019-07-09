@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,7 +46,33 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px; }
+
+.nav-right a {
+  color: white;
+  text-decoration: none; }
+  .nav-right a span {
+    padding: 10px; }
+
+.nav-left a {
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px; }
+.nav-left .btn {
+  font-size: 12px;
+  border: 0.5px solid #0f1555;
+  background: #0f1555;
+  color: white;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 5px 10px; }
+
 body {
-  background-color: #242432; }
+  background-color: #2d2d30;
+  font-family: 'Roboto', sans-serif; }
 
 /*# sourceMappingURL=output.css.map */

@@ -1,6 +1,11 @@
 @import './reset.scss';
 @import './splash.scss';
+@import './nav.scss';
+
+//Update URL if font changes
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 body{
-    background-color: rgba($color: #242432, $alpha: 1.0)
+    background-color: rgba($color: #2d2d30, $alpha: 1.0);
+    font-family: 'Roboto', sans-serif;
 }
