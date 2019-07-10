@@ -5,28 +5,32 @@ class SplashPage extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <h1>DungeonChat</h1> */}
-        <div>
-          <div>
-            <div>
-              <h1>Tabletop RPGs</h1>
-              <h1>anytime, anywhere</h1>
+      <div className='splash-wrapper'>
+        <div className='hero-wrapper'>
+          <img className='hero-background' src="https://i.imgur.com/aBKrTWU.gif" alt="heroes!" />
+          <div className='hero-top'>
+            <div className='hero-left'>
+              <h1>Play with friends</h1>
+              <p>anytime, anywhere</p>
             </div>
-            <div>
+            <div className='hero-right'>
               <img
-                src="https://www.dictionary.com/e/wp-content/uploads/2019/06/1000x700-DnD-1.jpg"
-                width="220px"
+                src="https://i.imgur.com/6D1DDnB.png"
+                width="150px"
                 alt="whatever"
               />
             </div>
           </div>
-          <Link id='signup-btn' to={"/signup"}>
-            <span>Signup</span>
-          </Link>
-          <button>Browse Games</button>
+          <div className='hero-bottom'>
+            <Link id='signup-btn' to={"/signup"}>
+              <span>Signup</span>
+            </Link>
+            <Link id='browse-btn' to={"/games"}>
+              <span>Browse Games</span>
+            </Link>
+          </div>
         </div>
-        <div>
+        <div className='splash-main'>
           <div>
             <div>
               <img
