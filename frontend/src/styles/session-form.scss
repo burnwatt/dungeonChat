@@ -1,0 +1,109 @@
+#session-nav{
+  background: linear-gradient(to left, #84807d, #1b1e26);
+ display: flex;
+ height: 41px;
+justify-content: center;
+
+
+}
+
+#session-nav div.container{
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  align-items: center;
+  color: white;
+  // flex-direction: row;
+}
+
+#session-nav div.back{
+      cursor: pointer;
+    opacity: 0.6;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#session-nav a{
+  color: white;
+}
+
+#session-page{
+  display: flex;
+  justify-content: center;
+}
+
+.session-form-container{
+  width: 1111px;
+      
+          // box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+#session-page div.input{
+  width: 1111px;
+  display: inline-flex;
+  margin-top: 30px;
+  box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  height: 55px;
+}
+
+#session-page div.input-title{
+  font-size: 20px;
+  color: #707070;
+  width: 50px;
+  align-self: center;
+  padding: 0.7em 0.3em;
+  overflow: initial;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+
+  // flex: 0 0 auto;
+  /* text-align: center; */
+  // justify-content: center;
+}
+
+// #session-page div.input-title span{
+  //
+// }
+
+#session-page div.input-field{
+  display: flex;
+  flex: 1;
+  background-color: #3b4045;
+  padding: 0.3em;
+  /* overflow: hidden; */
+  /* position: relative; */
+  
+  // could be done a better way
+  width: 614px;
+}
+
+#session-page div.input-field input {
+  width: 100%;
+  padding: 0 10px;
+    
+  
+}
+
+.title-container{
+  background-color: #2D2F30;
+  display: flex;
+  justify-content: center;
+}
+
+div.bar{
+  height: 28px;
+  width: 0px;
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  transform: translate(1px, 13px);
+}
