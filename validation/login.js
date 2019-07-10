@@ -1,10 +1,11 @@
 const Validator = require("validator");
-const validText = require("./valid-text");
+const { textValid } = require("./validation_util");
+
 
 module.exports = ({ email, password }) => {
 
-  email = validText(email) ? email : "";
-  password = validText(password) ? password : "";
+  email = textValid(email);
+  password = textValid(password);
 
   const errors = {
     ...(!Validator.isEmail(email) && { email: "Email is invalid" }),

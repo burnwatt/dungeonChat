@@ -7,6 +7,7 @@ const app = express();
 const db = require("./config/keys").mongoURI;
 
 const users = require("./routes/api/users");
+const campaigns = require("./routes/api/campaigns");
 //------------------------------------------------------------------------------
 
 mongoose
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 // End Define Middleware
 
 app.use("/api/users", users);
+app.use("/api/campaigns", campaigns);
 // End Define Routes
 
 const port = process.env.PORT || 5000;

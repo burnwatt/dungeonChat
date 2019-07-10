@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import splash_die_glow from "../../assets/public/images/splash-die-glow.png";
 
 class SplashPage extends React.Component {
 
@@ -14,9 +15,8 @@ class SplashPage extends React.Component {
               <p>anytime, anywhere</p>
             </div>
             <div className='hero-right'>
-              <img
-                src="https://i.imgur.com/6D1DDnB.png"
-                width="150px"
+              <img className="hero-die bobbing"
+                src={ splash_die_glow }
                 alt="whatever"
               />
             </div>
