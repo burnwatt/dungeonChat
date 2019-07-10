@@ -15,19 +15,42 @@ class NavBar extends React.Component {
   }
 
   getLinks() {
+    if (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup') {
+      return <div className='null-div'></div>
+    }
     if (this.props.loggedIn) {
       return (
-        <div>
-          <Link to={"/profile"}>Profile</Link>
-          <button onClick={this.logoutUser}>Logout</button>
-        </div>
+        <nav className='nav-bar'>
+          <div className='nav-right'>
+            <Link to='/games'>
+              <i className="fas fa-dungeon"></i>
+              <span>Dungeon Chat</span>
+            </Link>
+          </div>
+          <div className='nav-left'>
+            <Link to={"/profile"}>Profile</Link>
+            <button className='btn' onClick={this.logoutUser}>Logout</button>
+          </div>
+        </nav>
       );
     } else {
       return (
-        <div>
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
+        <nav className='nav-bar'>
+          <div className='nav-right'>
+            <Link to='/'>
+              <i className="fas fa-dungeon"></i>
+              <span>Dungeon Chat</span>
+            </Link>
+          </div>
+          <div className='nav-left'>
+            <Link id='signup-link' to={"/signup"}>
+              <span>Signup</span>
+            </Link>
+            <Link className='btn' to={"/login"}>
+              <span>Login</span>
+            </Link>
+          </div>
+        </nav>
       );
     };
   }
@@ -35,8 +58,7 @@ class NavBar extends React.Component {
   render() {
 
     return (
-      <div>
-        <h1>DungeonChat</h1>
+      <div className='nav-wrapper'>
         {this.getLinks()}
       </div>
     )
