@@ -57,68 +57,80 @@ class LoginForm extends React.Component {
         <div id="session-nav">
           <div className="container">
             <div className="back">
-              <Link to="/"><i className="fas fa-dungeon" /></Link>
+              <Link to="/">
+                <i class="far fa-arrow-alt-circle-left" />
+              </Link>
             </div>
             <div className="title">Login</div>
           </div>
         </div>
         <div id="session-page">
           <div id="gradient">
-          <div className="session-form-container">
-            <form>
-              <div className="form-contents">
-                <div className="input">
-                  <div className="title-container">
-                    <div className="input-title"><div>A</div></div>
-                    <div className="bar"/>
+            <div className="session-form-container">
+              <form>
+                <div className="form-contents">
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title">
+                        <div>
+                          <i class="fas fa-scroll" />
+                        </div>
+                      </div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input
+                        type="text"
+                        value={this.state.email}
+                        onChange={this.updateField("email")}
+                        placeholder="Email"
+                      />
+                    </div>
                   </div>
-                  
-                  <div className="input-field">
+                  <br />
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title">
+                        <i class="fas fa-gem" />
+                      </div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.updateField("password")}
+                        placeholder="Password"
+                      />
+                    </div>
+                  </div>
+                  <div className="remember">
+                    <label className="slider">
+                      <input type="checkbox" />
+                      <span className="slider-round" />
+                    </label>
+                    <label>Remember me</label>
+                  </div>
+                  <br />
+                  <div className="fit-to-width">
                     <input
-                      type="text"
-                      value={this.state.email}
-                      onChange={this.updateField("email")}
-                      placeholder="Email"/>
-                  </div>
-                </div>
-                <br />
-                <div className="input">
-                  <div className="title-container">
-                    <div className="input-title">***</div>
-                    <div className="bar"/>
-                  </div>
-                  
-                  <div className="input-field">
-                    <input
-                      type="password"
-                      value={this.state.password}
-                      onChange={this.updateField("password")}
-                      placeholder="Password"
+                      className="session-submit"
+                      type="submit"
+                      value="Login"
+                      onClick={this.handleSubmit}
                     />
                   </div>
+
+                  {this.renderErrors()}
+                  <hr />
+                  <div className="link-to-signup-container">
+                    <Link to="/signup">create new account</Link>
+                  </div>
                 </div>
-                <div className="remember">
-                  <label className="slider">
-                    <input type="checkbox"/>
-                    <span className="slider-round"/>
-                  </label>
-                  <label>Remember me</label>
-                </div>
-                <br />
-                <div className="fit-to-width">
-                  <input className="session-submit" type="submit" value="Login" 
-                    onClick={this.handleSubmit}
-                  />
-                </div>
-                
-                {this.renderErrors()}
-                <hr/>
-                <div className="link-to-signup-container">
-                  <Link to="/signup">create new account</Link>
-                </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

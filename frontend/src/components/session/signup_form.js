@@ -36,7 +36,7 @@ class SignupForm extends React.Component {
     let user = (({ email, handle, password, password2 }) => 
       ({ email, handle, password, password2 }))(this.state);
     this.props.signup(user, this.props.history);
-    this.props.history.push('/login');
+    // this.props.history.push('/login');
   }
 
   renderErrors() {
@@ -58,7 +58,7 @@ class SignupForm extends React.Component {
         <div id="session-nav">
           <div className="container">
             <div className="back">
-              <Link to="/"><i className="fas fa-dungeon" /></Link>
+              <Link to="/"><i class="far fa-arrow-alt-circle-left"></i></Link>
             </div>
             <div className="title">Sign up</div>
           </div>
@@ -70,7 +70,7 @@ class SignupForm extends React.Component {
                 <div className="form-contents">
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><div>A</div></div>
+                      <div className="input-title"><div><i class="fas fa-scroll"></i></div></div>
                       <div className="bar" />
                     </div>
 
@@ -85,7 +85,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><div>A</div></div>
+                      <div className="input-title"><div><i class="fas fa-hat-wizard"></i></div></div>
                       <div className="bar" />
                     </div>
 
@@ -100,7 +100,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title">***</div>
+                      <div className="input-title"><i class="fas fa-gem"></i></div>
                       <div className="bar" />
                     </div>
 
@@ -116,7 +116,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title">***</div>
+                      <div className="input-title"><i class="fas fa-gem"></i></div>
                       <div className="bar" />
                     </div>
 
@@ -147,7 +147,7 @@ class SignupForm extends React.Component {
                   <hr />
                   <div className="link-to-signup-container">
                     <span>Already have an account?</span>
-                    <Link to="/signup">L</Link>
+                    <Link to="/signup">Signup</Link>
                   </div>
                 </div>
               </form>

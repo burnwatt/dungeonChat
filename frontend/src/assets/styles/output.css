@@ -81,9 +81,9 @@ table {
   .hero-bottom #signup-btn {
     font-size: 12px;
     border: 0.5px solid #b50303;
+    border-radius: 7px;
     background: #b50303;
     color: white;
-    border-radius: 3px;
     text-decoration: none;
     padding: 5px 10px;
     width: 100px;
@@ -91,12 +91,15 @@ table {
     margin: 5px;
     text-align: center;
     line-height: 25px; }
+  .hero-bottom #signup-btn:hover {
+    border: .5px solid white;
+    background: rgba(13, 13, 13, 0.75); }
   .hero-bottom #browse-btn {
     font-size: 12px;
     border: .5px solid white;
+    border-radius: 7px;
     background: transparent;
     color: white;
-    border-radius: 3px;
     text-decoration: none;
     padding: 5px 10px;
     width: 100px;
@@ -104,6 +107,9 @@ table {
     margin: 5px;
     text-align: center;
     line-height: 25px; }
+  .hero-bottom #browse-btn:hover {
+    border: .5px solid white;
+    background: rgba(13, 13, 13, 0.75); }
 
 .splash-main {
   width: 100vw;
@@ -150,9 +156,9 @@ table {
 #join-btn {
   font-size: 16px;
   border: 0.5px solid #b50303;
+  border-radius: 7px;
   background: #b50303;
   color: white;
-  border-radius: 3px;
   text-decoration: none;
   text-align: center;
   line-height: 25px;
@@ -160,8 +166,8 @@ table {
   padding: 1.5% 5%; }
 
 #join-btn:hover {
-  border: 0.5px solid #120000;
-  background: #120000; }
+  border: .5px solid white;
+  background: rgba(13, 13, 13, 0.75); }
 
 footer {
   display: flex;
@@ -224,7 +230,7 @@ footer {
   border: 0.5px solid #b50303;
   background: #b50303;
   color: white;
-  border-radius: 3px;
+  border-radius: 7px;
   text-decoration: none;
   padding: 5px 10px; }
 
@@ -238,7 +244,8 @@ footer {
   background: linear-gradient(to left, #84807d, #1b1e26);
   display: flex;
   height: 41px;
-  justify-content: center; }
+  justify-content: center;
+  font-family: 'Luckiest Guy', cursive; }
 
 #session-nav div.container {
   display: flex;
@@ -344,7 +351,8 @@ div.bar {
   position: relative;
   display: inline-block;
   width: 30px;
-  height: 20px; }
+  height: 20px;
+  cursor: pointer; }
 
 .slider input {
   display: none; }
@@ -387,7 +395,8 @@ div.bar {
   background-color: #2D2F30;
   color: white;
   min-height: 2.9em;
-  font-size: 20px; }
+  font-size: 20px;
+  cursor: pointer; }
 
 hr {
   width: 100%;
@@ -408,6 +417,10 @@ hr {
   cursor: pointer;
   transition: all 0.25s;
   font-size: 20px; }
+
+.link-to-signup-container span {
+  font-size: 20px;
+  margin-right: 5px; }
 
 .link-to-signup-container a:hover {
   color: #d9b310;

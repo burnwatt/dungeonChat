@@ -4,11 +4,10 @@
 
 #session-nav{
   background: linear-gradient(to left, #84807d, #1b1e26);
- display: flex;
- height: 41px;
-justify-content: center;
-
-
+  display: flex;
+  height: 41px;
+  justify-content: center;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 #session-nav div.container{
@@ -149,6 +148,7 @@ div.bar{
   display: inline-block;
   width: 30px;
   height: 20px;
+  cursor: pointer;
 }
 
 .slider input{
@@ -205,6 +205,7 @@ div.bar{
   color: white;
   min-height: 2.9em;
   font-size: 20px;
+  cursor: pointer;
 }
 
 hr{
@@ -229,6 +230,11 @@ hr{
   cursor: pointer;
   transition: all 0.25s;
   font-size: 20px;
+}
+
+.link-to-signup-container span{
+  font-size: 20px;
+  margin-right: 5px;
 }
 
 .link-to-signup-container a:hover{
