@@ -5,12 +5,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
 }
 
 .hero-top{
-    margin: 50px;
+    margin: 10%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -20,9 +21,10 @@
     padding: 20px;
     h1{
         font-size: 32px;
+        font-family: 'Luckiest Guy', cursive;
     }
     p{
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 
@@ -33,8 +35,8 @@
     margin: 100px;
     #signup-btn{
         font-size: 12px;
-        border: .5px solid rgb(15, 21, 85);
-        background:rgb(15, 21, 85);
+        border: .5px solid rgb(181, 3, 3);
+        background:rgb(181, 3, 3);
         color: white;
         border-radius: 3px;
         text-decoration: none;
@@ -62,6 +64,75 @@
 }
 
 .splash-main{
-   position: absolute;
-   top: 500px;
+    width: 100vw;
+    margin-top: 10%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2{
+        font-size: 28px;
+        font-family: 'Luckiest Guy', cursive;
+    }
+    p{
+        font-size: 16px;
+    }
 }
+
+.splash-primary{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    img{
+        margin: 2%;
+    }
+    div{
+        margin: 2%;
+    }
+}
+
+.secondary-wrapper{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+}
+
+.splash-secondary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    img{
+        margin: 2%;
+    }
+    div{
+        margin: 2%;
+    }
+}
+#join-btn{
+        font-size: 16px;
+        border: .5px solid rgb(181, 3, 3);
+        background:rgb(181, 3, 3);
+        color: white;
+        border-radius: 3px;
+        text-decoration: none;
+        text-align: center;
+        line-height: 25px;
+        margin: 5%;
+        padding: 1.5% 5%;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    height: 50px;
+}
+
