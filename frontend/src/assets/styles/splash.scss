@@ -5,11 +5,14 @@
     z-index: 1;
 }
 .hero-background{
+    margin: 0;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-width: 810px;
+    min-height: 450px;
+    // height: 100vh;
     z-index: -1;
 }
 
@@ -139,3 +142,19 @@ footer{
     height: 50px;
 }
 
+.hero-die {
+    width: 150px;
+}
+
+.bobbing {
+    animation-name: bobbing;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes bobbing {
+    from { transform: translate(0, 0px) };
+    50% { transform: translate(0, 15px) };
+    to { transform: translate(0, -0px) };
+}
