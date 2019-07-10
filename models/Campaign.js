@@ -46,3 +46,5 @@ const CampaignSchema = new Schema({
     default: Date.now
   }
 });
+
+module.exports = Campaign = mongoose.model("campaigns", CampaignSchema);
