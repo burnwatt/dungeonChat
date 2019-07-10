@@ -11,7 +11,7 @@ import LandingContainer from "./landing/landing_container";
 
 const App = () => (
   <div>
-    {/* <NavBarContainer /> */}
+    <NavBarContainer />
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
