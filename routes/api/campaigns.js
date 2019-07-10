@@ -1,0 +1,120 @@
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+
+const Campaign = require("../../models/Campaign");
+
+const { errRes } = require("../../validation/validation_util");
+
+
+// Campaign
+const defErrs = {
+  campaignNameNotAvailable: { campaign: "A campaign of that name already exists!" },
+  noCampaignsFound: { noCampaignFound: "No campaigns found!"},
+  noUserCampaigns: { noCampaignFound: "No campaigns found for that user"},
+  noIdCampaigns: { noCampaignFound: "No campaign found with that ID" },
+  noNameCampaigns: { noCampaignFound: "No campaign found with that name" },
+  failedUpdateCampaign: { campaign: "Failed to update campaign"},
+  failedDeleteCampaign: { campaign: "Failed to delete campaign"}
+};
+
+// POST ----------------------------------------
+const campaignObj = (req) => ({
+  cover_art_url: req.body.cover_art_url || null,
+  password: req.body.password || null,
+  name: req.body.name,
+  description: req.body.description || "",
+  rules: req.body.rules || "",
+  // character_sheet_id: req.character_sheet.id,
+  created_by: req.user.id,
+})
+
+const campaignBcrypt = (newCampaign) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newCampaign.password, salt, (err, hash) => {
+      if (err) throw err;
+      newCampaign.password = hash;
+    })
+  });
+};
+
+const createCampaign = (req, res) => {
+  const newCampaign  = new Campaign(campaignObj(req));
+  if (newCampaign.password) campaignBcrypt(newCampaign);
+  newCampaign.save()
+    .then(campaign => res.json(campaign))
+    .catch(err => console.log(err));
+}
+// create .........................................
+router.post("/", passport.authenticate("jwt", { session: false }), (req, res) => {
+  // const { errors, isValid } = validateCampaignInput(req);
+  // if (!isValid) return errRes(res, 400, errors);
+
+  Campaign.findOne({ name: req.body.name })
+    .then( campaign => {
+      if (campaign) return errRes(res, 400, defErrs.campaignNameNotAvailable)
+      else createCampaign(req, res);
+    });
+});
+
+// UPDATE
+
+// update .....................
+router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+  Campaign.findByIdAndUpdate(req.params.id,
+    req.body,
+    { new: true },
+    err => errRes(res, 500, defErrs.failedUpdateCampaign)
+  );
+})
+
+// GET ----------------------
+
+// test ............................
+router.get("/test", (req, res) => res.json({ msg: "This is the campaigns router."}));
+
+// /
+router.get("/", (req, res) => {
+  Campaign.find()
+    .sort({ date: 1 })
+    .then(campaigns => res.json(campaigns))
+    .catch(err => errRes(res, 404, defErrs.noCampaignsFound))
+});
+
+// /user/:user_id
+router.get("/user/:user_id", (req, res) => {
+  Campaign.find({ created_by: req.params.user_id })
+    .then(campaigns => res.json(campaigns))
+    .catch(err => errRes(res, 404, defErrs.noUserCampaigns))
+});
+
+// /:id
+router.get("/:id", (req, res) => {
+  Campaign.findById(req.params.id)
+    .then(campaign => res.json(campaign))
+    .catch(err => errRes(res, 404, defErrs.noIdCampaigns))
+});
+
+// /:name
+router.get("name/:name", (req, res) => {
+  Campaign.find({ name: req.params.name})
+    .then(campaign => res.json(campaign))
+    .catch(err => errRes(res, 404, defErrs.noNameCampaigns))
+});
+
+// DELETE ------------------------------------------------------------
+// delete
+router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
+
+  Campaign.findOneAndDelete(req.body.id)
+    .then(campaign => {
+      if (campaign) res.json({ msg: "Campaign Deleted Successfully"})
+      else errRes(res, 200, defErrs.failedDeleteCampaign)
+    });
+    
+});
+
+// End Campaign
+
+
+module.exports = router;
