@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 const _nullState = () => ({
@@ -53,38 +54,106 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
-        <form onSubmit={ this.handleSubmit }>
-          <div className="login-form">
-            <br />
-            <input type="text"
-              value={ this.state.email }
-              onChange={ this.updateField('email') }
-              placeholder="Email"
-            />
-            <br />
-            <input type="text"
-              value={ this.state.handle }
-              onChange={ this.updateField('handle') }
-              placeholder="Handle"
-            />
-            <br />
-            <input type="password"
-              value={ this.state.password }
-              onChange={this.updateField('password')}
-              placeholder="Password"
-            />
-            <br />
-            <input type="password"
-              value={ this.state.password2 }
-              onChange={this.updateField('password2')}
-              placeholder="Confirm Password"
-            />
-            <br />
-            <input type="submit" value="Submit" />
-            { this.renderErrors() }
+      <div id="session-main">
+        <div id="session-nav">
+          <div className="container">
+            <div className="back">
+              <Link to="/"><i className="fas fa-dungeon" /></Link>
+            </div>
+            <div className="title">Sign up</div>
           </div>
-        </form>
+        </div>
+        <div id="session-page">
+          <div id="gradient">
+            <div className="session-form-container">
+              <form>
+                <div className="form-contents">
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title"><div>A</div></div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input
+                        type="text"
+                        value={this.state.email}
+                        onChange={this.updateField("email")}
+                        placeholder="Email" />
+                    </div>
+                  </div>
+                  <br />
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title"><div>A</div></div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input type="text"
+                        value={this.state.handle}
+                        onChange={this.updateField('handle')}
+                        placeholder="Handle"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title">***</div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.updateField("password")}
+                        placeholder="Password"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <div className="input">
+                    <div className="title-container">
+                      <div className="input-title">***</div>
+                      <div className="bar" />
+                    </div>
+
+                    <div className="input-field">
+                      <input
+                        type="password"
+                        value={this.state.password2}
+                        onChange={this.updateField("password2")}
+                        placeholder="Confirm Password"
+                      />
+                    </div>
+                  </div>
+                  <div className="remember">
+                    <label className="slider">
+                      <input type="checkbox" />
+                      <span className="slider-round" />
+                    </label>
+                    <label>Remember me</label>
+                  </div>
+                  <br />
+                  <div className="fit-to-width">
+                    <input className="session-submit" type="submit" value="Sign Up"
+                      onClick={this.handleSubmit}
+                    />
+                  </div>
+
+                  {this.renderErrors()}
+                  <hr />
+                  <div className="link-to-signup-container">
+                    <span>Already have an account?</span>
+                    <Link to="/signup">L</Link>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

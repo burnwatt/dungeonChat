@@ -15,7 +15,7 @@ class SplashPage extends React.Component {
               <p>anytime, anywhere</p>
             </div>
             <div className='hero-right'>
-              <img className="hero-die bobbing"
+              <img className="hero-die bobbing spin"
                 src={ splash_die_glow }
                 alt="whatever"
               />
