@@ -10,7 +10,6 @@
 
 # production
 /build
-
 /src/assets/styles/output.css.map
 /src/assets/styles/output.css
 

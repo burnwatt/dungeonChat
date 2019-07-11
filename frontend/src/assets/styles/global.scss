@@ -56,3 +56,32 @@
   box-shadow: 0 0 8px 4px rgba(0, 0, 100, 0.2), 0 0 12px 8px var(--verboseRed_trans);
   background: var(--frost_trans);
 }
+
+.bobbing {
+    animation-name: bobbing;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.spin{
+    -webkit-animation:spin 60s linear infinite;
+    -moz-animation:spin 60s linear infinite;
+    animation:spin 60s linear infinite;
+}
+
+@keyframes bobbing {
+    from { transform: translate(0, 0px) };
+    50% { transform: translate(0, 15px) };
+    to { transform: translate(0, -0px) };
+}
+
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin {
+     100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } 
+}
