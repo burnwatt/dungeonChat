@@ -1,0 +1,70 @@
+
+
+#landing {
+  height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: -47px;
+
+  background-image: url("../../assets//public//images/landing-back-v1.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// #temp-header {
+//   width: 100%;
+//   height: 50px;
+//   background: lightcoral;
+//   padding: 0;
+//   margin: 0;
+
+//   display: flex;
+//   flex-direction: row;
+//   align-content: space-between;
+//   align-items: center;
+// }
+// .header-content-left {
+//   height: 40px;
+//   width: 200px;
+//   background: lightgreen;
+//   margin: 0 8px;
+// }
+// .header-content-right {
+//   margin-left: auto;
+//   height: 40px;
+//   width: 200px;
+//   background: lightpink;
+//   margin: 0 8px;
+// }
+
+#landing-hero {
+  position: relative;
+  min-height: 200px;
+  max-height: 417px;
+  max-width: 1074px;
+  min-width: 550px;
+  height: 421px;
+  width: 70%;
+  background: lightblue;
+  margin-top: 48px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+#landing-hero img {
+  height: 417px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  // width: 100%;
+  // height: 421px;
+  // height: 100%
+}
+
+
+
+

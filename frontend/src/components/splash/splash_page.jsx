@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import splash_die_glow from "../../assets/public/images/splash-die-glow.png";
+import splash_die_glow from "../../assets/public/images/die_glow_toomuch.png";
 
 class SplashPage extends React.Component {
 

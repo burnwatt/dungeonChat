@@ -5,6 +5,7 @@ const passport = require("passport");
 const Campaign = require("../../models/Campaign");
 
 const { errRes } = require("../../validation/validation_util");
+const validateCampaignInput = require("../../validation/campaigns");
 
 
 // Campaign
@@ -25,6 +26,7 @@ const campaignObj = (req) => ({
   name: req.body.name,
   description: req.body.description || "",
   rules: req.body.rules || "",
+  is_private: req.body.is_private,
   // character_sheet_id: req.character_sheet.id,
   created_by: req.user.id,
 })
@@ -47,8 +49,8 @@ const createCampaign = (req, res) => {
 }
 // create .........................................
 router.post("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-  // const { errors, isValid } = validateCampaignInput(req);
-  // if (!isValid) return errRes(res, 400, errors);
+  const { errors, isValid } = validateCampaignInput(req.body);
+  if (!isValid) return errRes(res, 400, errors);
 
   Campaign.findOne({ name: req.body.name })
     .then( campaign => {
@@ -61,11 +63,12 @@ router.post("/", passport.authenticate("jwt", { session: false }), (req, res) =>
 
 // update .....................
 router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
-  Campaign.findByIdAndUpdate(req.params.id,
+  Campaign.findOneAndUpdate(
+    { _id: req.params.id },
     req.body,
-    { new: true },
-    err => errRes(res, 500, defErrs.failedUpdateCampaign)
-  );
+    {new: true}
+  ).then(campaign => res.json(campaign))
+   .catch(err => errRes(res, 200, defErrs.failedUpdateCampaign))
 })
 
 // GET ----------------------
@@ -105,7 +108,6 @@ router.get("name/:name", (req, res) => {
 // DELETE ------------------------------------------------------------
 // delete
 router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
-
   Campaign.findOneAndDelete(req.body.id)
     .then(campaign => {
       if (campaign) res.json({ msg: "Campaign Deleted Successfully"})

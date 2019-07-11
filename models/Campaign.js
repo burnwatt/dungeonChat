@@ -9,17 +9,13 @@ const CampaignSchema = new Schema({
     type: String
   },
   name: {
-    type: String,
-    minlength: 2,
-    maxlength: 75,
+    type: String
   },
   description: {
-    type: String,
-    maxlength: 500
+    type: String
   },
   rules: {
-    type: String,
-    maxlength: 1000
+    type: String
   },
   character_sheet_id : {
     type: Schema.Types.ObjectId,
@@ -32,6 +28,10 @@ const CampaignSchema = new Schema({
   user_ids: [{
     type: Schema.Types.ObjectId,
     ref: "users"
+  }],
+  character_ids: [{
+    type: Schema.Types.ObjectId,
+    ref: "characters" 
   }],
   created_by: {
     type: Schema.Types.ObjectId,
