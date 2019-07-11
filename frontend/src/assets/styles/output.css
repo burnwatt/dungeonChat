@@ -411,6 +411,8 @@ hr {
   position: relative;
   min-height: 200px;
   max-height: 417px;
+  max-width: 1074px;
+  min-width: 550px;
   height: 421px;
   width: 70%;
   background: lightblue;
@@ -422,7 +424,7 @@ hr {
   height: 417px;
   position: absolute;
   bottom: 0;
-  right: 0; }
+  left: 0; }
 
 #campaigns-content {
   margin-top: 48px;

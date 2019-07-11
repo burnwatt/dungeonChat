@@ -46,6 +46,8 @@
   position: relative;
   min-height: 200px;
   max-height: 417px;
+  max-width: 1074px;
+  min-width: 550px;
   height: 421px;
   width: 70%;
   background: lightblue;
@@ -57,7 +59,7 @@
   height: 417px;
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
   // width: 100%;
   // height: 421px;
   // height: 100%
