@@ -11,6 +11,9 @@
 # production
 /build
 
+/src/assets/styles/output.css.map
+/src/assets/styles/output.css
+
 # misc
 .DS_Store
 .env.local
@@ -21,3 +24,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/home/szczepan/dev_projects/AA/mern_stack/mern-stack-project/dungeonChat/frontend/src/assets/styles/output.css
