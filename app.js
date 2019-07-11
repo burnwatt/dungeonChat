@@ -8,10 +8,12 @@ const db = require("./config/keys").mongoURI;
 
 const users = require("./routes/api/users");
 const campaigns = require("./routes/api/campaigns");
+const characters = require("./routes/api/characters");
+
 //------------------------------------------------------------------------------
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
@@ -27,6 +29,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/campaigns", campaigns);
+app.use("/api/characters", characters);
 // End Define Routes
 
 const port = process.env.PORT || 5000;
