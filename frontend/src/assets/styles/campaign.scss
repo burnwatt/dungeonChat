@@ -1,0 +1,123 @@
+
+
+#campaigns-content {
+  margin-top: 48px;
+  min-height: 500px;
+  width: 70%;
+  // border: 1px solid black;
+  // background: lightslategray;
+}
+#campaigns-content * {
+  border-radius: 4px;
+  // font-size: 16px;
+}
+
+.search-bar {
+  height: 50px;
+  width: 100%;
+  background: var(--frost_trans);
+  font-size: 18px;
+  padding-left: 16px;
+  box-sizing: border-box;
+  border: 1px solid gray;
+  outline-color: var(--fuzzyRed);
+  color: lightgray;
+  // padding-right: 16px;
+}
+
+.campaigns-index-controller {
+  height: 50px;
+  width: 100%;
+  // background: rgb(99, 68, 56);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#campaign-index {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-height: 600px;
+  background: var(--gray_trans);
+  justify-content: center;
+  overflow-y: scroll;
+}
+#campaign-index:hover::-webkit-scrollbar-thumb {
+  background-color: rgb(102, 67, 102);
+}
+#campaign-index::-webkit-scrollbar {
+  background: transparent;
+  width: 16px;
+  height: 10px;
+}
+#campaign-index::-webkit-scrollbar-thumb {
+  height: 30px;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 8px;
+  background-color: rgb(66, 56, 66);
+  box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+
+.campaign-index-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 224px;
+  height: 256px;
+  background: rgba(116, 116, 116, 0.4);
+  margin: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.campaign-item-contents {
+  position: relative;
+}
+.campaign-index-item img {
+  width: 100%;
+}
+.campaign-item-state {
+  position:absolute;
+  left: 0;
+  top: 0;
+  text-align: left;
+  margin: 8px 0 0 8px;
+}
+.campaign-item-players {
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  text-align: left;
+  margin: 0 8px 8px 0 ;
+}
+.campaign-item-title {
+  line-height: 32px;
+  height: px;
+  width: 100%;
+  background: gray;
+}
+
+.campaign-nav-button {
+  text-align: center;
+  color: lightgray;
+  background: none;
+  border: 1px solid lightgray;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 10px;
+  margin: 0 16px 0 0;
+}
+.cnb-selected {
+  background: var(--gray_trans);
+}
+
+#cnb-last {
+  margin-left: auto;
+  margin-right: 0;
+}
+

@@ -65,7 +65,7 @@ const userResponse = (user, res) => (
   jwt.sign(
     userPayload(user),
     keys.secretOrKey,
-    { expiresIn: 3600 },
+    { expiresIn: 86400 },
     (err, token) => {
       res.json({
         success: true,

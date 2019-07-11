@@ -1,0 +1,123 @@
+
+.campaign_form_container {
+  // display: flex;
+  // // flex-direction: column;
+  // margin: 0 auto;
+  background-image: url("../../assets//public//images/landing-back-v1.png");
+  height: 120vh;
+  
+}
+
+
+
+.campaign-form {
+  // width: 500px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 auto;
+  
+}
+
+.campaign-form input {
+  height: 50px;
+  // border-style: solid gray;
+
+}
+
+// .campaign-name-input {
+//   width: 80%; 
+// }
+
+.upload_cover_art {
+  // width: 80%;
+  height: 20px; 
+}
+
+#campaign-cover-art-container {
+  height: 300px;
+  width: 100%;
+  background: rgba(255,255,255,0.1)
+}
+#campaign-cover-art {
+  width: 100%;
+}
+
+.name-flex-container {
+  display: inline-flex; 
+}
+
+.campaign-name-input {
+  width: 100%;
+}
+
+.description-flex-container {
+  display: inline-flex; 
+}
+
+.campaign-description-input {
+  width: 100%;
+}
+
+.rules-flex-container {
+  display: inline-flex;
+}
+
+.campaign-rules-input {
+  width: 100%;
+}
+
+.password-flex-container {
+  display: inline-flex;
+}
+
+.campaign-password-input {
+  width: 100%;
+}
+
+.campaign-form h1 {
+  font-size: 22px;
+}
+
+.icon-div {
+  font-size: 20px;
+  color: #707070;
+  width: 50px;
+  align-self: center;
+  padding: 0.7em 0.3em;
+  overflow: initial;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: #2D2F30;
+  display: flex;
+}
+
+
+.make-private-button {
+  height: 50px; 
+  width: 170px;
+  border-radius: 4px;
+  background-color: #2D2F30;
+  color: white;
+  border-style: none;
+}
+
+.make-private-button:hover {
+  transform: scale(1.1);
+}
+
+.create-campaign-button {
+  height: 60px; 
+  width: 200px;
+  border-radius: 4px; 
+  background-color: #2D2F30;
+  color: white;
+}
+
+
+
+.create-campaign-button:hover {
+  transform: scale(1.1);
+}

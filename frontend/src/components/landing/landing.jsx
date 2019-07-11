@@ -1,25 +1,17 @@
 import React from "react"
 import CampaignIndexContainer from "../campaigns/campaign_index_container";
 
-import "./landing.css";
+import landing_splash from "../../assets/public/images/landing-splash-c50.png";
 
 class Landing extends React.Component {
 
   render() {
     return (
       <div id="landing">
-        <nav id="temp-header">
-          <div className="header-content-left"></div>
-          {/* This is a nav bar! */}
-          <div className="header-content-right"></div>
-        </nav>
         <div id="landing-hero">
+          <img src={ landing_splash }  />
         </div>
-        <div id="games-content">
-          <div id="search-bar"></div>
-          <div id="games-index?"></div>
-        </div>
-        {/* <CampaignIndexContainer /> */}
+        <CampaignIndexContainer />
       </div>
     )
   }

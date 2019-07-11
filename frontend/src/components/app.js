@@ -8,6 +8,7 @@ import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import ProfileContainer from './profile/profile_container';
 import LandingContainer from "./landing/landing_container";
+import CreateCampaignContainer from "./campaigns/create_campaign_container"
 
 const App = () => (
   <div>
@@ -18,6 +19,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
       <Route exact path="/landing" component={LandingContainer} />
+      <Route exact path="/newcampaign" component={CreateCampaignContainer} />
     </Switch>
   </div>
 );
