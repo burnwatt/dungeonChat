@@ -79,4 +79,3 @@ router.post("/update/:id", passport.authenticate("jwt", { session: false }), (re
         .catch(err => errRes(res, 200, defErrs.failedUpdateCharacter))
 });
 module.exports = router;
-

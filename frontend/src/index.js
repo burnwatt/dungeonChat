@@ -10,6 +10,10 @@ import { logout } from "./actions/session_actions";
 
 import "./assets/styles/output.css";
 
+//TESTING
+import * as charActions from "./actions/character_actions";
+//END TESTING
+
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 
@@ -28,6 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/login";
     }
   } else store = configureStore({});
+
+  //TESTING
+  window.charActions = charActions;
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  //END TESTING
 
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);

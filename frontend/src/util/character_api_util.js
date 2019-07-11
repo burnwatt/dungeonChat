@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 //create new character
-export const postCharacter = char => (
-    axios.post("/api/characters/", char)
+export const postCharacter = character => (
+    axios.post("/api/characters/", character)
 );
 
 //get character
@@ -11,10 +11,11 @@ export const fetchCharacter = char_id => (
 );
 
 //get all characters
-export const fetchCharacters = chars => (
+export const fetchAllCharacters = () => (
     axios.get('/api/characters/')
 );
 
+//update character
 export const updateCharacter = char => (
-    axios.post(`/api/characters/${char.id}`)
+    axios.post(`/api/characters/update/${char.id}`, char)
 );
