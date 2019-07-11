@@ -2,7 +2,7 @@ import {
   fetchAllCharacters,
   fetchCharacter,
   postCharacter,
-
+  updateCharacter
 } from "../util/character_api_util";
 
 export const RECEIVE_ALL_CHARACTERS = "RECEIVE_ALL_CHARACTERS";
