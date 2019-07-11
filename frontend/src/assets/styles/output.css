@@ -1,713 +1,79 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
+/*
+Error: Invalid CSS after "  cursor: pointer": expected "{", was ";"
+        on line 208 of frontend/src/assets/styles/session-form.scss
+        from line 4 of frontend/src/assets/styles/input.scss
+
+203:   background-color: #2D2F30;
+204:   color: white;
+205:   min-height: 2.9em;
+206:   font-size: 20px;
+207: <<<<<<< HEAD
+208:   cursor: pointer;
+209: =======
+210: >>>>>>> campaign_landing2
+211: }
+212: 
+213: hr{
+
+Backtrace:
+frontend/src/assets/styles/session-form.scss:208
+frontend/src/assets/styles/input.scss:4
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1308:in `expected'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1238:in `expected'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:1233:in `tok!'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:688:in `block'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:758:in `declaration_or_ruleset'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:708:in `block_child'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:700:in `block_contents'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:689:in `block'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:681:in `ruleset'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:707:in `block_child'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:700:in `block_contents'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:137:in `stylesheet'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/scss/parser.rb:41:in `parse'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:414:in `_to_tree'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:321:in `to_tree'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:323:in `block in visit_import'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `block in with_import'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:88:in `with_import'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:294:in `watch'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/plugin.rb:109:in `method_missing'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:358:in `watch_or_update'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
+/home/szczepan/.rbenv/versions/2.6.2/lib/ruby/gems/2.6.0/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
+/home/szczepan/.rbenv/versions/2.6.2/bin/sass:23:in `load'
+/home/szczepan/.rbenv/versions/2.6.2/bin/sass:23:in `<main>'
 */
-@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy|Roboto&display=swap");
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video, input {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block; }
-
-body {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-.splash-wrapper {
-  z-index: 1; }
-
-.hero-background {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 810px;
-  min-height: 450px;
-  z-index: -1; }
-
-.hero-top {
-  margin: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.hero-left {
-  padding: 20px; }
-  .hero-left h1 {
-    font-size: 32px;
-    font-family: 'Luckiest Guy', cursive; }
-  .hero-left p {
-    font-size: 16px; }
-
-.hero-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 100px; }
-  .hero-bottom #signup-btn {
-    font-size: 12px;
-    border: 0.5px solid #b50303;
-    border-radius: 7px;
-    background: #b50303;
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    width: 100px;
-    height: 25px;
-    margin: 5px;
-    text-align: center;
-    line-height: 25px; }
-  .hero-bottom #signup-btn:hover {
-    border: .5px solid white;
-    background: rgba(13, 13, 13, 0.75); }
-  .hero-bottom #browse-btn {
-    font-size: 12px;
-    border: .5px solid white;
-    border-radius: 7px;
-    background: transparent;
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    width: 100px;
-    height: 25px;
-    margin: 5px;
-    text-align: center;
-    line-height: 25px; }
-  .hero-bottom #browse-btn:hover {
-    border: .5px solid white;
-    background: rgba(13, 13, 13, 0.75); }
-
-.splash-main {
-  width: 100vw;
-  margin-top: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-  .splash-main h2 {
-    font-size: 28px;
-    font-family: 'Luckiest Guy', cursive; }
-  .splash-main p {
-    font-size: 16px; }
-
-.splash-primary {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2%; }
-  .splash-primary img {
-    margin: 2%; }
-  .splash-primary div {
-    margin: 2%; }
-
-.secondary-wrapper {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2%; }
-
-.splash-secondary {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2%; }
-  .splash-secondary img {
-    margin: 2%; }
-  .splash-secondary div {
-    margin: 2%; }
-
-#join-btn {
-  font-size: 16px;
-  border: 0.5px solid #b50303;
-  border-radius: 7px;
-  background: #b50303;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  line-height: 25px;
-  margin: 5%;
-  padding: 1.5% 5%; }
-
-#join-btn:hover {
-  border: .5px solid white;
-  background: rgba(13, 13, 13, 0.75); }
-
-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  height: 50px; }
-
-.hero-die {
-  width: 150px; }
-
-.bobbing {
-  animation-name: bobbing;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out; }
-
-.spin {
-  -webkit-animation: spin 60s linear infinite;
-  -moz-animation: spin 60s linear infinite;
-  animation: spin 60s linear infinite; }
-
-@keyframes bobbing {
-  from {
-    transform: translate(0, 0px); }
-  50% {
-    transform: translate(0, 15px); }
-  to {
-    transform: translate(0, 0px); } }
-@-moz-keyframes spin {
-  100% {
-    -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg); } }
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-.nav-bar {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px; }
-
-.nav-right a {
-  font-family: 'Luckiest Guy', cursive;
-  color: white;
-  text-decoration: none; }
-  .nav-right a span {
-    padding: 10px; }
-
-.nav-left a {
-  font-size: 12px;
-  color: white;
-  text-decoration: none;
-  padding: 5px 10px; }
-.nav-left .btn {
-  font-size: 12px;
-  border: 0.5px solid #b50303;
-  background: #b50303;
-  color: white;
-  border-radius: 7px;
-  text-decoration: none;
-  padding: 5px 10px; }
-
-.null-div {
-  display: none; }
-
-#session-main {
-  background-color: black; }
-
-#session-nav {
-  background: linear-gradient(to left, #84807d, #1b1e26);
-  display: flex;
-  height: 41px;
-  justify-content: center;
-  font-family: 'Luckiest Guy', cursive; }
-
-#session-nav div.container {
-  display: flex;
-  flex-direction: row;
-  width: 700px;
-  align-items: center;
-  color: white;
-  width: 1111px;
-  transform: translate(16px, 0px);
-  margin-left: auto;
-  margin-right: auto; }
-
-#session-nav div.back {
-  cursor: pointer;
-  opacity: 0.6;
-  padding-right: 10px;
-  display: flex;
-  align-items: center; }
-
-#session-nav a {
-  color: white; }
-
-#session-page {
-  display: flex;
-  justify-content: center;
-  background-image: url(https://i.imgur.com/aBKrTWU.gif);
-  height: 100vw;
-  background-size: contain;
-  background-repeat: no-repeat; }
-
-#gradient {
-  background: linear-gradient(rgba(255, 255, 255, 0), transparent, #1d0000 47vh);
-  width: 100%;
-  display: flex;
-  justify-content: center; }
-
-.session-form-container {
-  width: 1111px;
-  display: flex;
-  flex-direction: column; }
-
-#session-page div.input {
-  width: 100%;
-  display: inline-flex;
-  margin-top: 35px;
-  box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
-  height: 55px; }
-
-#session-page div.input-title {
-  font-size: 20px;
-  color: #707070;
-  width: 50px;
-  align-self: center;
-  padding: 0.7em 0.3em;
-  overflow: initial;
-  display: flex;
-  justify-content: center;
-  box-sizing: border-box;
-  /* text-align: center; */ }
-
-#session-page div.input-field {
-  display: flex;
-  flex: 1;
-  background-color: #3b4045;
-  padding: 0.3em;
-  /* overflow: hidden; */
-  /* position: relative; */
-  width: 100%; }
-
-#session-page div.input-field input {
-  width: 100%;
-  padding: 0 10px;
-  font-size: 20px;
-  background-color: #fee8e8; }
-
-.title-container {
-  background-color: #2D2F30;
-  display: flex;
-  justify-content: center; }
-
-div.bar {
-  height: 28px;
-  width: 0px;
-  border-left: none;
-  border-top: none;
-  border-bottom: none;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
-  transform: translate(1px, 13px); }
-
-.form-contents {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto; }
-
-.slider {
-  margin-right: 3px;
-  font-size: 0.8em;
-  vertical-align: text-bottom;
-  margin-bottom: 0;
-  position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 20px;
-  cursor: pointer; }
-
-.slider input {
-  display: none; }
-
-.slider-round {
-  border-radius: 30px;
-  background-color: #D7CEC7;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute; }
-
-.slider input:checked + .slider-round {
-  background-color: #D9B310; }
-
-.slider-round:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 13px;
-  left: 3px;
-  bottom: 2px;
-  background-color: #1b1e26;
-  transition: 0.4s;
-  border-radius: 50%; }
-
-.slider input:checked + .slider-round:before {
-  transform: translateX(calc(100% - 3px)); }
-
-.remember {
-  margin-top: 45px; }
-
-.fit-to-width {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column; }
-
-.session-submit {
-  background-color: #2D2F30;
-  color: white;
-  min-height: 2.9em;
-  font-size: 20px;
-  cursor: pointer; }
-
-hr {
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-top-color: #707070; }
-
-.link-to-signup-container {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row; }
-
-.link-to-signup-container a {
-  text-decoration: none;
-  color: #e84242;
-  cursor: pointer;
-  transition: all 0.25s;
-  font-size: 20px; }
-
-.link-to-signup-container span {
-  font-size: 20px;
-  margin-right: 5px; }
-
-.link-to-signup-container a:hover {
-  color: #d9b310;
-  font-size: 22px; }
-
-#landing {
-  height: 120vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: -47px;
-  background-image: url("../../assets//public//images/landing-back-v1.png");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; }
-
-#landing-hero {
-  position: relative;
-  min-height: 200px;
-  max-height: 417px;
-  max-width: 1074px;
-  min-width: 550px;
-  height: 421px;
-  width: 70%;
-  background: lightblue;
-  margin-top: 48px;
-  overflow: hidden;
-  border-radius: 8px; }
-
-#landing-hero img {
-  height: 417px;
-  position: absolute;
-  bottom: 0;
-  left: 0; }
-
-#campaigns-content {
-  margin-top: 48px;
-  min-height: 500px;
-  width: 70%; }
-
-#campaigns-content * {
-  border-radius: 4px; }
-
-.search-bar {
-  height: 50px;
-  width: 100%;
-  background: var(--frost_trans);
-  font-size: 18px;
-  padding-left: 16px;
-  box-sizing: border-box;
-  border: 1px solid gray;
-  outline-color: var(--fuzzyRed);
-  color: lightgray; }
-
-.campaigns-index-controller {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center; }
-
-#campaign-index {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  max-height: 600px;
-  background: var(--gray_trans);
-  justify-content: center;
-  overflow-y: scroll; }
-
-#campaign-index:hover::-webkit-scrollbar-thumb {
-  background-color: #664366; }
-
-#campaign-index::-webkit-scrollbar {
-  background: transparent;
-  width: 16px;
-  height: 10px; }
-
-#campaign-index::-webkit-scrollbar-thumb {
-  height: 30px;
-  border: 4px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  border-radius: 8px;
-  background-color: #423842;
-  box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05); }
-
-.campaign-index-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 224px;
-  height: 256px;
-  background: rgba(116, 116, 116, 0.4);
-  margin: 16px;
-  cursor: pointer;
-  box-sizing: border-box; }
-
-.campaign-item-contents {
-  position: relative; }
-
-.campaign-index-item img {
-  width: 100%; }
-
-.campaign-item-state {
-  position: absolute;
-  left: 0;
-  top: 0;
-  text-align: left;
-  margin: 8px 0 0 8px; }
-
-.campaign-item-players {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  text-align: left;
-  margin: 0 8px 8px 0; }
-
-.campaign-item-title {
-  line-height: 32px;
-  height: px;
-  width: 100%;
-  background: gray; }
-
-.campaign-nav-button {
-  text-align: center;
-  color: lightgray;
-  background: none;
-  border: 1px solid lightgray;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
-  box-sizing: border-box;
-  height: 40px;
-  padding: 0 10px;
-  margin: 0 16px 0 0; }
-
-.cnb-selected {
-  background: var(--gray_trans); }
-
-#cnb-last {
-  margin-left: auto;
-  margin-right: 0; }
-
-/* ::-webkit-scrollbar {
-  background: transparent;
-  width: 16px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  height: 30px;
-  border: 4px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  border-radius: 8px;
-  background-color: rgba(29,28,29,.52);
-  box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-} */
-/* @keyframes fadein {
-  from  { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fadein {
-  animation-name: fadein;
-  animation-duration: 500ms;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-} */
-:root {
-  --frost_trans: rgba(255, 255, 255, 0.1);
-  --gray_trans: rgba(255, 255, 255, 0.05);
-  --fuzzyRed: rgb(168, 113, 113);
-  --verboseRed: rgb(181, 3, 3);
-  --verboseRed_trans: rgba(181, 3, 3, 0.2); }
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: black;
-  /* background-color: rgba(0,0,0,0.4); */ }
-
-.btn-glow {
-  transition: all 0.2s ease-in-out; }
-
-.btn-glow:hover {
-  border: 1px solid var(--fuzzyRed);
-  box-shadow: 0 0 8px 4px rgba(0, 0, 100, 0.2), 0 0 12px 8px var(--verboseRed_trans);
-  background: var(--frost_trans); }
-
-.campaign_form_container {
-  background-image: url("../../assets//public//images/landing-back-v1.png");
-  height: 120vh; }
-
-.campaign-form {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 auto; }
-
-.campaign-form input {
-  height: 50px; }
-
-.upload_cover_art {
-  height: 20px; }
-
-#campaign-cover-art-container {
-  height: 300px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1); }
-
-#campaign-cover-art {
-  width: 100%; }
-
-.name-flex-container {
-  display: inline-flex; }
-
-.campaign-name-input {
-  width: 100%; }
-
-.description-flex-container {
-  display: inline-flex; }
-
-.campaign-description-input {
-  width: 100%; }
-
-.rules-flex-container {
-  display: inline-flex; }
-
-.campaign-rules-input {
-  width: 100%; }
-
-.password-flex-container {
-  display: inline-flex; }
-
-.campaign-password-input {
-  width: 100%; }
-
-.campaign-form h1 {
-  font-size: 22px; }
-
-.icon-div {
-  font-size: 20px;
-  color: #707070;
-  width: 50px;
-  align-self: center;
-  padding: 0.7em 0.3em;
-  overflow: initial;
-  display: flex;
-  justify-content: center;
-  box-sizing: border-box;
-  background-color: #2D2F30;
-  display: flex; }
-
-.make-private-button {
-  height: 50px;
-  width: 170px;
-  border-radius: 4px;
-  background-color: #2D2F30;
-  color: white;
-  border-style: none; }
-
-.make-private-button:hover {
-  transform: scale(1.1); }
-
-.create-campaign-button {
-  height: 60px;
-  width: 200px;
-  border-radius: 4px;
-  background-color: #2D2F30;
-  color: white; }
-
-.create-campaign-button:hover {
-  transform: scale(1.1); }
-
-body {
-  background-color: #0d0d0d;
-  font-family: 'Roboto', sans-serif;
-  color: white; }
-
-/*# sourceMappingURL=output.css.map */
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"  cursor: pointer\": expected \"{\", was \";\"\A         on line 208 of frontend/src/assets/styles/session-form.scss\A         from line 4 of frontend/src/assets/styles/input.scss\A \A 203:   background-color: #2D2F30;\A 204:   color: white;\A 205:   min-height: 2.9em;\A 206:   font-size: 20px;\A 207: <<<<<<< HEAD\A 208:   cursor: pointer;\A 209: =======\A 210: >>>>>>> campaign_landing2\A 211: }\A 212: \A 213: hr{"; }
