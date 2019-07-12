@@ -9,17 +9,20 @@ import {
   changeCharacter,
   // getCharacter
 } from "../../actions/character_actions"
+import { fetchCampaign } from '../../actions/campaign_actions';
 import { withRouter } from "react-router-dom"
 
-const mSP = (state) => {
+const mSP = (state, ownProps) => {
   return {
-    currentUser: state.session.user,
+    currentUser: ownProps.currentUser,
+    campaign: ownProps.campaign,
   }
 };
 
 const mDP = dispatch => ({
-  createCharacter: (character) => dispatch(createCharacter(character)),
-  changeCharacter: (id) => dispatch(changeCharacter(id))
+  createCharacter: character => dispatch(createCharacter(character)),
+  changeCharacter: characterId => dispatch(changeCharacter(characterId)),
+  fetchCampaign: campaignId => dispatch(fetchCampaign(campaignId)),
   // getCharacter: (id) => dispatch(getCharacter(id))
 });
 
