@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-const Campaign = require("../../models/Character");
+const Campaign = require("../../models/Campaign");
 
 const { errRes } = require("../../validation/validation_util");
 
@@ -24,13 +24,14 @@ const characterObj = (req) => ({
 /*
 Updates campaign to include the newly created character's id
 */
+
 const updateCampaign = (res, char) => Campaign.findOneAndUpdate(
     { _id: char.campaign_id },
-    { character_ids: char.id },
+    { $addToSet: {character_ids: char._id }},
     { new: true },
     err => {
       if (err) errRes(res, 200, defErrs.failedUpdateCampaign);
-      else res.json({msg:"Campaign updated successfully", character: char});
+      else res.json({msg:"Campaign updated successfully", dat: char._id });
     }
 );
 
@@ -41,9 +42,7 @@ const createCharacter = (req, res) => {
   const newChar = new Character(characterObj(req));
   newChar
     .save()
-    .then(char => {
-        updateCampaign(res, char)
-    })
+    .then(char => updateCampaign(res, char))
     .catch(err => console.log(err));
 };
 

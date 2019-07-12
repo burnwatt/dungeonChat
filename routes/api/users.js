@@ -15,7 +15,9 @@ const validateLoginInput = require("../../validation/login");
 const defErrs = {
   emailNotAvailable: { email: "A user has already registered with that email"},
   emailIncorrect: { email: "This user does not exist!"},
-  passwordIncorrect: { password: "Password is incorrect"}
+  passwordIncorrect: { password: "Password is incorrect"},
+  noUsersFound: { users: "No users found!"},
+  noUserFound: { user: "No user found with that ID!"}
 };
 
 // POST ---------------------
@@ -93,6 +95,21 @@ router.post("/login", (req, res) => {
 });
 
 // GET -----------------------
+
+// /.................................
+router.get("/", (req, res) => {
+  User.find()
+    .sort({ date: 1 })
+    .then(users => res.json(users))
+    .catch(err => errRes(res, 404, defErrs.noUsersFound))
+});
+
+router.get("/:id", (req, res) => {
+
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => errRes(res, 404, defErrs.noUserFound))
+})
 
 // test ...........................
 router.get("/test", (req, res) => res.json({ msg: "This is the users route!!" }));

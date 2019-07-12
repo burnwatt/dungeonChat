@@ -14,6 +14,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  campaign_ids: [{
+    type: Schema.Types.ObjectId,
+    ref: "campaign"
+  }],
+  character_ids: [{
+    type: Schema.Types.ObjectId,
+    ref: "characters"
+  }],
   date: {
     type: Date,
     default: Date.now
