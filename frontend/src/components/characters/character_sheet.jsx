@@ -95,209 +95,240 @@ class CharacterSheet extends React.Component {
 
     render(){
       return (
-          <div className='character-sheet-main'>
-              <h1>Character Form </h1>
-              <form className='character-sheet'>
-                  <div className='character-info'>
-                      <label> Name
-                    <input type="text" onChange={this.handleInput("name")} 
-                        value={this.state.name}
-                    />
-                      </label>
+          <div className= "character-page">
+            <div className= "container-margin">
+              <div className='character-sheet-main'>
+                  <div className="name-and-avatar">
+                    <div className="character-avatar">
+                      <div><div><i class="fas fa-user-ninja fa-7x"></i></div></div>
+                    </div>
+                    <div className="character-name">
 
-                      <label> Class
-                    <input type="text" onChange={this.handleInput("class")} />
-                      </label>
-
-                      <label> Race
-                    <input type="text" onChange={this.handleInput("race")} />
-                      </label>
-
-                      <label> Health
-                    <input type="number" onChange={this.handleInput("health")} />
-                      </label>
-
-                      <label> Magic
-                    <input type="number" onChange={this.handleInput("magic")} />
-                      </label>
-
-                      <label> Gold
-                    <input type="number" onChange={this.handleInput("gold")} />
-                      </label>
+                    </div>
                   </div>
 
-                  <div className='character-powers-main'>
+                  <form className='character-sheet'>
+                      <div className='character-info'>
+                      <h1>Character Info</h1>
+                          <label>Name</label>
+                        <input type="text" onChange={this.handleInput("name")} 
+                            value={this.state.name}
+                        />
+                          
 
-                      <div className='power' id='power-1'>
-                          <label> Power Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("powers", "power1", "name")} />
-                          </label>
-                          <textarea
-                              name="Power Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("powers", "power1", "description")}
-                          ></textarea>
+                          <label>Class</label>
+                        <input type="text" onChange={this.handleInput("class")} />
+                          
+
+                          <label>Race</label>
+                        <input type="text" onChange={this.handleInput("race")} />
+                          
+
+                          <label>Health</label>
+                        <input type="number" onChange={this.handleInput("health")} />
+                          
+
+                          <label>Magic</label>
+                        <input type="number" onChange={this.handleInput("magic")} />
+                          
+
+                          <label>Gold</label>
+                        <input type="number" onChange={this.handleInput("gold")} />
+                          
                       </div>
 
-                      <div className='power' id='power-2'>
-                          <label> Power Name
-                        <input type="text"
+                      <div className='character-powers-main'>
+
+                          <div className='power' id='power-1'>
+                            <h1>Powers</h1>
+                            <div className="power-div">
+                              <h3>1.</h3>
+                              <input type="text"
+                                   placeholder="Name"
+                                   onChange={this.handleNestedInput("powers", "power1", "name")} />
+                            </div>
+                            
+                              
+                              <textarea
+                                  placeholder="Power Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("powers", "power1", "description")}
+                              ></textarea>
+                          </div>
+
+                          <div className='power' id='power-2'>
+                            <div className="power-div">
+                              <h3>2.</h3>
+                              <input type="text"
+                                  placeholder="Name"
                                   onChange={this.handleNestedInput("powers", "power2", "name")} />
-                          </label>
-                          <textarea
-                              name="Power Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("powers", "power2", "description")}
-                          ></textarea>
-                      </div>
+                            </div>
+                            
+                              
+                              <textarea
+                                  placeholder="Power Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("powers", "power2", "description")}
+                              ></textarea>
+                          </div>
 
-                      <div className='power' id='power-3'>
-                          <label> Power Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("powers", "power3", "name")} />
-                          </label>
-                          <textarea
-                              name="Power Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("powers", "power3", "description")}
-                          ></textarea>
-                      </div>
+                          <div className='power' id='power-3'>
+                            <div className="power-div">
+                              <h3>3.</h3>
+                              <input type="text"
+                                        placeholder="Name"
+                                        onChange={this.handleNestedInput("powers", "power3", "name")} />
+                            </div>
+                              <textarea
+                                  placeholder="Power Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("powers", "power3", "description")}
+                              ></textarea>
+                          </div>
 
-                      <div className='power' id='power-4'>
-                          <label> Power Name
-                        <input type="text"
+                          <div className='power' id='power-4'>
+                            <div className="power-div">
+                              <h3>4.</h3>
+                              <input type="text"
+                                  placeholder="Name"
                                   onChange={this.handleNestedInput("powers", "power4", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Power Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("powers", "power4", "description")}
-                          ></textarea>
-                      </div>
+                                  />
+                            </div>
+                            
+                              
+                              <textarea
+                                  placeholder="Power Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("powers", "power4", "description")}
+                              ></textarea>
+                          </div>
 
-                      <div className='power' id='power-special'>
-                          <label> Power Name
-                        <input type="text"
+                          <div className='power' id='power-special'>
+                            <div className="power-div">
+                              <h3>5.</h3>
+                              <input type="text"
+                                  placeholder="Name"
                                   onChange={this.handleNestedInput("powers", "special", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Power Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("powers", "special", "description")}
-                          ></textarea>
+                                  />
+                            </div>
+                            
+                              <textarea
+                                  placeholder="Power Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("powers", "special", "description")}
+                              ></textarea>
+                          </div>
+
                       </div>
 
-                  </div>
+                      <div className='character-inventory'>
+                          <h1>Inventory</h1>
+                          <div className='inventory-slot' id='slot-1'>
+                              <label> Name
+                            <input type="text"
+                                      onChange={this.handleNestedInput("inventory", "slot1", "name")}
+                                  />
+                              </label>
+                              <textarea
+                                  name="Item Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("inventory", "slot1", "description")}
+                              ></textarea>
+                              <label> Qty
+                            <input type="qty"
+                                      onChange={this.handleNestedInput("inventory", "slot1", "qty")}
+                                  />
+                              </label>
+                          </div>
 
-                  <div className='character-inventory'>
+                          <div className='inventory-slot' id='slot-2'>
+                              <label> Name
+                            <input type="text"
+                                      onChange={this.handleNestedInput("inventory", "slot2", "name")}
+                                  />
+                              </label>
+                              <textarea
+                                  name="Item Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("inventory", "slot2", "description")}
+                              ></textarea>
+                              <label> Qty
+                            <input type="qty"
+                                      onChange={this.handleNestedInput("inventory", "slot2", "qty")}
+                                  />
+                              </label>
+                          </div>
 
-                      <div className='inventory-slot' id='slot-1'>
-                          <label> Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("inventory", "slot1", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Item Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("inventory", "slot1", "description")}
-                          ></textarea>
-                          <label> Qty
-                        <input type="qty"
-                                  onChange={this.handleNestedInput("inventory", "slot1", "qty")}
-                              />
-                          </label>
+                          <div className='inventory-slot' id='slot-3'>
+                              <label> Name
+                            <input type="text"
+                                      onChange={this.handleNestedInput("inventory", "slot3", "name")}
+                                  />
+                              </label>
+                              <textarea
+                                  name="Item Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("inventory", "slot3", "description")}
+                              ></textarea>
+                              <label> Qty
+                            <input type="qty"
+                                      onChange={this.handleNestedInput("inventory", "slot3", "qty")}
+                                  />
+                              </label>
+                          </div>
+
+                          <div className='inventory-slot' id='slot-4'>
+                              <label> Name
+                            <input type="text"
+                                      onChange={this.handleNestedInput("inventory", "slot4", "name")}
+                                  />
+                              </label>
+                              <textarea
+                                  name="Item Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("inventory", "slot4", "description")}
+                              ></textarea>
+                              <label> Qty
+                            <input type="qty"
+                                      onChange={this.handleNestedInput("inventory", "slot4", "qty")}
+                                  />
+                              </label>
+                          </div>
+
+                          <div className='inventory-slot' id='slot-5'>
+                              <label> Name
+                            <input type="text"
+                                      onChange={this.handleNestedInput("inventory", "slot5", "name")}
+                                  />
+                              </label>
+                              <textarea
+                                  name="Item Description"
+                                  cols="30"
+                                  rows="10"
+                                  onChange={this.handleNestedInput("inventory", "slot5", "description")}
+                              ></textarea>
+                              <label> Qty
+                            <input type="qty"
+                                      onChange={this.handleNestedInput("inventory", "slot5", "qty")}
+                                  />
+                              </label>
+                          </div>
                       </div>
 
-                      <div className='inventory-slot' id='slot-2'>
-                          <label> Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("inventory", "slot2", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Item Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("inventory", "slot2", "description")}
-                          ></textarea>
-                          <label> Qty
-                        <input type="qty"
-                                  onChange={this.handleNestedInput("inventory", "slot2", "qty")}
-                              />
-                          </label>
-                      </div>
-
-                      <div className='inventory-slot' id='slot-3'>
-                          <label> Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("inventory", "slot3", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Item Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("inventory", "slot3", "description")}
-                          ></textarea>
-                          <label> Qty
-                        <input type="qty"
-                                  onChange={this.handleNestedInput("inventory", "slot3", "qty")}
-                              />
-                          </label>
-                      </div>
-
-                      <div className='inventory-slot' id='slot-4'>
-                          <label> Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("inventory", "slot4", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Item Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("inventory", "slot4", "description")}
-                          ></textarea>
-                          <label> Qty
-                        <input type="qty"
-                                  onChange={this.handleNestedInput("inventory", "slot4", "qty")}
-                              />
-                          </label>
-                      </div>
-
-                      <div className='inventory-slot' id='slot-5'>
-                          <label> Name
-                        <input type="text"
-                                  onChange={this.handleNestedInput("inventory", "slot5", "name")}
-                              />
-                          </label>
-                          <textarea
-                              name="Item Description"
-                              cols="30"
-                              rows="10"
-                              onChange={this.handleNestedInput("inventory", "slot5", "description")}
-                          ></textarea>
-                          <label> Qty
-                        <input type="qty"
-                                  onChange={this.handleNestedInput("inventory", "slot5", "qty")}
-                              />
-                          </label>
-                      </div>
-                  </div>
-
-                  <button className='character-save' onClick={this.handleSubmit()}>Save</button>
-                  <button className='character-cancel' onClick={this.handleCancel()}>Cancel</button>
-              </form>
+                      <button className='character-save' onClick={this.handleSubmit()}>Save</button>
+                      <button className='character-cancel' onClick={this.handleCancel()}>Cancel</button>
+                  </form>
+              </div>
+            </div>
           </div>
       )
       

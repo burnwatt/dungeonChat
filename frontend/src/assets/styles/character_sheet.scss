@@ -1,0 +1,90 @@
+.character-page{
+  display: flex;
+  justify-content: center;
+  background-color: #1D0000;
+  color: #bf7f01;
+  background-image: url(https://i.imgur.com/aBKrTWU.gif);
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(https://i.imgur.com/aBKrTWU.gif);
+  background-size: cover;
+}
+
+.container-margin{
+    width: 80%;
+    max-width: 900px;
+    background-color: black;
+    padding-top: inherit;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 30px;
+}
+
+.character-info{
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  margin-top: 40px;
+}
+
+.power{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.power-div{
+  display: flex;
+}
+
+.character-sheet-main textarea{
+  background-color: #480202;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  height: 100px;
+}
+
+.character-sheet-main input{
+  background-color: #480202;
+  margin-bottom: 10px;
+
+}
+
+.character-sheet-main label{
+  min-width: 50px;
+  margin-bottom: 3px;
+}
+
+.inventory-slot{
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px
+}
+
+.character-powers-main{
+  margin-top: 25px;
+}
+
+.character-page h1{
+  font-size: 35px;
+  margin-bottom: 9px;
+      border-bottom: #bf7f01;
+    border-style: double;
+}
+.character-page .character-inventory h1{
+  margin-bottom: 0px;
+  margin-top: 10px;
+  transform: translate(0px, 16px);
+}
+
+.character-page h3{
+  transform: translate(-20px, 1px);
+    position: absolute;
+}
+
+.name-and-avatar{
+  height: fit-content;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
