@@ -54,29 +54,43 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 
 ## July 9
 * [x] Finalize schema (**Group**)
-* [ ] Splash Page frontend/styling (**Brad/Josh**)
-* [ ] Campaign Backend/Landing Page (**Michael/Steven**)
+* [x] Splash components/styling (**Brad/Josh**)
+* [x] Session components/styling (**Brad/Josh**)
+* [x] Campaigns Backend/Landing Page (**Michael/Steven**)
 
 
 ## July 10
-* [ ] Campaigns backend/routes 
-* [ ] Chat backend/routes
-
+* [x] Git Branching and Troubleshooting (**GROUP**)
+* [ ] Campaigns backend/routes (**Michael/Steven**)
+* [ ] Campaigns components/styling (**Michael/Steven**)
+* [ ] Characters redux backend/routes (**Brad/Josh**)
+* [ ] Characher sheet form and styling (**Brad/Josh**)
 
 ## July 11
-* [ ] Setup Frontend Components
+* [ ] Campaigns backend/routes (**Michael/Steven**)
+* [ ] Campaigns components/styling (**Michael/Steven**)
+* [ ] Characters redux backend/routes (**Brad/Josh**)
+* [ ] Character sheet form and styling (**Brad/Josh**)
 
 ## July 12
-* [ ] Styling
+* [ ] Finalize Campaign features (**Michael/Steven**)
+* [ ] Finalize Character features (**Brad/Josh**)
+* [ ] Set up messaging backend (**GROUP**)
+* [ ] Build initial chat page structure and styling (**GROUP**)
 
-## Weekend
-* [ ] Catchup
+## July 13-14 (Weekend)
+
+## July 15
+
+## July 16
 
 # Technologies Used
 * MongoDB
 * Express
 * React
 * Node.js
+* sockets.io
 
 # Technological Challenges
 * Using git branches with team
+
