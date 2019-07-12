@@ -2,7 +2,8 @@ import {
   fetchAllCharacters,
   fetchCharacter,
   postCharacter,
-  updateCharacter
+  updateCharacter,
+  fetchCampaignCharacters
 } from "../util/character_api_util";
 
 export const RECEIVE_ALL_CHARACTERS = "RECEIVE_ALL_CHARACTERS";
@@ -31,5 +32,12 @@ export const changeCharacter = (id) => {
 export const createCharacter = (character) => {
   return dispatch => {
     return postCharacter(character).then(payload => dispatch({type: RECEIVE_NEW_CHARACTER, character: payload}))
+  }
+}
+
+
+export const getCampaignCharacters = (character_ids) => {
+  return dispatch => {
+    return fetchCampaignCharacters(character_ids).then(characters => dispatch({ type: RECEIVE_ALL_CHARACTERS, characters: characters }))
   }
 }

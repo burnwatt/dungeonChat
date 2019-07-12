@@ -11,7 +11,8 @@ const defErrs = {
     noCharactersFound: { noCharactersFound: "No characters found!" },
     noIdCharacters: { noCharacterFound: "No character found with that ID" },
     failedUpdateCampaign: { campaign: "Failed to update campaign" },
-    failedUpdateCharacter: { character: "Failed to update character"}
+    failedUpdateCharacter: { character: "Failed to update character"},
+    failedCharactersRetrieval: { campaign: "Failed to get campaign characters"}
 };
 
 // POST ----------------------------------------
@@ -95,6 +96,12 @@ router.get('/:id', (req, res) => {
         .then(chars => res.json(chars))
         .catch(err => errRes(res, 404, defErrs.noCharactersFound))
 });
+
+router.get("/campaign/characters", (req, res) => {
+    Character.find({ _id: { $in: req.body.character_ids }})
+        .then(characters => res.json(characters))
+        .catch(err => errRes(res, 500, defErrs.failedCharactersRetrieval))
+})
 
 // UPDATE --------------------------------------
 router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {

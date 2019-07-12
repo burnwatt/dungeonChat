@@ -10,7 +10,7 @@ class Landing extends React.Component {
       <div id="landing">
         <div className="empty-spacer-1"></div>
         <div id="landing-hero">
-          <img src={ landing_splash }  alt="whatever"/>
+          <img src={ landing_splash } alt="whatever"/>
         </div>
         <CampaignIndexContainer />
       </div>

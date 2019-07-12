@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_CHARACTERS:
-      return action.characters.data;
+      return merge({}, state, action.characters.data);
     case RECEIVE_NEW_CHARACTER:
       return merge({}, state, {[action.character.data.character._id]: action.character.data.character});
     case RECEIVE_CHARACTER:

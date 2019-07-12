@@ -1,18 +1,18 @@
-
-
 #landing {
-  height: 110vh;
+  background-image: url("../../assets//public//images/landing-back-v1.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 150vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   // margin: 0 auto;
 
-  background-image: url("../../assets//public//images/landing-back-v1.png");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
 }
 
 // #temp-header {
@@ -58,10 +58,11 @@
   max-width: 1074px;
   height: 421px;
   width: 70%;
-  background: lightblue;
+  // background: lightblue;
   margin-top: 48px;
   overflow: hidden;
   border-radius: 8px;
+
 }
 #landing-hero img {
   height: 417px;
@@ -69,7 +70,4 @@
   bottom: 0;
   left: 0;
 }
-
-
-
 

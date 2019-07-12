@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 // import "./navbar.css";
 
 class NavBar extends React.Component {
@@ -12,6 +12,7 @@ class NavBar extends React.Component {
   logoutUser(event) {
     event.preventDefault();
     this.props.logout();
+    this.props.history.push("/login");
   }
 
   getLinks() {

@@ -11,6 +11,7 @@ import LandingContainer from "./landing/landing_container";
 import CreateCampaignContainer from "./campaigns/create_campaign_container";
 
 import CharacterSheet from "./characters/character_sheet"
+import CampaignShow from "./campaigns/campaign_show_container";
 
 const App = () => (
   <div>
@@ -23,6 +24,7 @@ const App = () => (
       <Route exact path="/landing" component={LandingContainer} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet" component={CharacterSheet} />
+      <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
     </Switch>
   </div>
 );
