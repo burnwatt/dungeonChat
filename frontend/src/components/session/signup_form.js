@@ -147,7 +147,7 @@ class SignupForm extends React.Component {
                   <hr />
                   <div className="link-to-signup-container">
                     <span>Already have an account?</span>
-                    <Link to="/signup">Signup</Link>
+                    <Link to="/login">Login</Link>
                   </div>
                 </div>
               </form>

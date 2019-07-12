@@ -8,8 +8,9 @@ class Landing extends React.Component {
   render() {
     return (
       <div id="landing">
+        <div className="empty-spacer-1"></div>
         <div id="landing-hero">
-          <img src={ landing_splash }  />
+          <img src={ landing_splash }  alt="whatever"/>
         </div>
         <CampaignIndexContainer />
       </div>

@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
-import session from "./session_reducer";
-import errors from './errors_reducer';
-import characters from './character_reducer';
+import sessionReducer from "./session_reducer";
+import campaignReducer from "./campaign_reducer";
+import errorsReducer from "./errors_reducer";
+import usersReducer from "./user_reducer";
 
-const RootReducer = combineReducers({
-  session,
-  errors,
-  characters
+const rootReducer = combineReducers({
+  session: sessionReducer,
+  campaigns: campaignReducer,
+  errors: errorsReducer,
+  users: usersReducer
 });
 
-export default RootReducer;
+export default rootReducer;

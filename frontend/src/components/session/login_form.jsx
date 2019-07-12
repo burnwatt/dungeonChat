@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
           <div className="container">
             <div className="back">
               <Link to="/">
-                <i class="far fa-arrow-alt-circle-left" />
+                <i className="far fa-arrow-alt-circle-left" />
               </Link>
             </div>
             <div className="title">Login</div>
@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
                     <div className="title-container">
                       <div className="input-title">
                         <div>
-                          <i class="fas fa-scroll" />
+                          <i className="fas fa-scroll" />
                         </div>
                       </div>
                       <div className="bar" />
@@ -91,7 +91,7 @@ class LoginForm extends React.Component {
                   <div className="input">
                     <div className="title-container">
                       <div className="input-title">
-                        <i class="fas fa-gem" />
+                        <i className="fas fa-gem" />
                       </div>
                       <div className="bar" />
                     </div>

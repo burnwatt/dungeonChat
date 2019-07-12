@@ -29,6 +29,7 @@ const campaignObj = (req) => ({
   is_private: req.body.is_private,
   // character_sheet_id: req.character_sheet.id,
   created_by: req.user.id,
+  character_ids: req.body.character_ids
 })
 
 const campaignBcrypt = (newCampaign) => {
@@ -75,6 +76,12 @@ router.post("/update/:id", passport.authenticate("jwt", { session: false }), (re
 
 // test ............................
 router.get("/test", (req, res) => res.json({ msg: "This is the campaigns router."}));
+router.get("/sayhello", (req, res) => {
+  Campaign.findById(req.body.id)
+    .then(camp => camp.sayhello())
+      // if (status.nModified === 0) res.json({msg: "Failed to modify users"})
+      // else res.json({ msg: `Removed campaign id from ${nModified} users` })
+})
 
 // /
 router.get("/", (req, res) => {
@@ -94,7 +101,7 @@ router.get("/user/:user_id", (req, res) => {
 // /:id
 router.get("/:id", (req, res) => {
   Campaign.findById(req.params.id)
-    .then(campaign => res.json(campaign))
+    .then(campaign => res.json(campaign).data)
     .catch(err => errRes(res, 404, defErrs.noIdCampaigns))
 });
 
@@ -106,15 +113,32 @@ router.get("name/:name", (req, res) => {
 });
 
 // DELETE ------------------------------------------------------------
+
 // delete
-router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
-  Campaign.findOneAndDelete(req.body.id)
-    .then(campaign => {
-      if (campaign) res.json({ msg: "Campaign Deleted Successfully"})
-      else errRes(res, 200, defErrs.failedDeleteCampaign)
-    });
+// router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
+//   Campaign.findOneAndDelete(req.body.id)
+//     .then(campaign => {
+//       // campaign.deleteFromUsers();
+//       if (campaign) res.json({ msg: "Campaign Deleted Successfully" })
+//       else errRes(res, 200, defErrs.failedDeleteCampaign)
+//     });
     
+// });
+router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
+  Campaign.findOne(req.body.id)
+    .then(campaign => {
+      // campaign.deleteFromUsers();
+      if (campaign) {
+        campaign.deleted = true;
+        campaign.save();
+        campaign.deleteMessages();
+        campaign.deleteCharacters();
+        res.json(campaign._id);
+      } else errRes(res, 200, defErrs.failedDeleteCampaign)
+    });
+
 });
+
 
 // End Campaign
 
