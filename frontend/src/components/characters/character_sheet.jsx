@@ -100,7 +100,7 @@ class CharacterSheet extends React.Component {
               <div className='character-sheet-main'>
                   <div className="name-and-avatar">
                     <div className="character-avatar">
-                      <div><div><i class="fas fa-user-ninja fa-7x"></i></div></div>
+                      <div><div><i className="fas fa-user-ninja fa-7x"></i></div></div>
                     </div>
                     <div className="character-name">
 
@@ -292,7 +292,7 @@ class CharacterSheet extends React.Component {
                                   />
                               </label>
                               <textarea
-                                  name="Item Description"
+                                   name="Item Description"
                                   cols="30"
                                   rows="10"
                                   onChange={this.handleNestedInput("inventory", "slot4", "description")}
