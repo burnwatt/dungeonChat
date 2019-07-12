@@ -10,7 +10,8 @@
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-    "sass": "sass --watch frontend/src/assets/styles/input.scss:frontend/src/assets/styles/output.css"
+    "sass": "sass --watch frontend/src/assets/styles/input.scss:frontend/src/assets/styles/output.css",
+    "devs": "concurrently \"npm run dev\" \"npm run sass\""
   },
   "repository": {
     "type": "git",

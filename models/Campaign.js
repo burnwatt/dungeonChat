@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const User = require("./User");
+// const Message = require("./Message");
+const Character = require("./Character");
+
 const CampaignSchema = new Schema({
   cover_art_url: {
     type: String
@@ -16,6 +20,10 @@ const CampaignSchema = new Schema({
   },
   rules: {
     type: String
+  },
+  party_limit: {
+    type: Number,
+    default: 4
   },
   character_sheet_id : {
     type: Schema.Types.ObjectId,
@@ -41,10 +49,33 @@ const CampaignSchema = new Schema({
     type: Boolean,
     default: false
   },
+  deleted: {
+    type: Boolean,
+    default: false
+  },
   date: {
     type: Date,
     default: Date.now
   }
 });
+
+CampaignSchema.methods.deleteMessages = function() {
+  Message.updateMany(
+    { _id: {$in: this.message_ids}},
+    { $set: { deleted: true }}
+  ).then(status => status)
+}
+CampaignSchema.methods.deleteCharacters = function () {
+  Character.updateMany(
+    { _id: { $in: this.character_ids } },
+    { $set: { deleted: true } }
+  ).then(status => status)
+}
+CampaignSchema.methods.deleteFromUsers = function() {
+  User.updateMany(
+    { _id: { $in: this.user_ids } },
+    { $pull: { campaign_ids: this._id } },
+  ).then(status => status)
+}
 
 module.exports = Campaign = mongoose.model("campaigns", CampaignSchema);

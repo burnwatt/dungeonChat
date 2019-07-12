@@ -25,6 +25,7 @@ const characterObj = (req) => ({
 /*
 Updates campaign to include the newly created character's id
 */
+
 const updateCampaign = (res, char) => Campaign.findOneAndUpdate(
     { _id: char.campaign_id },
     { $addToSet: { character_ids: char._id } },

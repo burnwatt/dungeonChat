@@ -47,7 +47,7 @@ class CampaignForm extends React.Component {
 
   render() {
 
-    let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#"/> : <div></div> ;
+    let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
     
     
     
