@@ -432,8 +432,8 @@ class CharacterSheet extends React.Component {
                       </div>
                       
                       <div className='buttons-wrapper'>
-                  <button className='character-save' onClick={this.handleSubmit()}><i class="fas fa-check"></i></button>
-                  <button className='character-cancel' onClick={this.handleCancel()}><i class="fas fa-times"></i></button>
+                        <button className='character-save' onClick={this.handleSubmit()}><i class="fas fa-check"></i></button>
+                        <button className='character-cancel' onClick={this.handleCancel()}><i class="fas fa-times"></i></button>
                       </div>
                       
                   </form>
