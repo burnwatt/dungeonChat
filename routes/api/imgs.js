@@ -1,0 +1,45 @@
+const express = require("express");
+const fs = require('fs');
+const Img = require("../../models/Img")
+
+const router = express.Router();
+
+
+
+const multer = require('multer');
+const upload = multer({ storage: storage });
+
+const storage = multer.diskStorage({
+  destination: function (req, res, cb) {
+    cb(null, 'uploads/')
+  }
+});
+
+const defErrs = {
+  noIdImgs: { noImgFound: "No img found with that ID" },
+};
+
+
+router.route('/img_data')
+  .post(upload.single('file'), function (req, res) {
+    var new_img = new Img;
+    new_img.img.data = fs.readFileSync(req.file.path)
+    new_img.img.contentType = 'image/png';
+    new_img.save();
+    res.json({ message: 'New image added to the db!' });
+  }).get(function (req, res) {
+    Img.findOne({}, 'img createdAt', function (err, img) {
+      if (err)
+        res.send(err);
+      res.contentType('json');
+      res.send(img);
+    }).sort({ createdAt: 'desc' });
+  });
+
+router.get('/img_data/:id', (req, res) => {
+  Img.findById(req.params.id)
+    .then(img => res.json(img))
+    .catch(err => errRes(res, 404, defErrs.noIdImgs))
+})
+
+module.exports = router;
