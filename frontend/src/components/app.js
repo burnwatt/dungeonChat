@@ -13,6 +13,10 @@ import CreateCampaignContainer from "./campaigns/create_campaign_container";
 import CharacterSheet from "./characters/character_sheet"
 import CampaignShow from "./campaigns/campaign_show_container";
 
+//TESTING
+import Browse from "./browse/browse"
+//TESTING
+
 const App = () => (
   <div>
     <NavBarContainer />
@@ -22,6 +26,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
       <Route exact path="/landing" component={LandingContainer} />
+      <AuthRoute exact path="/browse" component={Browse}/>
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet" component={CharacterSheet} />
       <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
