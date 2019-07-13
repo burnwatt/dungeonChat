@@ -63,9 +63,9 @@ router.post("/", passport.authenticate("jwt", { session: false }), (req, res) =>
 // UPDATE
 
 // update .....................
-router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.post("/update", passport.authenticate("jwt", { session: false }), (req, res) => {
   Campaign.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.body.id },
     req.body,
     {new: true}
   ).then(campaign => res.json(campaign))
@@ -76,12 +76,6 @@ router.post("/update/:id", passport.authenticate("jwt", { session: false }), (re
 
 // test ............................
 router.get("/test", (req, res) => res.json({ msg: "This is the campaigns router."}));
-router.get("/sayhello", (req, res) => {
-  Campaign.findById(req.body.id)
-    .then(camp => camp.sayhello())
-      // if (status.nModified === 0) res.json({msg: "Failed to modify users"})
-      // else res.json({ msg: `Removed campaign id from ${nModified} users` })
-})
 
 // /
 router.get("/", (req, res) => {
@@ -101,7 +95,7 @@ router.get("/user/:user_id", (req, res) => {
 // /:id
 router.get("/:id", (req, res) => {
   Campaign.findById(req.params.id)
-    .then(campaign => res.json(campaign).data)
+    .then(campaign => res.json(campaign))
     .catch(err => errRes(res, 404, defErrs.noIdCampaigns))
 });
 
@@ -125,7 +119,7 @@ router.get("name/:name", (req, res) => {
     
 // });
 router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
-  Campaign.findOne(req.body.id)
+  Campaign.findOne({ _id: req.body.id })
     .then(campaign => {
       // campaign.deleteFromUsers();
       if (campaign) {

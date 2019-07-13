@@ -58,7 +58,7 @@ class SignupForm extends React.Component {
         <div id="session-nav">
           <div className="container">
             <div className="back">
-              <Link to="/"><i class="far fa-arrow-alt-circle-left"></i></Link>
+              <Link to="/"><i className="far fa-arrow-alt-circle-left"></i></Link>
             </div>
             <div className="title">Sign up</div>
           </div>
@@ -70,7 +70,7 @@ class SignupForm extends React.Component {
                 <div className="form-contents">
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><div><i class="fas fa-scroll"></i></div></div>
+                      <div className="input-title"><div><i className="fas fa-scroll"></i></div></div>
                       <div className="bar" />
                     </div>
 
@@ -85,7 +85,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><div><i class="fas fa-hat-wizard"></i></div></div>
+                      <div className="input-title"><div><i className="fas fa-hat-wizard"></i></div></div>
                       <div className="bar" />
                     </div>
 
@@ -100,7 +100,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><i class="fas fa-gem"></i></div>
+                      <div className="input-title"><i className="fas fa-gem"></i></div>
                       <div className="bar" />
                     </div>
 
@@ -116,7 +116,7 @@ class SignupForm extends React.Component {
                   <br />
                   <div className="input">
                     <div className="title-container">
-                      <div className="input-title"><i class="fas fa-gem"></i></div>
+                      <div className="input-title"><i className="fas fa-gem"></i></div>
                       <div className="bar" />
                     </div>
 

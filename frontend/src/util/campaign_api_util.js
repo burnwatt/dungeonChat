@@ -27,11 +27,11 @@ export const postCampaign = campaign => (
 // UPDATE ---------------------------------
 
 export const updateCampaign = campaign => (
-  axios.post(`/api/campaigns/update/${campaign.id}`, campaign)
+  axios.post(`/api/campaigns/update/`, campaign)
 );
 
 // DELETE ----------------------------------
 
 export const deleteCampaign = campaign_id => (
-  axios.post(`/api/campaigns/delete/${campaign_id}`, null)
+  axios.post("/api/campaigns/delete/", campaign_id)
 );

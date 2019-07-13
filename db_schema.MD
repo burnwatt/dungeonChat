@@ -48,7 +48,6 @@
 | `user_id`         | ObjectID  | indexed                   |
 | `type`            | string    | not null                  |
 | `body`            | string    | not null                  |
-| `password`        | string    | not null                  |
 | `date`            | Date      | not null, default Now     |
 
 <!-- belongs to a user, campaign, character  -->
