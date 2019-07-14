@@ -19,25 +19,28 @@ const postImage = (img) => {
 
 export const fetchImg = (id) => {
   return dispatch => {
-    return fetchImage(id).then(img => dispatch({type: RECEIVE_IMAGE, img}))
-    .then((res) => res.json())
-    .then((data) => {
-      var base64Flag = 'data:image/jpeg;base64,';
-      var imageStr = arrayBufferToBase64(data.img.data.data);
-      return base64Flag + imageStr;
+    return fetchImage(id).then(img => {
+      dispatch({type: RECEIVE_IMAGE, img})
+      return img.data.img.data;
     })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   var base64Flag = 'data:image/jpeg;base64,';
+    //   var imageStr = arrayBufferToBase64(data.img.data.data);
+    //   return base64Flag + imageStr;
+    // })
 
 }}
 
 export const postImg = (img) => {
   return dispatch => {
     return postImage(img).then(img => dispatch({type: RECEIVE_IMAGE, img}))
-      .then((res) => res.json())
-      .then((data) => {
-        var base64Flag = 'data:image/jpeg;base64,';
-        var imageStr = arrayBufferToBase64(data.img.data.data);
-        return base64Flag + imageStr;
-      })
+      // .then((res) => res.json())
+      // .then((data) => {
+      //   var base64Flag = 'data:image/jpeg;base64,';
+      //   var imageStr = arrayBufferToBase64(data.img.data.data);
+      //   return base64Flag + imageStr;
+      // })
   }
 }
 

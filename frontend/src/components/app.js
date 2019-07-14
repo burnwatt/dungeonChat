@@ -13,6 +13,10 @@ import CreateCampaignContainer from "./campaigns/create_campaign_container";
 import CharacterSheet from "./characters/character_sheet"
 import CampaignShow from "./campaigns/campaign_show_container";
 
+import ImgsContainer from "./imgs/imgs_container"
+import Imgs from "./imgs/imgs"
+
+
 const App = () => (
   <div>
     <NavBarContainer />
@@ -25,6 +29,9 @@ const App = () => (
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet" component={CharacterSheet} />
       <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
+      {/* <Route exact path="/imgs" component={Imgs}/> */}
+      <Route exact path="/imgs/:id" component={ImgsContainer} />
+
     </Switch>
   </div>
 );

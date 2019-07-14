@@ -7,22 +7,24 @@ const router = express.Router();
 
 
 const multer = require('multer');
-const upload = multer({ storage: storage });
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    cb(null, 'uploads/')
+    cb(null, '../../frontend/src/assets/public/uploads/')
   }
 });
 
+const upload = multer({ storage: storage });
 const defErrs = {
   noIdImgs: { noImgFound: "No img found with that ID" },
 };
 
 
 router.route('/img_data')
-  .post(upload.single('file'), function (req, res) {
+  .post(upload.single('picture'), function (req, res) {
     var new_img = new Img;
+    // var new_img = new Img({ data: { type: 'Buffer', data: { img: {data: "image here"} } } });
+
     new_img.img.data = fs.readFileSync(req.file.path)
     new_img.img.contentType = 'image/png';
     new_img.save();
@@ -38,7 +40,14 @@ router.route('/img_data')
 
 router.get('/img_data/:id', (req, res) => {
   Img.findById(req.params.id)
-    .then(img => res.json(img))
+    .then(img => {
+      // res.setHeader('content-type', img.contentType);
+      res.setHeader('content-type', 'image/png');
+
+      // res.contentType('json');
+      res.send(img);
+      // res.json(img)
+    })
     .catch(err => errRes(res, 404, defErrs.noIdImgs))
 })
 
