@@ -14,11 +14,9 @@ class CampaignIndexItem extends React.Component {
   sendToCampaignPage() {
     const { campaign } = this.props;
     let {name} = campaign;
-    // name = encodeURIComponent(name);
     this.props.history.push({
       pathname: `/campaign/${name}`
     })
-    // return <Redirect to="/campaign/${name}" currentUser={currentUser} campaign={campaign}/>
   }
 
   render() {

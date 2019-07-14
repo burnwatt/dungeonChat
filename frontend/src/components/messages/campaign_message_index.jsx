@@ -20,7 +20,7 @@ class CampaignMessageIndex extends React.Component {
   }
 
   render () {
-    console.log(this.props);
+    // console.log(this.props);
     const { characters, currentUser, userChar } = this.props;
     const { messages } = this.state;
     let msgDat = Object.values(messages).map(msg => 

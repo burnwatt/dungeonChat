@@ -26,7 +26,7 @@ class MessageIndexItem extends React.Component {
 
   setHeader() {
     const { userChar, characters, message } = this.props;
-    // console.log(userChar.char_attrs.name);
+
     let date = message.date;
     date = dateTimeStr(date);
     date = (timeDiff(message.date, new Date()).days > 1) ? date[0] : date[1];
@@ -34,7 +34,7 @@ class MessageIndexItem extends React.Component {
     if ( userChar && message.character_id === userChar._id ) {
       let name = userChar.char_attrs.name;
       return (
-        <div className="left message-item-header">
+        <div className="right message-item-header">
           <h1 className="message-character-name">{name}</h1>
           <h3 className="message-date-time">{date}</h3>
         </div>
@@ -42,7 +42,7 @@ class MessageIndexItem extends React.Component {
     } else if (message.character_id) {
       let char = Object.values(characters).filter(char => char._id === message.character_id)[0];
       return (
-        <div className="right message-item-header">
+        <div className="left message-item-header">
           <h1 className="message-character-name">{char.char_attrs.name}</h1>
           <h3 className="message-date-time">{date}</h3>
         </div>
