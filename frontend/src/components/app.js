@@ -14,7 +14,7 @@ import CharacterSheet from "./characters/character_sheet"
 import CampaignShow from "./campaigns/campaign_show_container";
 
 import ImgsContainer from "./imgs/imgs_container"
-import Imgs from "./imgs/imgs"
+// import Imgs from "./imgs/imgs"
 
 
 const App = () => (
@@ -28,9 +28,9 @@ const App = () => (
       <Route exact path="/landing" component={LandingContainer} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet" component={CharacterSheet} />
-      <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
+      <Route exact path="/campaign/:name" component={CampaignShow} />
       {/* <Route exact path="/imgs" component={Imgs}/> */}
-      <Route exact path="/imgs/:id" component={ImgsContainer} />
+      <Route exact path="/imgs/img/:id" component={ImgsContainer} />
 
     </Switch>
   </div>
