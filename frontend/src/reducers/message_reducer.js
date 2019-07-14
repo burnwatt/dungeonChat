@@ -10,6 +10,7 @@ export default (state = {}, action) => {
   let newState; 
   switch (action.type) {
     case RECEIVE_MESSAGES:
+      // console.log(action.messages);
       return merge({}, state, action.messages.data);
     case RECEIVE_MESSAGE:
       return merge({}, state, { [action.message.data._id]: action.message.data});

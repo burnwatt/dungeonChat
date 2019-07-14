@@ -59,6 +59,7 @@ class CampaignIndex extends React.Component {
 
 
   render() {
+    console.log(this.props.currentUser);
     const campDat = this.getCampaignDat();
 
     return (

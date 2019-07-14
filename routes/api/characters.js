@@ -48,30 +48,6 @@ const createCharacter = (req, res) => {
         .catch(err => console.log(err));
 };
 
-
-// const updateCampaign = (res, char) => Campaign.findOneAndUpdate(
-//     { _id: char.campaign_id },
-//     { character_ids: char._id },
-//     { new: true },
-//     err => {
-//       if (err) errRes(res, 200, defErrs.failedUpdateCampaign);
-//       else res.json({msg:"Campaign updated successfully", character: char});
-//     }
-// );
-
-/*
-Creates character, saves to db, and calls updateCampaign
-*/
-// const createCharacter = (req, res) => {
-//   const newChar = new Character(characterObj(req));
-//   newChar
-//     .save()
-//     .then(char => {
-//         updateCampaign(res, char)
-//     })
-//     .catch(err => console.log(err));
-// };
-
 //POST route to create character
 router.post("/", passport.authenticate("jwt", {session: false}), (req,res) => {
     Character.findOne({char_attrs: req.body.char_attrs})

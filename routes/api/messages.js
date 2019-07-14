@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const Message = require("../../models/Message");
+const validateMessageInput = require("../../validation/messages");
 const { errRes } = require("../../validation/validation_util");
 
 
@@ -29,14 +30,15 @@ const messageObj = req => ({
 
 const createMessage = (req, res) => {
   const newMessage = new Message(messageObj(req));
+  newMessage.addRelations();
   newMessage.save()
     .then(message => res.json(message))
     .catch(err => console.log(err));
 }
 
 router.post("/", passport.authenticate("jwt", { session: false }), (req, res) => {
-  // const { errors, isValid } = validateMessageInput(req.body);
-  // if (!isValid) return errRes(res, 400, errors);
+  const { errors, isValid } = validateMessageInput(req.body);
+  if (!isValid) return errRes(res, 400, errors);
   createMessage(req, res);
 });
 
@@ -71,27 +73,15 @@ router.get("/:message_id", (req, res) => {
     .catch(err => errRes(res, 404, defErrs.noIdMessage))
 });
 
-// user/messages...............
-router.get("/user/messages", passport.authenticate("jwt", { session: false }), (req, res) => {
-  Message.find({ _id: { $in: req.body.message_ids }})
-    .then(messages => res.json(messages))
-    .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
-})
-// campaign/messages ..................
-router.get("/campaign/messages", (req, res) => {
-  Message.find({ _id: { $in: req.body.message_ids } })
-    .then(messages => res.json(messages))
-    .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
-})
-// character/messages ...........................
-router.get("/character/messages", passport.authenticate("jwt", { session: false }), (req, res) => {
+
+
+router.get("/collection/collect", (req, res) => {
   Message.find({ _id: { $in: req.body.message_ids } })
     .then(messages => res.json(messages))
     .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
 })
 
 router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
-  console.log(req.body)
   Message.findOne({_id: req.body.id})
     .then(message => {
       if (message) {

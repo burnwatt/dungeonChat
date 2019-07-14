@@ -1,11 +1,9 @@
 
-#campaign-show {
+#campaign-show-container {
+  margin-top: 48px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70%;
-  margin: 0 auto;
-  text-align: center; 
+  flex-direction: row;
+  height: calc(100vh - 48px);
 }
 
 #campaign-show-nav-spacer1 {
@@ -13,10 +11,54 @@
   width: 100%;
 }
 
-#chat-box-container {
-  width: 100%; 
-  height: 1100px; 
-  background: gray;
-  display: inline-block;
+#campaign-content {
+  background: rgb(50,50,50);
+  width: 100%;
+  margin: 0 5%;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+}
+#campaign {
+  background: lightgray;
+  width: 100%;
+  height: 100%;
 }
 
+
+
+#campaign-content-footer {
+  width: 100%;
+  min-height: 200px;
+  max-height: 400px;
+  flex-shrink: 0;
+  background: darkcyan;
+}
+// #campaign-command {
+//   width: 100%;
+//   min-width: 400px;
+//   max-width: 1000px;
+//   height: 400px;
+//   background: lightcyan;
+// }
+
+
+
+
+
+
+// SIDE CONTENT!!!
+#campaign-extra {
+  
+  background: lightcoral;
+  width: 500px;
+
+}
+// #campaign-extra-content {
+//   background: lightcoral;
+//   width: 20px;
+//   height: 500px;
+// }

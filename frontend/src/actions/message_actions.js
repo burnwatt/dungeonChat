@@ -1,8 +1,7 @@
 import {
   getMessages,
   getUserMessages,
-  getCampaignMessages,
-  getCharacterMessages,
+  getMessageCollection,
   updateMessage,
   deleteMessage
 } from "../util/message_api_util";
@@ -38,15 +37,7 @@ export const fetchMessages = () => dispatch => getMessages()
   .then(messages => dispatch(receiveMessages(messages)))
   .catch(err => dispatch(receiveMessageErrors(err)));
 
-export const fetchUserMessages = message_Ids => dispatch => getUserMessages(message_Ids)
-  .then(messages => dispatch(receiveMessages(messages)))
-  .catch(err => dispatch(receiveMessageErrors(err)));
-
-export const fetchCampaignMessages = message_Ids => dispatch => getCampaignMessages(message_Ids)
-  .then(messages => dispatch(receiveMessages(messages)))
-  .catch(err => dispatch(receiveMessageErrors(err)));
-
-export const fetchCharacterMessages = message_Ids => dispatch => getCharacterMessages(message_Ids)
+export const fetchMessageCollection = messageIds => dispatch => getMessageCollection(messageIds)
   .then(messages => dispatch(receiveMessages(messages)))
   .catch(err => dispatch(receiveMessageErrors(err)));
 

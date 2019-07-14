@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "characters"
   }],
+  message_ids: [{
+    type: Schema.Types.ObjectId,
+    ref: "messages"
+  }],
   date: {
     type: Date,
     default: Date.now
