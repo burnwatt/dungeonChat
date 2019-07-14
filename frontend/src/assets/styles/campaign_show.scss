@@ -3,7 +3,8 @@
   margin-top: 48px;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 48px);
+  // height: calc(100% - 48px);
+  background: rgb(30, 30, 40);
 }
 
 #campaign-show-nav-spacer1 {
@@ -12,7 +13,7 @@
 }
 
 #campaign-content {
-  background: rgb(50,50,50);
+  // background: rgb(50,50,50);
   width: 100%;
   margin: 0 5%;
 
@@ -23,7 +24,6 @@
 
 }
 #campaign {
-  background: lightgray;
   width: 100%;
   height: 100%;
 }
@@ -32,10 +32,10 @@
 
 #campaign-content-footer {
   width: 100%;
-  min-height: 200px;
-  max-height: 400px;
+  height: 256px;
   flex-shrink: 0;
-  background: darkcyan;
+  background: rgb(30, 30, 40);
+  border: 1px solid gray;
 }
 // #campaign-command {
 //   width: 100%;
@@ -45,7 +45,9 @@
 //   background: lightcyan;
 // }
 
-
+:root {
+  --campaignFooterHeight: 400px;
+}
 
 
 

@@ -27,24 +27,24 @@ const characterObj = (req) => ({
 Updates campaign to include the newly created character's id
 */
 
-const updateCampaign = (res, char) => Campaign.findOneAndUpdate(
-    { _id: char.campaign_id },
-    { $addToSet: { character_ids: char._id } },
-    { new: true },
-    err => {
-        if (err) errRes(res, 200, defErrs.failedUpdateCampaign);
-        else res.json({ msg: "Campaign updated successfully", dat: char._id });
-    }
-);
+// const updateCampaign = (res, char) => Campaign.findOneAndUpdate(
+//     { _id: char.campaign_id },
+//     { $addToSet: { character_ids: char._id } },
+//     { new: true },
+//     err => {
+//         if (err) errRes(res, 200, defErrs.failedUpdateCampaign);
+//         else res.json({ msg: "Campaign updated successfully", dat: char._id });
+//     }
+// );
 
 /*
 Creates character, saves to db, and calls updateCampaign
 */
 const createCharacter = (req, res) => {
     const newChar = new Character(characterObj(req));
-    newChar
-        .save()
-        .then(char => updateCampaign(res, char))
+    newChar.addRelations();
+    newChar.save()
+        .then(char => res.json(char))
         .catch(err => console.log(err));
 };
 
@@ -77,6 +77,15 @@ router.get("/campaign/characters", (req, res) => {
     Character.find({ _id: { $in: req.body.character_ids }})
         .then(characters => res.json(characters))
         .catch(err => errRes(res, 500, defErrs.failedCharactersRetrieval))
+})
+
+router.get("/campaign/:campaign_id", (req, res) => {
+    Campaign.findOne({ _id: req.params.campaign_id })
+        .then(campaign => {
+            Character.find({ _id: { $in: campaign.character_ids } })
+                .then(characters => res.json(characters))
+                .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
+        })
 })
 
 // UPDATE --------------------------------------

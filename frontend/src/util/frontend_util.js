@@ -19,8 +19,31 @@ const timestampToObj = (timestamp) => {
     hour: time[0],
     min: time[1],
     sig: sig,
-    time: `${time[0]}:${time[1]} ${sig}`
+    time: `${time[0]}:${time[1]} ${sig}`,
+    date: date,
+    date_time: date + `${time[0]}:${time[1]} ${sig}`
   }
+
+}
+
+const dateTimeStr = date => {
+
+  const ordMatch = function (dayNum) {
+    if (dayNum === 1) return "1st";
+    if (dayNum === 2) return "2nd";
+    if (dayNum === 3) return "3rd";
+    if (dayNum > 3) return `${dayNum}th`
+  };
+
+  date = new Date(date);
+  const dayNum = ordMatch(date.getDate());
+
+  const options = {
+    weekday: 'short', month: 'short', year: 'numeric'
+  };
+
+  return [`${dayNum} ${date.toLocaleString('en-US', options)}`,
+    date.toLocaleTimeString('en-US')]
 
 }
 
@@ -41,5 +64,6 @@ const timeDiff = (tsN, tsO) => {
 
 module.exports = {
   timestampToObj: timestampToObj,
-  timeDiff: timeDiff
+  timeDiff: timeDiff,
+  dateTimeStr: dateTimeStr
 };

@@ -15,10 +15,16 @@ export const fetchAllCharacters = () => (
     axios.get('/api/characters/')
 );
 
+// // Get all campaign characters
+// export const fetchCampaignCharacters = character_ids => (
+//     axios.get("/api/characters", character_ids)
+// );
+
 // Get all campaign characters
-export const fetchCampaignCharacters = character_ids => (
-    axios.get("/api/characters", character_ids)
+export const fetchCampaignCharacters = campaign_id => (
+    axios.get(`api/characters/campaign/${campaign_id}`)
 );
+
 
 //update character
 export const updateCharacter = char => (

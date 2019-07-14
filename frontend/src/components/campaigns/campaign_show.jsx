@@ -6,6 +6,15 @@ class CampaignShow extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentUser: null,
+      userChar: null,
+      camp: null,
+      campMsgs: [],
+      campChars: [],
+    }
+
   }
   
 
@@ -13,12 +22,41 @@ class CampaignShow extends React.Component {
     this.props.fetchUser(this.props.currentUser.id);
     this.props.fetchCampaignByName(this.props.match.params.name);
   }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.campaign !== this.props.campaign) {
+      // Get Campaign Characters
+      this.props.getCampaignCharacters(this.props.campaign._id)
+    }
+
+    // Add Campaign Characters to state
+    if (prevProps.characters !== this.props.characters) {
+      const { characters, campaign, currentUser } = this.props;
+
+      const campChars = Object.values(characters)
+        .filter(char => campaign.character_ids.includes(char._id))
+
+      this.setState({
+        currentUser: this.props.currentUser,
+        camp: this.props.campaign,
+        campChars: campChars,
+        userChar: campChars.filter(char => currentUser.character_ids.includes(char._id))[0]
+      })
+    }
+
+  }
 
   render() {
-    const { campaign, currentUser } = this.props;
+    const { camp, currentUser, campChars, userChar } = this.state;
+    // console.log(this.state);
     let campMessageIndex = <div></div>;
-    if (campaign && currentUser ) {
-      campMessageIndex = <CampaignMessageIndexContainer currentUser={currentUser} campaign={campaign} />
+    if (currentUser && camp && campChars ) {
+      campMessageIndex = <CampaignMessageIndexContainer 
+        currentUser={currentUser} 
+        campaign={camp} 
+        characters={campChars}
+        userChar={userChar}
+      />
     }
 
     return (

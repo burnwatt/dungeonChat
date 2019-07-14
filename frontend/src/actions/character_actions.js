@@ -36,8 +36,8 @@ export const createCharacter = (character) => {
 }
 
 
-export const getCampaignCharacters = (character_ids) => {
+export const getCampaignCharacters = (campaign_id) => {
   return dispatch => {
-    return fetchCampaignCharacters(character_ids).then(characters => dispatch({ type: RECEIVE_ALL_CHARACTERS, characters: characters }))
+    return fetchCampaignCharacters(campaign_id).then(characters => dispatch({ type: RECEIVE_ALL_CHARACTERS, characters: characters }))
   }
 }

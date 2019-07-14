@@ -73,13 +73,15 @@ router.get("/:message_id", (req, res) => {
     .catch(err => errRes(res, 404, defErrs.noIdMessage))
 });
 
-
-
-router.get("/collection/collect", (req, res) => {
-  Message.find({ _id: { $in: req.body.message_ids } })
-    .then(messages => res.json(messages))
-    .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
-})
+router.get("/campaign/:campaign_id", (req, res) => {
+  Campaign.findOne({ _id: req.params.campaign_id })
+    .sort({ date: 1 })
+    .then(campaign => {
+      Message.find({ _id: { $in: campaign.message_ids } })
+        .then(messages => res.json(messages))
+        .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
+    })
+});
 
 router.post("/delete", passport.authenticate("jwt", { session: false }), (req, res) => {
   Message.findOne({_id: req.body.id})
