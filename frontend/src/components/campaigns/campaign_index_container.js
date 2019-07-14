@@ -6,6 +6,8 @@ import {
 import { fetchUser } from "../../actions/user_actions";
 import CampaignIndex from "../campaigns/campaign_index";
 
+import { openModal } from "../../actions/ui/modal_actions";
+
 const mSP = state => ({
   users: state.users,
   campaigns: Object.values(state.campaigns),
@@ -15,7 +17,8 @@ const mSP = state => ({
 const mDP = dispatch => ({
   fetchCampaigns: () => dispatch(fetchCampaigns()),
   fetchUser: userId => dispatch(fetchUser(userId)),
-  fetchUserCampaigns: user_id => dispatch(fetchUserCampaigns(user_id))
+  fetchUserCampaigns: user_id => dispatch(fetchUserCampaigns(user_id)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 export default connect(mSP, mDP)(CampaignIndex);

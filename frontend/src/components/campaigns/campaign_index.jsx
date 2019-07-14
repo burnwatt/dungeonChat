@@ -77,7 +77,7 @@ class CampaignIndex extends React.Component {
               >My Campaigns
             </button>
           </div>
-          <button id="cnb-last" 
+          <button onClick={() => this.props.openModal("Campaign Creation Form")} id="cnb-last" 
             className="campaign-nav-button btn-glow"
             >+ New Campaign
           </button>
