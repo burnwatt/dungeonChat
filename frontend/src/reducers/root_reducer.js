@@ -4,6 +4,7 @@ import campaignReducer from "./campaign_reducer";
 import errorsReducer from "./errors_reducer";
 import usersReducer from "./user_reducer";
 import messagesReducer from "./message_reducer";
+import charactersReducer from "./character_reducer";
 
 import uiReducer from './ui/ui_reducer';
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   errors: errorsReducer,
   users: usersReducer,
   messages: messagesReducer,
-  ui: uiReducer
+  ui: uiReducer,
+  characters: charactersReducer
 });
 
 export default rootReducer;

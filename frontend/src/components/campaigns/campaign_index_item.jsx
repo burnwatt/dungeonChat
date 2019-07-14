@@ -1,7 +1,7 @@
 import React from "react";
 import d10 from  "../../assets/public/images/d10.png";
 import { timeDiff } from "../../util/frontend_util";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 class CampaignIndexItem extends React.Component {
 
@@ -12,9 +12,11 @@ class CampaignIndexItem extends React.Component {
   }
 
   sendToCampaignPage() {
-    let {name} = this.props.campaign;
-    name = name.split(" ").join("-");
-    this.props.history.push(`/campaign/${name}`)
+    const { campaign } = this.props;
+    let {name} = campaign;
+    this.props.history.push({
+      pathname: `/campaign/${name}`
+    })
   }
 
   render() {

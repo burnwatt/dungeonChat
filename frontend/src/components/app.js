@@ -27,7 +27,7 @@ const App = () => (
       <Route exact path="/landing" component={LandingContainer} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet" component={CharacterSheet} />
-      <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
+      <Route exact path="/campaign/:name" component={CampaignShow} />
     </Switch>
   </div>
 );

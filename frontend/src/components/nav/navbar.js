@@ -12,8 +12,9 @@ class NavBar extends React.Component {
   logoutUser(event) {
     event.preventDefault();
     this.props.logout();
-    this.props.history.push("/login");
+    // this.props.history.push("/login");
   }
+  
 
   getLinks() {
     if (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup') {
@@ -59,7 +60,7 @@ class NavBar extends React.Component {
   render() {
 
     return (
-      <div className='nav-wrapper'>
+      <div id='nav-wrapper'>
         {this.getLinks()}
       </div>
     )

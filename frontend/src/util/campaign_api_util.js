@@ -14,9 +14,9 @@ export const getCampaign = campaign_id => (
   axios.get(`/api/campaigns/${campaign_id}`)
 );
 
-export const getCampaignByName = name => (
-  axios.get(`/api/campaigns/name/${name}`)
-);
+export const getCampaignByName = name => {
+  return axios.get(`/api/campaigns/name/${name}`)
+}
 
 // POSTS ---------------------------------------------
 

@@ -87,7 +87,7 @@ router.get("/", (req, res) => {
 
 // /user/:user_id
 router.get("/user/:user_id", (req, res) => {
-  Campaign.find({ created_by: req.params.user_id })
+  Campaign.findOne({ created_by: req.params.user_id })
     .then(campaigns => res.json(campaigns))
     .catch(err => errRes(res, 404, defErrs.noUserCampaigns))
 });
@@ -100,8 +100,8 @@ router.get("/:id", (req, res) => {
 });
 
 // /:name
-router.get("name/:name", (req, res) => {
-  Campaign.find({ name: req.params.name})
+router.get("/name/:name", (req, res) => {
+  Campaign.findOne({ name: req.params.name})
     .then(campaign => res.json(campaign))
     .catch(err => errRes(res, 404, defErrs.noNameCampaigns))
 });
