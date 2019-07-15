@@ -8,77 +8,84 @@ class CharacterSheet extends React.Component {
       super(props);
 
       this.state = {
-          name:   '',
-          class:  '',
-          race:   '',
-          health: 0,
-          magic:  0,
-          gold:   0,
-          powers: {
-              power1: {
-                name: '',
-                description: '',
+        char_attrs: {
+              name: '',
+              class: '',
+              race: '',
+              health: 0,
+              magic: 0,
+              gold: 0,
+              powers: {
+                power1: {
+                  name: '',
+                  description: '',
+                },
+                power2: {
+                  name: '',
+                  description: '',
+                },
+                power3: {
+                  name: '',
+                  description: '',
+                },
+                power4: {
+                  name: '',
+                  description: '',
+                },
+                special: {
+                  name: '',
+                  description: '',
+                }
               },
-              power2: {
-                name: '',
-                description: '',
-              },
-              power3: {
-                name: '',
-                description: '',
-              },
-              power4: {
-                name: '',
-                description: '',
-              },
-              special: {
-                name: '',
-                description: '',
+              inventory: {
+                slot1: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot2: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot3: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot4: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot5: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot6: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot7: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot8: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                }
               }
-          },
-          inventory: {
-            slot1: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot2: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot3: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot4: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot5: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot6: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot7: {
-              name: '',
-              description: '',
-              qty: 0
-            },
-            slot8: {
-              name: '',
-              description: '',
-              qty: 0
-            }
-          },
+        },
+        img: {
+
+        }
       }
+      
+      
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
@@ -113,7 +120,7 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
-      debugger
+      // debugger
       return (
           <div className= "character-page">
             <div className= "container-margin">

@@ -20,17 +20,23 @@ class CampaignCharacters extends React.Component {
         } 
 
         return(
-            <div>
-                <Link to={{
-                    pathname: '/character-sheet/new',
-                    state: {
-                        campaign: campaign,
-                        currentUser: currentUser
-                    }
-                }}>New Character</Link>
-                <ul>
+            <div className='camp-char-wrapper'>
+                <nav className='camp-char-nav'>
+                    <h1>Characters</h1>
+                    <Link className='new-char-link' 
+                        to={{
+                        pathname: '/character-sheet/new',
+                        state: {
+                                campaign: campaign,
+                                currentUser: currentUser
+                            }
+                        }}
+                        ><i className="fas fa-user-plus icon-glow"></i>
+                    </Link>
+                </nav>
+                <div className='camp-char-list'>
                     {chars}
-                </ul>
+                </div>
             </div>
         )
     }

@@ -230,7 +230,7 @@ class CampaignShow extends React.Component {
           </div>
 
           <div id="campaign-extra">
-            <h1>Extra Chat Content Here?</h1>
+            {/* <h1>Extra Chat Content Here?</h1> */}
             <div id="campaign-extra-content">
               {campaignCharacters}
             </div>

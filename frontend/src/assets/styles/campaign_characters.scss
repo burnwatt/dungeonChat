@@ -1,0 +1,47 @@
+//campaign character component
+.camp-char-wrapper{
+    background-color: inherit;
+    padding: 10px;
+}
+.camp-char-nav{
+    display: flex;
+    justify-content: space-between;
+}
+.new-char-link{
+    color: white;
+    text-decoration: none;
+}
+
+.icon-glow {
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-glow:hover {
+  filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+}
+
+//character item component
+.char-item{
+    margin: 20px;
+}
+
+.char-link{
+    color: white;
+    text-decoration: none;
+    display: flex;
+}
+
+.charIcon{
+    color: red;
+    margin: 7px;
+}
+
+.char-name{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.char-stats{
+    font-size: 12px;
+}
