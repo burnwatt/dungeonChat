@@ -1,19 +1,13 @@
 import React from "react";
 
-import { scrollTo } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
+
 class CampaignShow extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      loaded: false,
-      currentUser: null,
-      userChar: null,
-      campaign: null,
-      campMsgs: [],
-      campChars: [],
       messageDM: "",
       messageDescribe: "",
       messageSay: "",
@@ -22,50 +16,6 @@ class CampaignShow extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
-
-  }
-
-  componentDidMount() {
-    this.props.fetchUser(this.props.currentUser.id)
-      .then(() => this.setState({currentUser: this.props.currentUser}));
-      
-    this.props.fetchCampaignByName(this.props.match.params.name)
-      .then(dat => {
-        this.setState({campaign: dat.campaign.data})
-        this.props.getCampaignCharacters(dat.campaign.data._id)
-          .then(dat => {
-            this.setState({campChars: dat.characters.data});
-
-          })
-      });
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.campaign !== this.props.campaign) {
-      this.setState({campaign: this.props.campaign });
-    }
-
-    if (prevProps.characters !== this.props.characters) {
-      let {character_ids} = this.props.campaign;
-      let {characters} = this.props;
-      this.setState({
-        campChars: Object.values(characters)
-          .filter(char => character_ids.includes(char._id))
-        }
-      )
-
-      if (this.state.currentUser) {
-        const { campaign, currentUser } = this.state;
-        let inter = campaign.character_ids
-          .filter(id => currentUser.character_ids);
-        if (inter.length) this.setState({
-          userChar: Object.values(this.props.characters)
-            .filter(char => char._id === inter[0])[0]
-        })
-      }
-
-    }
 
   }
 
@@ -103,19 +53,18 @@ class CampaignShow extends React.Component {
 
 
   }
+
   handleMessageInput(which) {
     return event => this.setState({ [which]: event.target.value });
   }
+
   getMessageForms() {
     let { messageChat, messageSay, messageDescribe, messageDM } = this.state;
-
- 
-
     return (
       <>
         <form id="chat" className="message-form">
           <textarea className="chat"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            // rows={`${1 + Math.floor(this.state.body.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageChat")}
             onKeyDown={this.onMessageEnter("messageChat")}
@@ -126,7 +75,7 @@ class CampaignShow extends React.Component {
 
         <form id="say" className="message-form">
           <textarea className="say"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            // rows={`${1 + Math.floor(this.state.body.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageSay")}
             onKeyDown={this.onMessageEnter("messageSay")}
@@ -137,7 +86,7 @@ class CampaignShow extends React.Component {
 
         <form id="describe" className="message-form">
           <textarea className="describe"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            // rows={`${1 + Math.floor(this.state.body.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDescribe")}
             onKeyDown={this.onMessageEnter("messageDescribe")}
@@ -148,7 +97,7 @@ class CampaignShow extends React.Component {
 
         <form id="dm" className="message-form">
           <textarea className="dm"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            // rows={`${1 + Math.floor(this.state.body.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDM")}
             onKeyDown={this.onMessageEnter("messageDM")}
@@ -162,6 +111,7 @@ class CampaignShow extends React.Component {
     )
 
   }
+
   handleSubmit(which) {
     const { currentUser, campaign, userChar } = this.state;
     let character_id = (userChar && ["messageSay", "messageDescribe"].includes(which)) ? userChar._id : null;
@@ -178,6 +128,7 @@ class CampaignShow extends React.Component {
     this.props.createMessage(newMessage);
     return event => event.prevenDefault();
   }
+
   onMessageEnter(which) {
     return event => {
       if (event.keyCode === 13 && event.shiftKey == false) {
@@ -186,6 +137,7 @@ class CampaignShow extends React.Component {
       }
     }
   }
+
   showMessageForm(which) {
     let forms = document.getElementsByClassName("message-form");
     let form = document.getElementById(which);
@@ -205,57 +157,43 @@ class CampaignShow extends React.Component {
 
 
   render() {
-    const { campaign, currentUser, campChars, userChar } = this.state;
-
-    let campMessageIndex, messageButtons, messageForms = <div></div>;
-    if (campChars.length && currentUser && campaign) {
-      campMessageIndex = <CampaignMessageIndexContainer
-        currentUser={currentUser}
-        campaign={campaign}
-        characters={campChars}
-        userChar={userChar}
-      />
-
-      messageButtons = this.getMessageButtons();
-      messageForms = this.getMessageForms();
+      let messageButtons = this.getMessageButtons();
+      let messageForms = this.getMessageForms();
+      return (
+        <div className="message-btns">
+          {messageForms}
+          {messageButtons}
+        </div>
+      )
     }
 
-
-    return (
-      <div id="campaign-show">
-        <div id="campaign-show-container">
-
-          <div id="campaign-content">
-            <h1>Campaign Name</h1>
-            <div id="campaign">
-              {campMessageIndex}
-            </div>
-
-            <div id="campaign-content-footer">
-              {/* <h1>Command Content Here</h1> */}
-              <div id="campaign-command">
-
-                {messageForms}
-
-                <div className="message-btns">
-                  {messageButtons}
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div id="campaign-extra">
-            <h1>Extra Chat Content Here?</h1>
-            <div id="campaign-extra-content">
-            </div>
-          </div>
-
-        </div>
-      </div>
-    )
-  }
 
 }
 
 export default CampaignShow;
+
+
+// console.log(this.state["messageChat"])
+// let forms = ["messageChat", "messageSay", "messageDescribe", "messageDM"]
+//   .map(form => {
+
+//     const dat = this.state[form];
+//     let type = form.slice(7);
+//     // console.log(dat, form, type);
+//     return (
+//       <form id={type} className="message-form" key={`message-form-${type}`}>
+//         <textarea className={type}
+//           rows={`${2 + Math.floor(dat.length / 125)}`}
+//           type="text"
+//           onChange={this.handleMessageInput(form)}
+//           onKeyDown={this.onMessageEnter(form)}
+//           value={dat}
+//           placeholder={`${type}...`}
+//         />
+//       </form>
+//     )
+//   })
+
+// return (
+//   <> {forms} </>
+// )

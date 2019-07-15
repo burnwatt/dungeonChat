@@ -1,5 +1,6 @@
 import React from "react";
 import MessageIndexItem from "./message_index_item";
+import { scrollTo } from "../../util/frontend_util";
 
 class CampaignMessageIndex extends React.Component {
 
@@ -7,7 +8,6 @@ class CampaignMessageIndex extends React.Component {
     super(props);
     this.state = { messages: [] };
   }
-
 
   componentDidMount() {
     this.props.fetchCampaignMessages(this.props.campaign._id);
@@ -17,6 +17,7 @@ class CampaignMessageIndex extends React.Component {
     if (prevProps.messages !== this.props.messages) {
       this.setState({ messages: this.props.messages })
     }
+    scrollTo("campaign-message-index-bottom")
   }
 
   render () {
@@ -34,6 +35,7 @@ class CampaignMessageIndex extends React.Component {
     return (
       <div id="campaign-message-index">
         { msgDat }
+        <div id="campaign-message-index-bottom" />
       </div>
     )
   }

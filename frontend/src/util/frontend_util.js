@@ -55,15 +55,23 @@ const timeDiff = (tsN, tsO) => {
 
   return {
     days: Math.floor(res / 86400),
-    hrs: Math.floor(res/ 3600) % 24,
-    mins: Math.floor(res / 60) % 60,
-    secs: Math.floor( res % 60 )
+    hrs: Math.floor(res/ 3600),
+    mins: Math.floor(res / 60),
+    secs: Math.floor(res)
   }
+
 };
 
+// Component Helpers ------------
+const scrollTo = (loc) => document.getElementById(loc)
+  .scrollIntoView({ block: "end", behavior: "smooth" });
 
 module.exports = {
   timestampToObj: timestampToObj,
   timeDiff: timeDiff,
-  dateTimeStr: dateTimeStr
+  dateTimeStr: dateTimeStr,
+  scrollTo: scrollTo
 };
+
+
+
