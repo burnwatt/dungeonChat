@@ -23,14 +23,14 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <nav className='nav-bar'>
-          <div className='nav-right'>
+          <div className='nav-left'>
             <Link to='/games'>
               <i className="fas fa-dungeon"></i>
               <span>Dungeon Chat</span>
             </Link>
           </div>
-          <div className='nav-left'>
-            <Link to={"/profile"}>Profile</Link>
+          <div className='nav-right'>
+            <Link className='nav-link' to={"/profile"}>Profile</Link>
             <button className='btn' onClick={this.logoutUser}>Logout</button>
           </div>
         </nav>
@@ -38,14 +38,14 @@ class NavBar extends React.Component {
     } else {
       return (
         <nav className='nav-bar'>
-          <div className='nav-right'>
+          <div className='nav-left'>
             <Link to='/'>
               <i className="fas fa-dungeon"></i>
               <span>Dungeon Chat</span>
             </Link>
           </div>
-          <div className='nav-left'>
-            <Link id='signup-link' to={"/signup"}>
+          <div className='nav-right'>
+            <Link className='nav-link' to={"/signup"}>
               <span>Signup</span>
             </Link>
             <Link className='btn' to={"/login"}>
