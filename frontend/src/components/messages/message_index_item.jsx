@@ -39,7 +39,6 @@ class MessageIndexItem extends React.Component {
         </div>
       )
     } else if (message.character_id) {
-      console.log(characters);
       let char = Object.values(characters).filter(char => char._id === message.character_id)[0];
       return (
         <div className="left message-item-header">

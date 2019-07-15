@@ -1,7 +1,12 @@
 import React from "react";
-
 import { scrollTo } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
+import openSocket from "socket.io-client";
+const socket = openSocket("http://localhost:5000");
+
+// Assets...
+const splash_die = require("../../assets/public/images/die_glow_toomuch.png");
+const fade_in_command = require("../../assets/public/images/components/fade-in-command.png");
 class CampaignShow extends React.Component {
 
   constructor(props) {
@@ -20,9 +25,14 @@ class CampaignShow extends React.Component {
       messageChat: ""
     }
 
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
 
+  }
+
+  newMessage() {
+    socket.emit("newMessage");
   }
 
   componentDidMount() {
@@ -58,7 +68,7 @@ class CampaignShow extends React.Component {
       if (this.state.currentUser) {
         const { campaign, currentUser } = this.state;
         let inter = campaign.character_ids
-          .filter(id => currentUser.character_ids);
+          .filter(id => currentUser.character_ids.includes(id));
         if (inter.length) this.setState({
           userChar: Object.values(this.props.characters)
             .filter(char => char._id === inter[0])[0]
@@ -98,6 +108,11 @@ class CampaignShow extends React.Component {
         className="message-btn btn-glow"
         onClick={() => this.showMessageForm("chat")}
       >Chat
+      </button>,
+      <button key="message-btn-dice"
+        className="message-btn btn-glow"
+        onClick={() => this.props.openModal("Dice Box Modal")} 
+      >Dice Icon
       </button>
     ]);
 
@@ -174,8 +189,9 @@ class CampaignShow extends React.Component {
       type: which.slice(7)
     })
     this.setState({ [which]: "" });
-    console.log(newMessage);
-    this.props.createMessage(newMessage);
+    // console.log(newMessage);
+    this.props.createMessage(newMessage)
+      .then(() => this.newMessage())
     return event => event.prevenDefault();
   }
   onMessageEnter(which) {
@@ -206,7 +222,7 @@ class CampaignShow extends React.Component {
 
   render() {
     const { campaign, currentUser, campChars, userChar } = this.state;
-
+    // console.log(userChar);
     let campMessageIndex, messageButtons, messageForms = <div></div>;
     if (campChars.length && currentUser && campaign) {
       campMessageIndex = <CampaignMessageIndexContainer
@@ -234,9 +250,11 @@ class CampaignShow extends React.Component {
             <div id="campaign-content-footer">
               {/* <h1>Command Content Here</h1> */}
               <div id="campaign-command">
-
-                {messageForms}
-
+                <img id="command-background" src={fade_in_command}/>
+                <div id="campaign-command-logo">
+                  <img src={splash_die} />
+                </div>
+                {messageForms} 
                 <div className="message-btns">
                   {messageButtons}
                 </div>
