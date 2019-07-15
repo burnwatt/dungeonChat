@@ -1,6 +1,7 @@
 import React from "react";
 
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
+import CampaignCharactersContainer  from "../characters/campaign_characters_container";
 
 class CampaignShow extends React.Component { 
 
@@ -183,11 +184,18 @@ class CampaignShow extends React.Component {
   render() {
     const { camp, currentUser, campChars, userChar } = this.state;
 
-    let campMessageIndex, messageButtons, messageForms = <div></div>;
+    let campMessageIndex, campaignCharacters, messageButtons, messageForms = <div></div>;
     if (currentUser && camp && campChars ) {
       campMessageIndex = <CampaignMessageIndexContainer 
         currentUser={currentUser} 
         campaign={camp} 
+        characters={campChars}
+        userChar={userChar}
+      />
+
+      campaignCharacters = <CampaignCharactersContainer
+        currentUser={currentUser}
+        campaign={camp}
         characters={campChars}
         userChar={userChar}
       />
@@ -224,6 +232,7 @@ class CampaignShow extends React.Component {
           <div id="campaign-extra">
             <h1>Extra Chat Content Here?</h1>
             <div id="campaign-extra-content">
+              {campaignCharacters}
             </div>
           </div>
 
