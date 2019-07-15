@@ -4,7 +4,6 @@ import {
   signupUser
  } from "../util/session_api_util";
 import jwt_decode from "jwt-decode";
-import { Redirect } from "react-router-dom";
 
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";

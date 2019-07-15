@@ -9,6 +9,14 @@
 @import "./character_sheet.scss";
 @import "./campaign_index_item_modal.scss";
 @import "./campaign_show.scss";
+@import "./message.scss";
+@import "./message_camp.scss";
+@import "./message_chat.scss";
+@import "./message_describe.scss";
+@import "./message_say.scss";
+
+
+@import "./modal_styling.scss";
 
 //Update URL if font changes
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy|Roboto&display=swap");

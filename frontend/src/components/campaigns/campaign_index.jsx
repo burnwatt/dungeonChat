@@ -16,6 +16,7 @@ class CampaignIndex extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.campaigns);
     this.props.fetchUser(this.props.currentUser.id);
     this.props.fetchCampaigns();
   }
@@ -59,7 +60,7 @@ class CampaignIndex extends React.Component {
 
 
   render() {
-    const campDat = this.getCampaignDat();
+    // const campDat = this.getCampaignDat();
 
     return (
       <div id="campaigns-content">
@@ -77,13 +78,13 @@ class CampaignIndex extends React.Component {
               >My Campaigns
             </button>
           </div>
-          <button id="cnb-last" 
+          <button onClick={() => this.props.openModal("Campaign Creation Form")} id="cnb-last" 
             className="campaign-nav-button btn-glow"
             >+ New Campaign
           </button>
         </nav>
         <div id="campaign-index">
-          { campDat }
+          { this.getCampaignDat() }
         </div>
       </div>
     )

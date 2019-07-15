@@ -36,4 +36,18 @@ const MessageSchema = new Schema({
   }
 })
 
+MessageSchema.methods.addRelations = function () {
+  let cp = Campaign.updateOne(
+    { _id: this.campaign_id },
+    { $addToSet: { message_ids: this._id }}
+  ).then(status => { return Promise.resolve(status) })
+
+  let up = User.updateOne(
+    { _id: this.user_id },
+    { $addToSet: { message_ids: this._id } }
+  ).then(status => { return Promise.resolve(status) })
+
+  return [cp, up];
+}
+
 module.exports = Message = mongoose.model("messages", MessageSchema);

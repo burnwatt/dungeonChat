@@ -1,13 +1,13 @@
 const Validator = require("validator");
-const { textValid } = require("./validation_util");
+const { toValidText } = require("./validation_util");
 
 
 module.exports = ({ handle, email, password, password2 }) => {
 
-  handle = textValid(handle);
-  email = textValid(email);
-  password = textValid(password);
-  password2 = textValid(password2);
+  handle = toValidText(handle);
+  email = toValidText(email);
+  password = toValidText(password);
+  password2 = toValidText(password2);
 
   const errors = {
     ...(!Validator.isLength(handle, { min: 2, max: 30 })

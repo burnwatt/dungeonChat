@@ -1,36 +1,43 @@
 import { connect } from 'react-redux';
-import { fetchCampaign } from "../../actions/campaign_actions";
 import {
   fetchImg
 } from "../../actions/img_actions";
+import { fetchCampaign, fetchCampaignByName } from "../../actions/campaign_actions";
+import { fetchUser } from "../../actions/user_actions";
 import { getCampaignCharacters } from "../../actions/character_actions";
 import CampaignShow from './campaign_show';
 
 const mSP = (state, ownProps) => {
-  let name = ownProps.match.params.name.split("-").join(" ")
+  // let campName = ownProps.match.params.name.split("-").join(" ")
+  let campName = ownProps.match.params.name;
+  let campaign = Object.values(state.campaigns).filter(camp => camp.name = campName)[0];
   let image = "";
-  let theCamp = Object.values(state.campaigns).filter(camp => camp.name === name)[0];
-  debugger
   
-  if (theCamp){
-    if (Object.keys(state.imgs).includes(theCamp.cover_art_url)) {
-    image = Object.values(state.imgs[theCamp.cover_art_url]);
+  if (campaign){
+    if (Object.keys(state.imgs).includes(campaign.cover_art_url)) {
+    image = Object.values(state.imgs[campaign.cover_art_url]);
     }
   }
   
-  return{
-  currentUser: ownProps.currentUser,
-  campaign: theCamp,
-  characters: state.characters,
-  cover_art: image
-  // messages: state.messages,
-}};
+  return {
+    currentUser: Object.assign({}, state.session.user, state.users[state.session.user.id]),
+    campaign: campaign,
+    campaigns: state.campaigns,
+    characters: state.characters,
+    messages: state.messages,
+    cover_art: image
+    
+  }
+};
 
 const mDP = (dispatch, ownProps) => {
   return{
+  fetchCampaignByName : campaignName => dispatch(fetchCampaignByName(campaignName)),
   fetchCampaign: campaignId => dispatch(fetchCampaign(campaignId)),
   getCampaignCharacters: (character_ids) => dispatch(getCampaignCharacters(character_ids)),
-  fetchImg: (id) => dispatch(fetchImg(id))
+  fetchImg: (id) => dispatch(fetchImg(id)),
+  fetchUser: userId => dispatch(fetchUser(userId)),
 }}
+
 
 export default connect(mSP, mDP)(CampaignShow);

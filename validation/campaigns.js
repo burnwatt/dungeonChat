@@ -1,14 +1,14 @@
 const Validator = require("validator");
-const { textValid } = require("./validation_util");
+const { toValidText } = require("./validation_util");
 
 module.exports = ({ cover_art_url, password, name, description, rules, 
   character_sheet_id, message_ids, user_ids, created_by, is_private}) => {
 
-    cover_art_url = textValid(cover_art_url);
-    password = textValid(password);
-    name = textValid(name);
-    description = textValid(description);
-    rules = textValid(rules);
+    cover_art_url = toValidText(cover_art_url);
+    password = toValidText(password);
+    name = toValidText(name);
+    description = toValidText(description);
+    rules = toValidText(rules);
 
     const errors = {
       ...(!Validator.isLength(name, { min: 2, max: 75 }) 

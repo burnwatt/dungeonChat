@@ -16,10 +16,12 @@ import CampaignShow from "./campaigns/campaign_show_container";
 import ImgsContainer from "./imgs/imgs_container"
 // import Imgs from "./imgs/imgs"
 
+import Modal from "./modal/modal";
 
 const App = () => (
   <div>
     <NavBarContainer />
+    <Modal />
     <Switch>
       <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
