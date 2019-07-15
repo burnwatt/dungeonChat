@@ -10,7 +10,7 @@ import ProfileContainer from './profile/profile_container';
 import LandingContainer from "./landing/landing_container";
 import CreateCampaignContainer from "./campaigns/create_campaign_container";
 
-import CharacterSheet from "./characters/character_sheet"
+import CharacterSheetContainer from "./characters/character_sheet_container"
 import CampaignShow from "./campaigns/campaign_show_container";
 
 import Modal from "./modal/modal";
@@ -26,7 +26,8 @@ const App = () => (
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
       <Route exact path="/landing" component={LandingContainer} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
-      <Route exact path="/character-sheet" component={CharacterSheet} />
+      <Route exact path="/character-sheet/new" component={CharacterSheetContainer} />
+      <Route exact path="api/characters/:id" component={CharacterSheetContainer} />
       <Route exact path="/campaign/:name" component={CampaignShow} />
     </Switch>
   </div>

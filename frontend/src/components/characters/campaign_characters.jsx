@@ -1,4 +1,6 @@
 import React from 'react';
+import CharacterItem from './character_item';
+import {Link} from 'react-router-dom';
 
 class CampaignCharacters extends React.Component {
     constructor(props) {
@@ -6,12 +8,28 @@ class CampaignCharacters extends React.Component {
     }
 
     render(){
-        const { characters } = this.props;
-        const charLis = characters.map(char => <li>char</li>)
+        const { characters, campaign, currentUser } = this.props;
+
+        let chars = <div></div>
+
+        if (characters){
+            chars = Object.values(characters).map(char => {
+                // debugger
+                return <CharacterItem character={char} campaign={campaign} currentUser={currentUser} key={char._id}/>
+            });
+        } 
+
         return(
             <div>
+                <Link to={{
+                    pathname: '/character-sheet/new',
+                    state: {
+                        campaign: campaign,
+                        currentUser: currentUser
+                    }
+                }}>New Character</Link>
                 <ul>
-                    {charLis}
+                    {chars}
                 </ul>
             </div>
         )

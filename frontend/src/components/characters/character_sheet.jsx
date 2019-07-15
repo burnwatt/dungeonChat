@@ -1,89 +1,93 @@
 import React from 'react';
 import merge from 'lodash/merge';
 import wizard from "../../assets/public/images/wizard.png";
+import { fetchCharacter } from '../../util/character_api_util';
 
 class CharacterSheet extends React.Component {
     constructor(props){
-        super(props);
+      super(props);
 
-        this.state = {
-            name:   '',
-            class:  '',
-            race:   '',
-            health: 0,
-            magic:  0,
-            gold:   0,
-            powers: {
-                power1: {
-                  name: '',
-                  description: '',
-                },
-                power2: {
-                  name: '',
-                  description: '',
-                },
-                power3: {
-                  name: '',
-                  description: '',
-                },
-                power4: {
-                  name: '',
-                  description: '',
-                },
-                special: {
-                  name: '',
-                  description: '',
-                }
-            },
-            inventory: {
-              slot1: {
+      this.state = {
+          name:   '',
+          class:  '',
+          race:   '',
+          health: 0,
+          magic:  0,
+          gold:   0,
+          powers: {
+              power1: {
                 name: '',
                 description: '',
-                qty: 0
               },
-              slot2: {
+              power2: {
                 name: '',
                 description: '',
-                qty: 0
               },
-              slot3: {
+              power3: {
                 name: '',
                 description: '',
-                qty: 0
               },
-              slot4: {
+              power4: {
                 name: '',
                 description: '',
-                qty: 0
               },
-              slot5: {
+              special: {
                 name: '',
                 description: '',
-                qty: 0
-              },
-              slot6: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot7: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot8: {
-                name: '',
-                description: '',
-                qty: 0
               }
+          },
+          inventory: {
+            slot1: {
+              name: '',
+              description: '',
+              qty: 0
             },
-        }
+            slot2: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot3: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot4: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot5: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot6: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot7: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot8: {
+              name: '',
+              description: '',
+              qty: 0
+            }
+          },
+      }
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleSubmit(){
         // this.props.createCharacter({
         //     campaign_id: this.props.campaign_id,
-        //     user_id: this.props.currentUser.id,
+        //     user_id: this.props.currentUser._id,
         //     char_attrs: this.state
         // })
     }
@@ -93,7 +97,7 @@ class CharacterSheet extends React.Component {
     }
 
     componentDidMount(){
-
+      // getCharacter()
     }
 
     handleInput(field) {
@@ -101,7 +105,6 @@ class CharacterSheet extends React.Component {
     }
     
     handleNestedInput(field1, field2, field3) {
-        
         return (e) => {
             let temp = merge({}, this.state);
             temp[field1][field2][field3] = e.target.value;
@@ -110,6 +113,7 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
+      debugger
       return (
           <div className= "character-page">
             <div className= "container-margin">

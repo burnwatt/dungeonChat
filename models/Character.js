@@ -12,7 +12,6 @@ const CharacterSchema = new Schema({
   },
   char_attrs: {
     type: Object,
-    default: {}
   },
   date: {
     type: Date,
