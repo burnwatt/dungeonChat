@@ -39,7 +39,7 @@ class Imgs extends React.Component {
   }
 
   render(){
-    debugger
+    // debugger
     let image = "#";
     if (this.state.img) {
       image = this.state.img;
@@ -55,7 +55,7 @@ class Imgs extends React.Component {
           <button onClick={this.handleGetImage.bind(this)}>getImg</button>
           <img
             src={image}
-            alt='Helpful alt text' />
+            alt='whatever' />
         </div>
       </div>
       
