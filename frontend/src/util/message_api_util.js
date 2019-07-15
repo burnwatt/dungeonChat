@@ -9,6 +9,11 @@ export const getCampaignMessages = campaign_id => {
   return axios.get(`/api/messages/campaign/${campaign_id}`)
 }
 
+// POST ----------------------------------------
+export const postMessage = message => (
+  axios.post("/api/messages", message)
+);
+
 
 // UPDATE ------------------------------------
 export const updateMessage = message => (

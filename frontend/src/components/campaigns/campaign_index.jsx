@@ -16,7 +16,6 @@ class CampaignIndex extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.campaigns);
     this.props.fetchUser(this.props.currentUser.id);
     this.props.fetchCampaigns();
   }
