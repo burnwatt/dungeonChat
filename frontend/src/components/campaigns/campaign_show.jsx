@@ -16,33 +16,34 @@ class CampaignShow extends React.Component {
       messageChat: "",
       messageDescribe: "",
       img: "",
-      render: false
+      render: false,
+      notGotChars: true
     }
   
     this.handleSubmit = this.handleSubmit.bind(this);
   
   }
 
-  componentDidMount() {
-    debugger
-    this.props.fetchImg(this.props.campaign.cover_art_url)
-      .then(() => {
-        debugger
-        var base64Flag = 'data:image/png;base64,';
-        var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+  // componentDidMount() {
+  //   debugger
+  //   this.props.fetchImg(this.props.campaign.cover_art_url)
+  //     .then(() => {
+  //       debugger
+  //       var base64Flag = 'data:image/png;base64,';
+  //       var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
 
-        this.setState({
-          img: base64Flag + imageStr
-        })
-      })
-  }
+  //       this.setState({
+  //         img: base64Flag + imageStr
+  //       })
+  //     })
+  // }
 
-  componentDidUpdate(prevProps, prevState){
-    // debugger
-    if (this.state.img !== prevState.img ){
-      this.setState({render: true})
-    }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   // debugger
+  //   if (this.state.img !== prevState.img ){
+  //     this.setState({render: true})
+  //   }
+  // }
 
   arrayBufferToBase64(buffer) {
     var binary = '';
@@ -56,21 +57,65 @@ class CampaignShow extends React.Component {
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id);
     this.props.fetchCampaignByName(this.props.match.params.name);
+    if (this.props.campaign){
+      this.props.fetchImg(this.props.campaign.cover_art_url)
+      .then(() => {
+        // debugger
+        var base64Flag = 'data:image/png;base64,';
+        var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+        this.setState({
+          img: base64Flag + imageStr
+        })
+      })
+    }
+    
+
+
+
   }
   
-  componentDidUpdate(prevProps) {
-    if (prevProps.campaign !== this.props.campaign) {
-      // Get Campaign Characters
-      this.props.fetchCampaignByName(this.props.match.params.name);
-      
-    }
+  componentDidUpdate(prevProps, prevState) {
+    // debugger
 
-    if (this.props.campaign) {
+    if (this.state.img !== prevState.img) {
+      // debugger
+      if (this.props.campaign) {
+        this.props.fetchImg(this.props.campaign.cover_art_url)
+          .then(() => {
+            // debugger
+            var base64Flag = 'data:image/png;base64,';
+            var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+            this.setState({
+              img: base64Flag + imageStr
+            })
+          })
+      }
+      // this.setState({ render: true })
+    }
+    if (this.props.campaign && prevProps.campaign){
+      if (prevProps.campaign._id !== this.props.campaign._id) {
+    // if (prevState.campChars !== this.state.campChars) {
+
+      // Get Campaign Characters
+      // debugger
+      this.props.fetchCampaignByName(this.props.match.params.name);
+      // this.props.getCampaignCharacters(this.props.campaign._id)
+      
+      }
+    }
+    
+
+    if (this.props.campaign && this.state.notGotChars === true) {
+      // debugger
       this.props.getCampaignCharacters(this.props.campaign._id)
+      this.setState({notGotChars: false})
     }
 
     // Add Campaign Characters to state
     if (prevProps.characters !== this.props.characters) {
+      // debugger
       const { characters, campaign, currentUser } = this.props;
 
       const campChars = Object.values(characters)
@@ -228,9 +273,9 @@ class CampaignShow extends React.Component {
         userChar={userChar}
       />
 
-messageButtons = this.getMessageButtons();
-messageForms = this.getMessageForms();
-}
+    messageButtons = this.getMessageButtons();
+    messageForms = this.getMessageForms();
+    }
 
 
 return (

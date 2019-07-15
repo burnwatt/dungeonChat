@@ -10,7 +10,7 @@ import CampaignShow from './campaign_show';
 const mSP = (state, ownProps) => {
   // let campName = ownProps.match.params.name.split("-").join(" ")
   let campName = ownProps.match.params.name;
-  let campaign = Object.values(state.campaigns).filter(camp => camp.name = campName)[0];
+  let campaign = Object.values(state.campaigns).filter(camp => camp.name === campName)[0];
   let image = "";
   
   if (campaign){

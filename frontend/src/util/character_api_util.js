@@ -22,7 +22,7 @@ export const fetchAllCharacters = () => (
 
 // Get all campaign characters
 export const fetchCampaignCharacters = campaign_id => (
-    axios.get(`api/characters/campaign/${campaign_id}`)
+    axios.get(`/api/characters/campaign/${campaign_id}`)
 );
 
 
