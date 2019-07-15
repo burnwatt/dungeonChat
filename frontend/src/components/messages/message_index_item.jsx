@@ -29,8 +29,7 @@ class MessageIndexItem extends React.Component {
 
     let date = message.date;
     date = dateTimeStr(date);
-    date = (timeDiff(message.date, new Date()).days > 1) ? date[0] : date[1];
-
+    date = (timeDiff(new Date(), message.date).days >= 1) ? date[0] : date[1];
     if ( userChar && message.character_id === userChar._id ) {
       let name = userChar.char_attrs.name;
       return (

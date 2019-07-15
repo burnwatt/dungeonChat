@@ -1,7 +1,7 @@
 const Validator = require("validator");
 const { toValidText } = require("./validation_util");
 
-const TYPES = ["Say", "Describe", "Chat"];
+const TYPES = ["Say", "Describe", "Chat", "DM"];
 
 module.exports = ({ campaign_id, character_id, user_id, type, body }) => {
 
@@ -11,7 +11,7 @@ module.exports = ({ campaign_id, character_id, user_id, type, body }) => {
   const errors = {
     ...(!Validator.isLength(body, { min: 1, max: 1000 })
       && { body: "Body must be between 1 and 1000 characters"}),
-    ...(TYPES.includes(type) && { type: `Type must be one of ${TYPES.join(", ")}`}),
+    ...(!TYPES.includes(type) && { type: `Type must be one of ${TYPES.join(", ")}`}),
   }
 
   return {

@@ -55,15 +55,53 @@ const timeDiff = (tsN, tsO) => {
 
   return {
     days: Math.floor(res / 86400),
-    hrs: Math.floor(res/ 3600) % 24,
-    mins: Math.floor(res / 60) % 60,
-    secs: Math.floor( res % 60 )
+    hrs: Math.floor(res/ 3600),
+    mins: Math.floor(res / 60),
+    secs: Math.floor(res)
   }
+
 };
 
+const simpleDateSort = function(a, b) {
+  return new Date(a.date) - new Date(b.date)
+};
+
+// (() => {
+//   if (typeof Object.defineProperty === "function"){
+//     try{Object.defineProperty(Array.prototype, "sortBy", {value:sb}); }catch(err){}
+//   }
+//   if (!Array.prototype.sortBy) Array.prototype.sortBy = sb;
+  
+//   function sb(f) {
+//     for (let i = this.length; i;) {
+//       let o = this[--i];
+//       this[i] = [].concat(f.call(o, o, i), o);
+//     }
+//     this.sort(function(a, b) {
+//       for (let i = 0, len = a.length; i < len; ++i) {
+//         if (a[i] != b[i]) return a[i] < b[i] ? -1 : 1;
+//       }
+//       return 0;
+//     });
+//     for (let i = this.length; i;) {
+//       this[--i] = this[i][this[i].length - 1];
+//     }
+//     return this;
+//   }
+// })();
+
+
+// Component Helpers ------------
+const scrollTo = (loc) => document.getElementById(loc)
+  .scrollIntoView({ block: "end", behavior: "smooth" });
 
 module.exports = {
   timestampToObj: timestampToObj,
   timeDiff: timeDiff,
-  dateTimeStr: dateTimeStr
+  dateTimeStr: dateTimeStr,
+  scrollTo: scrollTo,
+  simpleDateSort: simpleDateSort
 };
+
+
+

@@ -61,7 +61,7 @@ router.get("/test", (req, res) => res.json({ msg: "This is the messages router!!
 // /...........
 router.get("/", (req, res) => {
   Message.find()
-    .sort({ date: 1})
+    // .sort({ date: 1})
     .then(message => res.json(message))
     .catch(err => errRes(res, 404, defErrs.noMessagesFound))
 });
@@ -75,10 +75,17 @@ router.get("/:message_id", (req, res) => {
 
 router.get("/campaign/:campaign_id", (req, res) => {
   Campaign.findOne({ _id: req.params.campaign_id })
-    .sort({ date: 1 })
     .then(campaign => {
       Message.find({ _id: { $in: campaign.message_ids } })
-        .then(messages => res.json(messages))
+        // .sort({ date: 1 })
+        .then(messages => {
+          let wut = {};
+          for (let val of messages) {
+            wut[val._id] = val;
+          };
+          // console.log(wut);
+          res.json(wut);
+        })
         .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
     })
 });
