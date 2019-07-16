@@ -81,6 +81,7 @@ class CharacterSheet extends React.Component {
           notes: '',
       }
 
+
       let targetChar = props.characters[props.match.params.char_id];
       
       if (targetChar){
@@ -89,16 +90,29 @@ class CharacterSheet extends React.Component {
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.picture = "";
     }
 
-    handleSubmit(e){
-      e.preventDefault();
-      this.props.createCharacter({
-          campaign_id: this.props.location.state.campaign._id,
-          user_id: this.props.currentUser,
-          char_attrs: this.state
-      }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
-    }
+  handleSubmit(e) {
+    // debugger
+    e.preventDefault()
+    this.props.createCharacter({
+      // campaign_id: this.props.location.state.campaign._id,
+      user_id: this.props.currentUser,
+      // char_attrs: this.state.char_attrs,
+      char_attrs: this.state,
+    }).then(character => {
+      debugger
+      const picture = this.picture;
+      let formData = new FormData();
+      formData.append("picture", picture);
+      formData.append("character_id", character.data._id);
+
+      this.props.postImg(formData, "char");
+      return "";
+    }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
+
+  }
 
     handleUpdate(e){
       e.preventDefault();
@@ -108,6 +122,28 @@ class CharacterSheet extends React.Component {
         char_attrs: this.state
       }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
     }
+
+    handleChangeImg(e){
+      e.preventDefault()
+      this.picture = e.target.files[0];
+      // this.postImg({img: this.state.img, aId: }, "char")
+    }
+
+
+  componentDidMount() {
+
+    // this.props.fetchImg(this.props.match.params.id)
+    //   .then(() => {
+
+    //     var base64Flag = 'data:image/png;base64,';
+    //     var imageStr = this.arrayBufferToBase64(this.props.img[1]);
+
+    //     this.setState({
+    //       img: base64Flag + imageStr
+    //     })
+    //   })
+  }
+
 
     handleInput(field) {
         return event => this.setState({ [field]: event.target.value });
@@ -138,6 +174,14 @@ class CharacterSheet extends React.Component {
                   <div className="pic-bio">
                     <div className="pic-container">
                       <div><div className="pic-div"><img src={ wizard } alt="whatever"/></div></div>
+                      {/* <form onSubmit={this.handleSubmitImg.bind(this)} className="upload-img"> */}
+                        {/* <input 
+                          type="file" 
+                          name="picture" 
+                          accept="application/x-zip-compressed,image/*"
+                          onChange={this.handleInput("img")}></input> */}
+                        {/* <input className="btn btn-primary" type="submit" value="submit" /> */}
+                      {/* </form> */}
                     </div>
                     <div className="bio-container">
                       <h1>Bio</h1>
@@ -480,10 +524,17 @@ class CharacterSheet extends React.Component {
                           value={this.state.notes}>
                         </textarea>
                       </div>
-                      
+                      <input
+                        id="file"
+                        type="file"
+                        name="picture"
+                        accept="application/x-zip-compressed,image/*"
+                        // onChange={this.handleInput("img")}
+                        onChange={this.handleChangeImg.bind(this)}></input>
+
                       <div className='buttons-wrapper'>
                         <button className='character-save' onClick={this.handleSubmit}><i className="fas fa-check"></i></button>
-                        <button className='character-cancel' onClick={this.handleCancel}><i className="fas fa-times"></i></button>
+                        <button className='character-cancel'><i className="fas fa-times"></i></button>
                       </div>
                       
                   </form>

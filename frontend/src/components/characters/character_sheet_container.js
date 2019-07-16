@@ -10,7 +10,8 @@ import {
   getCharacter
 } from "../../actions/character_actions"
 import { fetchCampaign } from '../../actions/campaign_actions';
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import {postImg} from '../../actions/img_actions';
 
 const mSP = (state, ownProps) => {
   return {
@@ -24,6 +25,7 @@ const mDP = dispatch => ({
   changeCharacter: character => dispatch(changeCharacter(character)),
   fetchCampaign: campaignId => dispatch(fetchCampaign(campaignId)),
   getCharacter: (id) => dispatch(getCharacter(id))
+  postImg: (payload, type) => dispatch(postImg(payload, type))
 });
 
 export default withRouter(connect(

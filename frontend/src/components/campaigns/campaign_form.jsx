@@ -9,7 +9,8 @@ class CampaignForm extends React.Component {
       name: "",
       description: "",
       rules: "",
-      is_private: false, 
+      is_private: false,
+      file: "" 
 
     } 
 
@@ -46,9 +47,23 @@ class CampaignForm extends React.Component {
   }
 
   render() {
-
-    let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
+    debugger
+    // let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
+    let isFileUploaded;
     
+    let thePath;
+    
+    
+    let image = this.state.file ? <img id="campaign-cover-art" src={this.state.file} alt="whatever" /> : <div></div>;
+      if (document.getElementById("campaign-cover-art-container")){
+        isFileUploaded = document.getElementById("campaign-cover-art-container").files
+      }
+    
+    if (isFileUploaded) {
+      thePath = document.getElementById("campaign-cover-art-container").files[0].path
+      image = <img id="campaign-cover-art" src={thePath} alt="whatever"/>;
+      
+    }
     
     
     return (
@@ -56,7 +71,14 @@ class CampaignForm extends React.Component {
 
         <form className="campaign-form " onSubmit={this.handleSubmit}>
           <h1>Create Campaign</h1>
-          <input type="file" id="upload_cover_art" placeholder="Add cover art to your campaign"></input>
+          <input 
+            id="file-id"
+            type="file" 
+            className="upload_cover_art" 
+            placeholder="Add cover art to your campaign"
+            name="picture" 
+            onChange={this.handleInput("file")}
+            accept="application/x-zip-compressed,image/*"></input>
           <div id="campaign-cover-art-container">
             {image}
           </div>

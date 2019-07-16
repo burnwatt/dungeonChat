@@ -13,8 +13,11 @@ import CreateCampaignContainer from "./campaigns/create_campaign_container";
 import CharacterSheetContainer from "./characters/character_sheet_container"
 import DiceBoxContainer from "./dice_box/dice_box_container";
 // import CharacterSheet from "./characters/character_sheet";
+
 import CampaignShow from "./campaigns/campaign_show_container";
 
+import ImgsContainer from "./imgs/imgs_container"
+// import Imgs from "./imgs/imgs"
 
 import Modal from "./modal/modal";
 
@@ -36,6 +39,7 @@ const App = () => (
       <Route exact path="/campaign/:name" component={CampaignShow} />
 
       <Route exact path="/dice-box" component={DiceBoxContainer} />
+      <Route exact path="/imgs/img/:id" component={ImgsContainer} />
     </Switch>
   </div>
 );

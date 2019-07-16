@@ -11,6 +11,8 @@ const campaigns = require("./routes/api/campaigns");
 const characters = require("./routes/api/characters");
 const messages = require("./routes/api/messages");
 
+const imgs = require("./routes/api/imgs")
+
 //------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 //require the http module
@@ -41,6 +43,7 @@ app.use("/api/users", users);
 app.use("/api/campaigns", campaigns);
 app.use("/api/characters", characters);
 app.use("/api/messages", messages);
+app.use("/api/imgs", imgs);
 // End Define Routes
 
 // -----------------------------------------------------------------------------
