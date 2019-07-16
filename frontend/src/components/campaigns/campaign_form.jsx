@@ -52,6 +52,7 @@ class CampaignForm extends React.Component {
     
     
     return (
+
       <div className="campaign_form_container">
 
         <form className="campaign-form " onSubmit={this.handleSubmit}>
@@ -120,6 +121,8 @@ class CampaignForm extends React.Component {
           <input id="create-campaign-button" className="btn-glow" type="submit" value="Create Your Campaign" />
         </form>
       </div>
+
+         
     )
   }
 

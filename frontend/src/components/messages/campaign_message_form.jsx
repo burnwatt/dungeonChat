@@ -113,6 +113,7 @@ class CampaignShow extends React.Component {
   }
 
   handleSubmit(which) {
+    console.log("here");
     const { currentUser, campaign, userChar } = this.state;
     let character_id = (userChar && ["messageSay", "messageDescribe"].includes(which)) ? userChar._id : null;
     let newMessage = Object.assign({
@@ -124,9 +125,9 @@ class CampaignShow extends React.Component {
       type: which.slice(7)
     })
     this.setState({ [which]: "" });
-    console.log(newMessage);
+ 
     this.props.createMessage(newMessage);
-    return event => event.prevenDefault();
+    // return event => event.prevenDefault();
   }
 
   onMessageEnter(which) {

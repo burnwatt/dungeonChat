@@ -5,24 +5,60 @@ import { dateTimeStr, timeDiff } from "../../util/frontend_util";
 
 class MessageIndexItem extends React.Component {
 
-  // getSay() {
-  
-  //   return (
-  //     <div className="message-item">
-  //       <div className="message-item-header">
-  //         <div className="message-date-time">
-  //           <h3 className="message-date">{date[0]}</h3>
-  //           <h3 className="message-time">{date[1]}</h3>
-  //         </div>
-  //       </div>
-  //       <div className="message-body">
-  //         <p className="message-body-text">
-  //           {this.props.message.body}
-  //         </p>
-  //       </div>
-  //     </div>
-  //   )
-  // }
+  buildMsg() {
+      let {body, date, character_id, user_id} = this.props.message;
+
+      switch (this.props.message.type) {
+
+        case "Say":
+          return (
+            <div className="message-item message-say">
+              {this.setHeader()}
+              <div className="message-body">
+                <p className="message-body-text">
+                  {this.props.message.body}
+                </p>
+              </div>
+            </div>
+          )
+        case "Chat":
+          return (
+            <div className="message-item message-describe">
+              {this.setHeader()}
+              <div className="message-body">
+                <p className="message-body-text">
+                  {this.props.message.body}
+                </p>
+              </div>
+            </div>
+          )
+        case "DM":
+          return (
+            <div className="message-item">
+              {this.setHeader()}
+              <div className="message-body">
+                <p className="message-body-text">
+                  {this.props.message.body}
+                </p>
+              </div>
+            </div>
+          )
+        case "Describe":
+          return (
+            <div className="message-item">
+              {this.setHeader()}
+              <div className="message-body">
+                <p className="message-body-text">
+                  {this.props.message.body}
+                </p>
+              </div>
+            </div>
+          )
+        default:
+          return null;
+      }
+
+    }
 
   setHeader() {
     const { userChar, characters, message } = this.props;
@@ -40,6 +76,8 @@ class MessageIndexItem extends React.Component {
       )
     } else if (message.character_id) {
       let char = Object.values(characters).filter(char => char._id === message.character_id)[0];
+      // if (char === undefined) console.log(message);
+      if (!char) console.log(message, char, userChar);
       return (
         <div className="left message-item-header">
           <h1 className="message-character-name">{char.char_attrs.name}</h1>
@@ -51,17 +89,86 @@ class MessageIndexItem extends React.Component {
 
   render () {
 
-    let { body, date, character_id, user_id } = this.props.message;
-    return (
-      <div className="message-item">
-        { this.setHeader() }
-        <div className="message-body">
-          <p className="message-body-text">
-            {this.props.message.body}
-          </p>
+    const { body, date, character_id, user_id, type} = this.props.message;
+    if (type === "Say") {
+      return (
+        <div className="message-item message-say">
+          {this.setHeader()}
+          <div className="message-body">
+            <p className="message-body-text">
+              {this.props.message.body}
+            </p>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else if (type === "Describe") {
+      return (
+        <div className="message-item message-describe">
+          {this.setHeader()}
+          <div className="message-body">
+            <p className="message-body-text">
+              {this.props.message.body}
+            </p>
+          </div>
+        </div>
+      )
+    } else if (type === "Chat") {
+      return (
+        <div className="message-item">
+          {this.setHeader()}
+          <div className="message-body">
+            <p className="message-body-text">
+              {this.props.message.body}
+            </p>
+          </div>
+        </div>
+      )
+    } else if (type === "DM") {
+      return (
+        <div className="message-item">
+          {this.setHeader()}
+          <div className="message-body">
+            <p className="message-body-text">
+              {this.props.message.body}
+            </p>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="message-item">
+          { this.setHeader() }
+          <div className="message-body">
+            <p className="message-body-text">
+              {this.props.message.body}
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+
+
+
+
+
+ 
+
+
+
+    // return (
+
+
+      
+    //   <div className="message-item">
+    //     { this.setHeader() }
+    //     <div className="message-body">
+    //       <p className="message-body-text">
+    //         {this.props.message.body}
+    //       </p>
+    //     </div>
+    //   </div>
+    // )
   }
 
 };

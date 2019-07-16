@@ -30,6 +30,10 @@ class CampaignIndex extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.closeModal();
+  }
+
   setCampaignDisplay(btnId) {
     let tabs = document.getElementsByClassName("campaigns-select-btn");
     let tab = document.getElementById(btnId);

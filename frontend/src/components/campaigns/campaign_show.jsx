@@ -2,6 +2,9 @@ import React from "react";
 import { scrollTo } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
 import CampaignCharactersContainer  from "../characters/campaign_characters_container";
+import DiceBoxContainer from "../dice_box/dice_box_container";
+
+
 import openSocket from "socket.io-client";
 const socket = openSocket("http://localhost:5000");
 
@@ -26,10 +29,8 @@ class CampaignShow extends React.Component {
       messageChat: ""
     }
 
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
-
   }
 
   newMessage() {
@@ -80,17 +81,44 @@ class CampaignShow extends React.Component {
 
   }
 
+  componentWillUnmount() {
+    this.props.closeModal();
+  }
+
+  // ===========================================================================
+
+  handleDiceShow() {
+    let nav = document.getElementById("dice_box_container");
+    if (nav.style.height === "") {
+      nav.style.height = "314px";
+      // nav.style.bottom = "64px"
+    }
+    else {
+      nav.style.height = "";
+      nav.style.bottom = ""
+    }
+  }
+
+  // ===========================================================================
   getMessageButtons() {
     const { campaign, currentUser } = this.state;
     let buttons = []
 
+    let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
+    buttons.push(
+      <button key="message-btn-subscribe"
+        id="subscribe"
+        className="message-btn btn-glow"
+        onClick={() => this.showMessageForm("subscribe")}
+      >{sub}
+      </button> 
+    )
+
     if (campaign.created_by === currentUser._id) {
       buttons.push(
-        <button key="message-btn-dm"
-          className="message-btn btn-glow"
-          onClick={() => this.showMessageForm("dm")}
-        >DM
-        </button>
+      <i id="message-btn-dice"
+        onClick={() => this.showMessageForm("dm")}
+        className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
       )
     }
 
@@ -110,13 +138,13 @@ class CampaignShow extends React.Component {
         onClick={() => this.showMessageForm("chat")}
       >Chat
       </button>,
-      <button key="message-btn-dice"
-        className="message-btn btn-glow"
-        onClick={() => this.props.openModal("Dice Box Modal")} 
-      >Dice Icon
-      </button>
+      <i id="message-btn-dice" 
+        onClick={this.handleDiceShow} 
+        className="message-btn-icons icon-btn-red fas fa-dice-d20" key="message-btn-dice" />,
+      <i id="message-btn-eye"
+        onClick={() => this.props.openModal("Dice Box Modal")}
+        className="message-btn-icons icon-btn-red fas fa-eye" key="message-btn-eye" />
     ]);
-
 
   }
   handleMessageInput(which) {
@@ -124,8 +152,6 @@ class CampaignShow extends React.Component {
   }
   getMessageForms() {
     let { messageChat, messageSay, messageDescribe, messageDM } = this.state;
-
- 
 
     return (
       <>
@@ -190,9 +216,12 @@ class CampaignShow extends React.Component {
       type: which.slice(7)
     })
     this.setState({ [which]: "" });
-    // console.log(newMessage);
+    console.log(newMessage);
     this.props.createMessage(newMessage)
-      .then(() => this.newMessage())
+      .then(() => {
+        this.newMessage();
+        console.log(newMessage);
+      })
     return event => event.prevenDefault();
   }
   onMessageEnter(which) {
@@ -220,6 +249,7 @@ class CampaignShow extends React.Component {
     form.getElementsByClassName(which)[0].select();
   }
 
+  // ===========================================================================
 
   render() {
     const { campaign, currentUser, campChars, userChar } = this.state;
@@ -255,17 +285,17 @@ class CampaignShow extends React.Component {
             </div>
 
             <div id="campaign-content-footer">
-              {/* <h1>Command Content Here</h1> */}
               <div id="campaign-command">
-                <img id="command-background" src={fade_in_command}/>
+                <DiceBoxContainer />
                 <div id="campaign-command-logo">
                   <img src={splash_die} />
                 </div>
                 {messageForms} 
                 <div className="message-btns">
-                  {messageButtons}
+                {messageButtons}
                 </div>
               </div>
+
             </div>
 
           </div>
