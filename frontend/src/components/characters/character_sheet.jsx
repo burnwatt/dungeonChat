@@ -1,12 +1,11 @@
 import React from 'react';
 import merge from 'lodash/merge';
 import wizard from "../../assets/public/images/wizard.png";
-import { fetchCharacter } from '../../util/character_api_util';
 
 class CharacterSheet extends React.Component {
     constructor(props){
       super(props);
-
+      debugger;
       this.state = {
         char_attrs: {
               name: '',
@@ -105,6 +104,11 @@ class CharacterSheet extends React.Component {
 
     componentDidMount(){
       // getCharacter()
+      if (this.props.match.params.char_id){
+        this.props.getCharacter(this.props.match.params.char_id)
+          .then(char => console.log(char));
+      }
+      debugger;
     }
 
     handleInput(field) {

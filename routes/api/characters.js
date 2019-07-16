@@ -62,14 +62,22 @@ router.post("/", passport.authenticate("jwt", {session: false}), (req,res) => {
 //Fetch all characters
 router.get('/', (req, res) =>{
     Character.find()
-        .then(chars => res.json(chars))
+        .then(chars => {
+            characters = {};
+
+            for (let char of chars) {
+                characters[char._id] = char;
+            };
+
+            res.json(characters);
+        })
         .catch(err => errRes(res, 404, defErrs.noCharactersFound))
 });
 
 // Fetch a specific character
 router.get('/:id', (req, res) => {
     Character.findById(req.params.id)
-        .then(chars => res.json(chars))
+        .then(char => res.json(char))
         .catch(err => errRes(res, 404, defErrs.noCharactersFound))
 });
 
