@@ -14,17 +14,23 @@ const fetchImage = (id) => {
   return axios.get(`/api/imgs/img_data/${id}`)
 }
 
+// const postImage = (payload, type) => {
+//   // debugger
+//   // console.log(payload);
+//   return axios.post(`/api/imgs/${type}`, {
+//     headers: {
+//     'Content-Type': 'multipart/form-data',
+//   },
+//   params: {
+//     "picture": payload
+//   }
+//   })
+// }
+
 const postImage = (payload, type) => {
   // debugger
   // console.log(payload);
-  return axios.post(`/api/imgs/${type}`, {
-    headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-  params: {
-    "picture": payload
-  }
-  })
+  return axios.post(`/api/imgs/${type}`, payload)
 }
 
 

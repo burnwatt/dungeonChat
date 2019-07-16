@@ -81,7 +81,7 @@ class CharacterSheet extends React.Component {
             // img: ""
         }
 
-        this.img = "";
+        this.picture = "";
     }
 
     handleSubmit(e){
@@ -92,30 +92,22 @@ class CharacterSheet extends React.Component {
             user_id: this.props.currentUser,
             // char_attrs: this.state.char_attrs,
             char_attrs: this.state,
-          // img: { data: this.img, contentType: "image/png" },
-            // img: {data: "asdfasdf", contentType: "image/png"}
+        }).then(character => {
+          debugger
+          const picture = this.picture;
+          let formData = new FormData();
+          formData.append("picture", picture);
+          formData.append("character_id", character.data._id);
+          
+          this.props.postImg(formData, "char");
         })
-        .then(character => {
-          // debugger
-          // this.props.postImg({ img: this.img, aId: character._id }, "char")
-          // this.props.postImg(this.img, "char")
-          // this.props.postImg( this.img , "char")
-
-          // var formData = new FormData();
-          // var imagefile = document.querySelector('#file');
-          // formData.append("image", imagefile.files[0]);
-          // formData.append("aId", character.data._id)
-          // this.props.postImg(formData, "char")
-         
-
-        })
-        
-      this.props.postImg(this.img, "char")
 
     }
+
+    
     handleChangeImg(e){
       e.preventDefault()
-      this.img = e.target.value;
+      this.picture = e.target.files[0];
       // this.postImg({img: this.state.img, aId: }, "char")
     }
     componentDidUpdate(){
@@ -125,9 +117,19 @@ class CharacterSheet extends React.Component {
         
     }
 
-    componentDidMount(){
+  componentDidMount() {
 
-    }
+    // this.props.fetchImg(this.props.match.params.id)
+    //   .then(() => {
+
+    //     var base64Flag = 'data:image/png;base64,';
+    //     var imageStr = this.arrayBufferToBase64(this.props.img[1]);
+
+    //     this.setState({
+    //       img: base64Flag + imageStr
+    //     })
+    //   })
+  }
 
     handleInput(field) {
         return event => this.setState({ [field]: event.target.value });
