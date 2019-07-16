@@ -10,6 +10,7 @@ const CharacterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  img: { data: Buffer, contentType: String },
   char_attrs: {
     type: Object,
     default: {}

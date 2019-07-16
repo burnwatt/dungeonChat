@@ -9,50 +9,40 @@ const arrayBufferToBase64 = (buffer) => {
 
 export const RECEIVE_IMAGE = "RECEIVE_IMAGE"
 
+//API'S
 const fetchImage = (id) => {
   return axios.get(`/api/imgs/img_data/${id}`)
 }
 
-const postImage = (img) => {
-  return axios.post('/api/imgs/img_data', img)
+const postImage = (payload, type) => {
+  // debugger
+  // console.log(payload);
+  return axios.post(`/api/imgs/${type}`, {
+    headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  params: {
+    "picture": payload
+  }
+  })
 }
 
+
+
+
+//ACTIONS
 export const fetchImg = (id) => {
   return dispatch => {
     return fetchImage(id).then(img => {
       dispatch({type: RECEIVE_IMAGE, img})
       return img.data.img.data;
     })
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   var base64Flag = 'data:image/jpeg;base64,';
-    //   var imageStr = arrayBufferToBase64(data.img.data.data);
-    //   return base64Flag + imageStr;
-    // })
-
 }}
 
-export const postImg = (img) => {
+export const postImg = (payload, type) => {
   return dispatch => {
-    return postImage(img).then(img => dispatch({type: RECEIVE_IMAGE, img}))
-      // .then((res) => res.json())
-      // .then((data) => {
-      //   var base64Flag = 'data:image/jpeg;base64,';
-      //   var imageStr = arrayBufferToBase64(data.img.data.data);
-      //   return base64Flag + imageStr;
-      // })
+    return postImage(payload, type).then(img => dispatch({type: RECEIVE_IMAGE, img}))
   }
 }
 
-  // fetch('http://yourserver.com/api/img_data')
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     var base64Flag = 'data:image/jpeg;base64,';
-  //     var imageStr =
-  //       this.arrayBufferToBase64(data.img.data.data);
-  //     this.setState({
-  //       img: base64Flag + imageStr
-  //           )
-  //   }
-  //       })
-  //   }
+

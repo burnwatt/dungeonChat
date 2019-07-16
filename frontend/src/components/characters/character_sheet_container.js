@@ -8,14 +8,15 @@ import {
   createCharacter,
   changeCharacter,
   // getCharacter
-} from "../../actions/character_actions"
+} from "../../actions/character_actions";
 import { fetchCampaign } from '../../actions/campaign_actions';
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import {postImg} from '../../actions/img_actions';
 
 const mSP = (state, ownProps) => {
   return {
-    currentUser: ownProps.currentUser,
-    campaign: ownProps.campaign,
+    currentUser: state.session.user.id,
+    
   }
 };
 
@@ -23,6 +24,7 @@ const mDP = dispatch => ({
   createCharacter: character => dispatch(createCharacter(character)),
   changeCharacter: characterId => dispatch(changeCharacter(characterId)),
   fetchCampaign: campaignId => dispatch(fetchCampaign(campaignId)),
+  postImg: (payload, type) => dispatch(postImg(payload, type))
   // getCharacter: (id) => dispatch(getCharacter(id))
 });
 

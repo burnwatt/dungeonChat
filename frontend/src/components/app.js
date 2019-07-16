@@ -10,7 +10,7 @@ import ProfileContainer from './profile/profile_container';
 import LandingContainer from "./landing/landing_container";
 import CreateCampaignContainer from "./campaigns/create_campaign_container";
 
-import CharacterSheet from "./characters/character_sheet"
+import CharacterSheetContainer from "./characters/character_sheet_container"
 import CampaignShow from "./campaigns/campaign_show_container";
 
 import ImgsContainer from "./imgs/imgs_container"
@@ -29,7 +29,7 @@ const App = () => (
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
       <Route exact path="/landing" component={LandingContainer} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
-      <Route exact path="/character-sheet" component={CharacterSheet} />
+      <Route exact path="/character-sheet" component={CharacterSheetContainer} />
       <Route exact path="/campaign/:name" component={CampaignShow} />
       {/* <Route exact path="/imgs" component={Imgs}/> */}
       <Route exact path="/imgs/img/:id" component={ImgsContainer} />

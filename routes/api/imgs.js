@@ -10,6 +10,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
+    debugger
     cb(null, '../../frontend/src/assets/public/uploads/')
   }
 });
@@ -23,8 +24,8 @@ const defErrs = {
 router.route('/img_data')
   .post(upload.single('picture'), function (req, res) {
     var new_img = new Img;
+    debugger
     // var new_img = new Img({ data: { type: 'Buffer', data: { img: {data: "image here"} } } });
-
     new_img.img.data = fs.readFileSync(req.file.path)
     new_img.img.contentType = 'image/png';
     new_img.save();
@@ -37,6 +38,24 @@ router.route('/img_data')
       res.send(img);
     }).sort({ createdAt: 'desc' });
   });
+
+// ROUTES FOR ASSOCIATIONS METHOD OF ADDING IMAGE TO DOCUMENTS
+// IMPLEMENTING LATER
+router.route('/char')
+  .post(upload.single('picture'), function (req, res) {
+    // debugger
+    console.log(req.params);
+    var new_img = new Img;
+    console.log(fs.readFileSync(req.file.path));
+    new_img.img.data = fs.readFileSync(req.file.path)
+    new_img.img.contentType = 'image/png';
+    new_img.save();
+    new_img.makeAssociation(new_img._id, req.aId, "char")
+    res.json({ message: 'New image added to the db!' });
+  })
+// END ASSOCIATOS ROUTES
+
+
 
 router.get('/img_data/:id', (req, res) => {
   Img.findById(req.params.id)

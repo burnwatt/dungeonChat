@@ -4,6 +4,21 @@ const passport = require("passport");
 
 const Campaign = require("../../models/Campaign");
 
+
+const fs = require('fs');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        cb(null, '../../frontend/src/assets/public/uploads/')
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
+
+
 const { errRes } = require("../../validation/validation_util");
 
 const defErrs = {
@@ -43,6 +58,8 @@ Creates character, saves to db, and calls updateCampaign
 const createCharacter = (req, res) => {
     const newChar = new Character(characterObj(req));
     newChar.addRelations();
+    // newChar.img.data = fs.readFileSync(req.img.file.path);
+    // newChar.img.contentType = 'image/png';
     newChar.save()
         .then(char => res.json(char))
         .catch(err => console.log(err));

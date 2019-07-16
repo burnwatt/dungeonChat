@@ -48,7 +48,7 @@ class Imgs extends React.Component {
       <div>
         <form className="upload-img" action="/api/imgs/img_data" method="POST" encType="multipart/form-data">
         <input type="file" name="picture" accept="application/x-zip-compressed,image/*"></input>
-        <input className="form-control" type="text" name="description" placeholder="Description or Message"/>
+        {/* <input className="form-control" type="text" name="description" placeholder="Description or Message"/> */}
         <input className="btn btn-primary" type="submit" value="submit"/>
         </form>
         <div>

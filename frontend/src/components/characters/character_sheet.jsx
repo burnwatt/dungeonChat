@@ -7,87 +7,120 @@ class CharacterSheet extends React.Component {
         super(props);
 
         this.state = {
-            name:   '',
-            class:  '',
-            race:   '',
-            health: 0,
-            magic:  0,
-            gold:   0,
-            powers: {
-                power1: {
+            // char_attrs: {
+              name:   '',
+              class:  '',
+              race:   '',
+              health: 0,
+              magic:  0,
+              gold:   0,
+              powers: {
+                  power1: {
+                    name: '',
+                    description: '',
+                  },
+                  power2: {
+                    name: '',
+                    description: '',
+                  },
+                  power3: {
+                    name: '',
+                    description: '',
+                  },
+                  power4: {
+                    name: '',
+                    description: '',
+                  },
+                  special: {
+                    name: '',
+                    description: '',
+                  }
+              },
+              inventory: {
+                slot1: {
                   name: '',
                   description: '',
+                  qty: 0
                 },
-                power2: {
+                slot2: {
                   name: '',
                   description: '',
+                  qty: 0
                 },
-                power3: {
+                slot3: {
                   name: '',
                   description: '',
+                  qty: 0
                 },
-                power4: {
+                slot4: {
                   name: '',
                   description: '',
+                  qty: 0
                 },
-                special: {
+                slot5: {
                   name: '',
                   description: '',
-                }
-            },
-            inventory: {
-              slot1: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot2: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot3: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot4: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot5: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot6: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot7: {
-                name: '',
-                description: '',
-                qty: 0
-              },
-              slot8: {
-                name: '',
-                description: '',
-                qty: 0
-              }
-            },
+                  qty: 0
+                },
+                slot6: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot7: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                },
+                slot8: {
+                  name: '',
+                  description: '',
+                  qty: 0
+                }},
+            // }},
+            // img: ""
         }
+
+        this.img = "";
     }
 
-    handleSubmit(){
-        // this.props.createCharacter({
-        //     campaign_id: this.props.campaign_id,
-        //     user_id: this.props.currentUser.id,
-        //     char_attrs: this.state
-        // })
-    }
+    handleSubmit(e){
+      // debugger
+        e.preventDefault()
+        this.props.createCharacter({
+            // campaign_id: this.props.location.state.campaign._id,
+            user_id: this.props.currentUser,
+            // char_attrs: this.state.char_attrs,
+            char_attrs: this.state,
+          // img: { data: this.img, contentType: "image/png" },
+            // img: {data: "asdfasdf", contentType: "image/png"}
+        })
+        .then(character => {
+          // debugger
+          // this.props.postImg({ img: this.img, aId: character._id }, "char")
+          // this.props.postImg(this.img, "char")
+          // this.props.postImg( this.img , "char")
 
+          // var formData = new FormData();
+          // var imagefile = document.querySelector('#file');
+          // formData.append("image", imagefile.files[0]);
+          // formData.append("aId", character.data._id)
+          // this.props.postImg(formData, "char")
+         
+
+        })
+        
+      this.props.postImg(this.img, "char")
+
+    }
+    handleChangeImg(e){
+      e.preventDefault()
+      this.img = e.target.value;
+      // this.postImg({img: this.state.img, aId: }, "char")
+    }
+    componentDidUpdate(){
+      // debugger;
+    }
     handleCancel(){
         
     }
@@ -125,6 +158,14 @@ class CharacterSheet extends React.Component {
                   <div className="pic-bio">
                     <div className="pic-container">
                       <div><div className="pic-div"><img src={ wizard } alt="whatever"/></div></div>
+                      {/* <form onSubmit={this.handleSubmitImg.bind(this)} className="upload-img"> */}
+                        {/* <input 
+                          type="file" 
+                          name="picture" 
+                          accept="application/x-zip-compressed,image/*"
+                          onChange={this.handleInput("img")}></input> */}
+                        {/* <input className="btn btn-primary" type="submit" value="submit" /> */}
+                      {/* </form> */}
                     </div>
                     <div className="bio-container">
                       <h1>Bio</h1>
@@ -430,10 +471,17 @@ class CharacterSheet extends React.Component {
                         <textarea className="notes-textarea">
                         </textarea>
                       </div>
-                      
+                      <input
+                        id="file"
+                        type="file"
+                        name="picture"
+                        accept="application/x-zip-compressed,image/*"
+                        // onChange={this.handleInput("img")}
+                        onChange={this.handleChangeImg.bind(this)}></input>
+
                       <div className='buttons-wrapper'>
-                  <button className='character-save' onClick={this.handleSubmit()}><i class="fas fa-check"></i></button>
-                  <button className='character-cancel' onClick={this.handleCancel()}><i class="fas fa-times"></i></button>
+                  <button className='character-save' onClick={this.handleSubmit.bind(this)}><i className="fas fa-check"></i></button>
+                  <button className='character-cancel' onClick={this.handleCancel}><i className="fas fa-times"></i></button>
                       </div>
                       
                   </form>
