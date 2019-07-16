@@ -5,9 +5,7 @@ import wizard from "../../assets/public/images/wizard.png";
 class CharacterSheet extends React.Component {
     constructor(props){
       super(props);
-      debugger;
       this.state = {
-        char_attrs: {
               name: '',
               class: '',
               race: '',
@@ -78,37 +76,28 @@ class CharacterSheet extends React.Component {
                   qty: 0
                 }
               }
-        },
-        img: {
-
         }
-      }
-      
-      
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
     }
 
-    handleSubmit(){
-        // this.props.createCharacter({
-        //     campaign_id: this.props.campaign_id,
-        //     user_id: this.props.currentUser._id,
-        //     char_attrs: this.state
-        // })
+    handleSubmit(e){
+      e.preventDefault();
+      debugger;
+      this.props.createCharacter({
+          campaign_id: this.props.location.state.campaign._id,
+          user_id: this.props.currentUser,
+          char_attrs: this.state
+      }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
     }
 
     handleCancel(){
-        
+    
     }
 
     componentDidMount(){
-      // getCharacter()
-      if (this.props.match.params.char_id){
-        this.props.getCharacter(this.props.match.params.char_id)
-          .then(char => console.log(char));
-      }
-      debugger;
+    
     }
 
     handleInput(field) {
@@ -447,8 +436,8 @@ class CharacterSheet extends React.Component {
                       </div>
                       
                       <div className='buttons-wrapper'>
-                  <button className='character-save' onClick={this.handleSubmit()}><i class="fas fa-check"></i></button>
-                  <button className='character-cancel' onClick={this.handleCancel()}><i class="fas fa-times"></i></button>
+                        <button className='character-save' onClick={this.handleSubmit}><i class="fas fa-check"></i></button>
+                        <button className='character-cancel' onClick={this.handleCancel}><i class="fas fa-times"></i></button>
                       </div>
                       
                   </form>

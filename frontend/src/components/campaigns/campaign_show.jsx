@@ -60,11 +60,21 @@ class CampaignShow extends React.Component {
     if (prevProps.characters !== this.props.characters) {
       let {character_ids} = this.props.campaign;
       let {characters} = this.props;
+      // let campaign_characters;
+
+      // for(let c of Object.keys(characters)){
+      //   if(character_ids.includes(c._id)){
+      //     campaign_characters[c._id] = c;
+      //   }
+      // }
+
+      // this.setState({
+      //   campChars: campaign_characters
+      // });
       this.setState({
         campChars: Object.values(characters)
           .filter(char => character_ids.includes(char._id))
-        }
-      )
+      })
 
       if (this.state.currentUser) {
         const { campaign, currentUser } = this.state;
@@ -232,12 +242,12 @@ class CampaignShow extends React.Component {
         userChar={userChar}
       />
 
-      campaignCharacters = <CampaignCharactersContainer
-        currentUser={currentUser}
-        campaign={campaign}
-        characters={campChars}
-        userChar={userChar}
-      />
+      // campaignCharacters = <CampaignCharactersContainer
+      //   currentUser={currentUser}
+      //   campaign={campaign}
+      //   characters={campChars}
+      //   userChar={userChar}
+      // />
 
       messageButtons = this.getMessageButtons();
       messageForms = this.getMessageForms();
@@ -273,7 +283,12 @@ class CampaignShow extends React.Component {
           <div id="campaign-extra">
             {/* <h1>Extra Chat Content Here?</h1> */}
             <div id="campaign-extra-content">
-              {campaignCharacters}
+              <CampaignCharactersContainer
+                currentUser={currentUser}
+                campaign={campaign}
+                characters={campChars}
+                userChar={userChar}
+              />
             </div>
           </div>
 
