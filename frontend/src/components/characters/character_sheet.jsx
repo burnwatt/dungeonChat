@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import merge from 'lodash/merge';
 import wizard from "../../assets/public/images/wizard.png";
 
@@ -79,6 +80,7 @@ class CharacterSheet extends React.Component {
           },
           bio: '',
           notes: '',
+          avatar: ""
       }
 
 
@@ -86,23 +88,37 @@ class CharacterSheet extends React.Component {
       
       if (targetChar){
         this.state = merge({}, this.state, targetChar.char_attrs);
+        this.props.fetchImg(this.state.img_id)
+          .then(() => {
+
+            var base64Flag = 'data:image/png;base64,';
+            var imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+            this.setState({
+              avatar: base64Flag + imageStr
+            })
+          })
         // this.forceUpdate();
       }
 
-      this.handleSubmit = this.handleSubmit.bind(this);
       this.picture = "";
+      this.avatar = "";
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.abortChanges = this.abortChanges.bind(this);
+      this.handleUpdate = this.handleUpdate.bind(this);
     }
 
   handleSubmit(e) {
     // debugger
     e.preventDefault()
     this.props.createCharacter({
-      // campaign_id: this.props.location.state.campaign._id,
+      campaign_id: this.props.location.state.campaign._id,
       user_id: this.props.currentUser,
       // char_attrs: this.state.char_attrs,
       char_attrs: this.state,
     }).then(character => {
-      debugger
+      // debugger
       const picture = this.picture;
       let formData = new FormData();
       formData.append("picture", picture);
@@ -116,6 +132,7 @@ class CharacterSheet extends React.Component {
 
     handleUpdate(e){
       e.preventDefault();
+      debugger
       this.props.changeCharacter({
         campaign_id: this.props.location.state.campaign._id,
         user_id: this.props.currentUser,
@@ -131,18 +148,36 @@ class CharacterSheet extends React.Component {
 
 
   componentDidMount() {
+    this.props.fetchImg(this.state.img_id)
+      .then(() => {
 
-    // this.props.fetchImg(this.props.match.params.id)
-    //   .then(() => {
+        var base64Flag = 'data:image/png;base64,';
+        var imageStr = this.arrayBufferToBase64(this.props.img.data);
 
-    //     var base64Flag = 'data:image/png;base64,';
-    //     var imageStr = this.arrayBufferToBase64(this.props.img[1]);
-
-    //     this.setState({
-    //       img: base64Flag + imageStr
-    //     })
-    //   })
+        this.setState({
+          avatar: base64Flag + imageStr
+        })
+      })
   }
+  componentDidUpdate() {
+    debugger
+    if (this.props.img && this.state.avatar === "") {
+      var base64Flag = 'data:image/png;base64,';
+      var imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+      this.setState({
+        avatar: base64Flag + imageStr
+      })
+    }
+
+  }
+
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return window.btoa(binary);
+  };
 
 
     handleInput(field) {
@@ -157,8 +192,31 @@ class CharacterSheet extends React.Component {
         }
     }
 
+    abortChanges(e){
+      e.preventDefault();
+      this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`);
+    }
+
     render(){
       debugger
+      let head, btn;
+      
+      if (this.props.history.location.pathname === "/character-sheet/new"){
+        head = <h1>PlaceholderName</h1>;
+        btn = <button className='character-save' onClick={this.handleSubmit}><i className="fas fa-scroll"></i><span>Save</span></button>;
+      } else {
+        head = <h1>{this.state.name || 'Update Character'}</h1>;
+        btn = <button className='character-save' onClick={this.handleUpdate}><i className="fas fa-scroll"></i><span>Save</span></button>;
+      }
+
+      let image = wizard;
+      if (this.state.img_id) {
+        image = this.state.avatar;
+      }
+      // <img
+      // src = { image }
+      // alt = 'whatever' />
+
       return (
           <div className= "character-page">
             <div className= "container-margin">
@@ -168,20 +226,12 @@ class CharacterSheet extends React.Component {
                       <div><div><i className="fas fa-user-ninja fa-3x"></i></div></div>
                     </div>
                     <div className="character-name">
-                      <div>PlaceholderName</div>
+                      {head}
                     </div>
                   </div>
                   <div className="pic-bio">
                     <div className="pic-container">
-                      <div><div className="pic-div"><img src={ wizard } alt="whatever"/></div></div>
-                      {/* <form onSubmit={this.handleSubmitImg.bind(this)} className="upload-img"> */}
-                        {/* <input 
-                          type="file" 
-                          name="picture" 
-                          accept="application/x-zip-compressed,image/*"
-                          onChange={this.handleInput("img")}></input> */}
-                        {/* <input className="btn btn-primary" type="submit" value="submit" /> */}
-                      {/* </form> */}
+                      <div><div className="pic-div"><img src={ image } alt="whatever"/></div></div>
                     </div>
                     <div className="bio-container">
                       <h1>Bio</h1>
@@ -533,10 +583,10 @@ class CharacterSheet extends React.Component {
                         onChange={this.handleChangeImg.bind(this)}></input>
 
                       <div className='buttons-wrapper'>
-                        <button className='character-save' onClick={this.handleSubmit}><i className="fas fa-check"></i></button>
-                        <button className='character-cancel'><i className="fas fa-times"></i></button>
+                        {btn}
+                        <button className='character-cancel' onClick={this.abortChanges}><i className="fas fa-skull"></i><span>Cancel</span></button>
                       </div>
-                      
+                
                   </form>
               </div>
             </div>

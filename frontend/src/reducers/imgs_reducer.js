@@ -5,7 +5,7 @@ import {
 
 export default (state = {}, action) => {
   Object.freeze(state);
-  debugger
+  // debugger
   switch (action.type) {
     case RECEIVE_IMAGE:
       return {[action.img.data._id]: action.img.data.img.data}
