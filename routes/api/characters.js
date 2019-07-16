@@ -91,7 +91,15 @@ router.get("/campaign/:campaign_id", (req, res) => {
     Campaign.findOne({ _id: req.params.campaign_id })
         .then(campaign => {
             Character.find({ _id: { $in: campaign.character_ids } })
-                .then(characters => res.json(characters))
+                .then(chars => {
+                    characters = {};
+
+                    for (let char of chars) {
+                        characters[char._id] = char;
+                    };
+
+                    res.json(characters);
+                })
                 .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
         })
 })

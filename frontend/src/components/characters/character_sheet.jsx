@@ -3,80 +3,162 @@ import merge from 'lodash/merge';
 import wizard from "../../assets/public/images/wizard.png";
 
 class CharacterSheet extends React.Component {
+  
     constructor(props){
       super(props);
       this.state = {
+          name: '',
+          class: '',
+          race: '',
+          health: 0,
+          magic: 0,
+          gold: 0,
+          powers: {
+            power1: {
               name: '',
-              class: '',
-              race: '',
-              health: 0,
-              magic: 0,
-              gold: 0,
-              powers: {
-                power1: {
-                  name: '',
-                  description: '',
-                },
-                power2: {
-                  name: '',
-                  description: '',
-                },
-                power3: {
-                  name: '',
-                  description: '',
-                },
-                power4: {
-                  name: '',
-                  description: '',
-                },
-                special: {
-                  name: '',
-                  description: '',
-                }
-              },
-              inventory: {
-                slot1: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot2: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot3: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot4: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot5: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot6: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot7: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                },
-                slot8: {
-                  name: '',
-                  description: '',
-                  qty: 0
-                }
-              }
-        }
+              description: '',
+            },
+            power2: {
+              name: '',
+              description: '',
+            },
+            power3: {
+              name: '',
+              description: '',
+            },
+            power4: {
+              name: '',
+              description: '',
+            },
+            special: {
+              name: '',
+              description: '',
+            }
+          },
+          inventory: {
+            slot1: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot2: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot3: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot4: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot5: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot6: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot7: {
+              name: '',
+              description: '',
+              qty: 0
+            },
+            slot8: {
+              name: '',
+              description: '',
+              qty: 0
+            }
+          },
+          bio: '',
+          notes: '',
+      }
+      let targetChar = props.characters[props.match.params.char_id];
+      if (targetChar){
+        this.state = merge({}, this.state, targetChar.char_attrs);
+        this.forceUpdate();
+      }
+          // this.state = {
+          //   name: targetChar.char_attrs.name || '',
+          //   class: targetChar.char_attrs.class || '',
+          //   race: targetChar.char_attrs.race || '',
+          //   health: targetChar.char_attrs.health || 0,
+          //   magic: targetChar.char_attrs.magic || 0,
+          //   gold: targetChar.char_attrs.gold || 0,
+          //   powers: {
+          //     power1: {
+          //       name: targetChar.char_attrs.powers.power1.name || '',
+          //       description: targetChar.char_attrs.powers.power1.description || '',
+          //     },
+          //     power2: {
+          //       name: targetChar.char_attrs.powers.power2.name || '',
+          //       description: targetChar.char_attrs.powers.power2.description || '',
+          //     },
+          //     power3: {
+          //       name: targetChar.char_attrs.powers.power3.name || '',
+          //       description: targetChar.char_attrs.powers.power3.description || '',
+          //     },
+          //     power4: {
+          //       name: targetChar.char_attrs.powers.power4.name || '',
+          //       description: targetChar.char_attrs.powers.power4.description || '',
+          //     },
+          //     special: {
+          //       name: targetChar.char_attrs.powers.special.name || '',
+          //       description: targetChar.char_attrs.powers.special.description || '',
+          //     }
+          //   },
+          //   inventory: {
+          //     slot1: {
+          //       name: targetChar.char_attrs.inventory.slot1.name || '',
+          //       description: targetChar.char_attrs.inventory.slot1.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot1.qty || 0
+          //     },
+          //     slot2: {
+          //       name: targetChar.char_attrs.inventory.slot2.name || '',
+          //       description: targetChar.char_attrs.inventory.slot2.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot2.qty || 0
+          //     },
+          //     slot3: {
+          //       name: targetChar.char_attrs.inventory.slot3.name || '',
+          //       description: targetChar.char_attrs.inventory.slot3.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot3.qty || 0
+          //     },
+          //     slot4: {
+          //       name: targetChar.char_attrs.inventory.slot4.name || '',
+          //       description: targetChar.char_attrs.inventory.slot4.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot4.qty || 0
+          //     },
+          //     slot5: {
+          //       name: targetChar.char_attrs.inventory.slot5.name || '',
+          //       description: targetChar.char_attrs.inventory.slot5.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot5.qty || 0
+          //     },
+          //     slot6: {
+          //       name: targetChar.char_attrs.inventory.slot6.name || '',
+          //       description: targetChar.char_attrs.inventory.slot6.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot6.qty || 0
+          //     },
+          //     slot7: {
+          //       name: targetChar.char_attrs.inventory.slot7.name || '',
+          //       description: targetChar.char_attrs.inventory.slot7.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot7.qty || 0
+          //     },
+          //     slot8: {
+          //       name: targetChar.char_attrs.inventory.slot8.name || '',
+          //       description: targetChar.char_attrs.inventory.slot8.description || '',
+          //       qty: targetChar.char_attrs.inventory.slot8.qty || 0
+          //     }
+          //   },
+          //   notes: targetChar.char_attrs.notes || '',
+          //   bio: targetChar.char_attrs.bio || ''
+          // }
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
@@ -92,13 +174,14 @@ class CharacterSheet extends React.Component {
       }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
     }
 
+    handleUpdate(e){
+
+    }
+
     handleCancel(){
     
     }
 
-    componentDidMount(){
-    
-    }
 
     handleInput(field) {
         return event => this.setState({ [field]: event.target.value });
@@ -133,7 +216,10 @@ class CharacterSheet extends React.Component {
                     <div className="bio-container">
                       <h1>Bio</h1>
                       <textarea id="bio" 
-                      placeholder="Give us your backstory and make it interesting!!"/>
+                        placeholder="Give us your backstory and make it interesting!!"
+                        onChange={this.handleInput("bio")}
+                        value={this.state.bio}
+                      />
                     </div>
                   </div>
 
@@ -147,24 +233,24 @@ class CharacterSheet extends React.Component {
                         />
                           
 
-                          <label>Class</label>
-                        <input type="text" onChange={this.handleInput("class")} />
+                        <label>Class</label>
+                        <input type="text" onChange={this.handleInput("class")} value={this.state.class}/>
                           
 
-                          <label>Race</label>
-                        <input type="text" onChange={this.handleInput("race")} />
+                        <label>Race</label>
+                        <input type="text" onChange={this.handleInput("race")} value={this.state.race}/>
                           
 
-                          <label>Health</label>
-                        <input type="number" onChange={this.handleInput("health")} />
+                        <label>Health</label>
+                        <input type="number" onChange={this.handleInput("health")} value={this.state.health}/>
                           
 
-                          <label>Magic</label>
-                        <input type="number" onChange={this.handleInput("magic")} />
+                        <label>Magic</label>
+                        <input type="number" onChange={this.handleInput("magic")} value={this.state.magic}/>
                           
 
-                          <label>Gold</label>
-                        <input type="number" onChange={this.handleInput("gold")} />
+                        <label>Gold</label>
+                        <input type="number" onChange={this.handleInput("gold")} value={this.state.gold}/>
                           
                       </div>
 
@@ -174,15 +260,17 @@ class CharacterSheet extends React.Component {
                             
                             <div className="power-div">
           
-                                <input type="text"
-                                   placeholder="Name"
-                                   onChange={this.handleNestedInput("powers", "power1", "name")} />
+                              <input type="text"
+                                  placeholder="Name"
+                                  onChange={this.handleNestedInput("powers", "power1", "name")} 
+                                  value={this.state.powers.power1.name}/>
                               
                             </div>
                             <textarea
                                 placeholder="Power Description"
                                 cols="30"
                                 rows="10"
+                                value={this.state.powers.power1.description}
                                 onChange={this.handleNestedInput("powers", "power1", "description")}
                             ></textarea>
                               
@@ -191,41 +279,43 @@ class CharacterSheet extends React.Component {
 
                           <div className='power' id='power-2'>
                             <div className="power-div">
-                              {/* <h3>2.</h3> */}
                               <input type="text"
                                   placeholder="Name"
-                                  onChange={this.handleNestedInput("powers", "power2", "name")} />
+                                  onChange={this.handleNestedInput("powers", "power2", "name")} 
+                                  value={this.state.powers.power2.name}/>
                             </div>
                             
-                              
-                              <textarea
-                                  placeholder="Power Description"
-                                  cols="30"
-                                  rows="10"
-                                  onChange={this.handleNestedInput("powers", "power2", "description")}
-                              ></textarea>
+                            <textarea
+                                placeholder="Power Description"
+                                cols="30"
+                                rows="10"
+                                value={this.state.powers.power2.description}
+                                onChange={this.handleNestedInput("powers", "power2", "description")}
+                            ></textarea>
                           </div>
 
                           <div className='power' id='power-3'>
                             <div className="power-div">
-                              {/* <h3>3.</h3> */}
                               <input type="text"
                                         placeholder="Name"
-                                        onChange={this.handleNestedInput("powers", "power3", "name")} />
+                                        onChange={this.handleNestedInput("powers", "power3", "name")} 
+                                        value={this.state.powers.power3.name}/>
                             </div>
                               <textarea
                                   placeholder="Power Description"
                                   cols="30"
                                   rows="10"
+                                  value={this.state.powers.power3.description}
                                   onChange={this.handleNestedInput("powers", "power3", "description")}
                               ></textarea>
                           </div>
 
                           <div className='power' id='power-4'>
                             <div className="power-div">
-                              {/* <h3>4.</h3> */}
+
                               <input type="text"
                                   placeholder="Name"
+                                  value={this.state.powers.power4.name}
                                   onChange={this.handleNestedInput("powers", "power4", "name")}
                                   />
                             </div>
@@ -235,6 +325,7 @@ class CharacterSheet extends React.Component {
                                   placeholder="Power Description"
                                   cols="30"
                                   rows="10"
+                                  value={this.state.powers.power4.description}
                                   onChange={this.handleNestedInput("powers", "power4", "description")}
                               ></textarea>
                           </div>
@@ -243,12 +334,14 @@ class CharacterSheet extends React.Component {
                             <div className='special-power' id='power-special'>
                               <input type="text"
                                 placeholder="Special"
+                                value={this.state.powers.special.name}
                                 onChange={this.handleNestedInput("powers", "special", "name")}
                               />
                               <textarea
                                 placeholder="Power Description"
                                 cols="30"
                                 rows="10"
+                                value={this.state.powers.special.description}
                                 onChange={this.handleNestedInput("powers", "special", "description")}
                               ></textarea>
                             </div>
@@ -263,6 +356,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 1"
+                              value={this.state.inventory.slot1.name}
                               onChange={this.handleNestedInput("inventory", "slot1", "name")}
                             />
                           </label>
@@ -270,11 +364,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot1.description}
                             onChange={this.handleNestedInput("inventory", "slot1", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot1.qty}
                               onChange={this.handleNestedInput("inventory", "slot1", "qty")}
                             />
                           </label>
@@ -284,6 +380,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 2"
+                              value={this.state.inventory.slot2.name}
                               onChange={this.handleNestedInput("inventory", "slot2", "name")}
                             />
                           </label>
@@ -291,11 +388,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot2.description}
                             onChange={this.handleNestedInput("inventory", "slot2", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot2.qty}
                               onChange={this.handleNestedInput("inventory", "slot2", "qty")}
                             />
                           </label>
@@ -305,6 +404,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 3"
+                              value={this.state.inventory.slot3.name}
                               onChange={this.handleNestedInput("inventory", "slot3", "name")}
                             />
                           </label>
@@ -312,11 +412,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot3.description}
                             onChange={this.handleNestedInput("inventory", "slot3", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot3.qty}
                               onChange={this.handleNestedInput("inventory", "slot3", "qty")}
                             />
                           </label>
@@ -326,6 +428,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 4"
+                              value={this.state.inventory.slot4.name}
                               onChange={this.handleNestedInput("inventory", "slot4", "name")}
                             />
                           </label>
@@ -333,11 +436,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot4.description}
                             onChange={this.handleNestedInput("inventory", "slot4", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot4.qty}
                               onChange={this.handleNestedInput("inventory", "slot4", "qty")}
                             />
                           </label>
@@ -347,6 +452,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 5"
+                              value={this.state.inventory.slot5.name}
                               onChange={this.handleNestedInput("inventory", "slot5", "name")}
                             />
                           </label>
@@ -354,11 +460,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot5.description}
                             onChange={this.handleNestedInput("inventory", "slot5", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot5.qty}
                               onChange={this.handleNestedInput("inventory", "slot5", "qty")}
                             />
                           </label>
@@ -368,6 +476,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 6"
+                              value={this.state.inventory.slot6.name}
                               onChange={this.handleNestedInput("inventory", "slot6", "name")}
                             />
                           </label>
@@ -375,11 +484,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot6.description}
                             onChange={this.handleNestedInput("inventory", "slot6", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot6.qty}
                               onChange={this.handleNestedInput("inventory", "slot6", "qty")}
                             />
                           </label>
@@ -389,6 +500,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 7"
+                              value={this.state.inventory.slot7.name}
                               onChange={this.handleNestedInput("inventory", "slot7", "name")}
                             />
                           </label>
@@ -396,11 +508,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot7.description}
                             onChange={this.handleNestedInput("inventory", "slot7", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot7.qty}
                               onChange={this.handleNestedInput("inventory", "slot7", "qty")}
                             />
                           </label>
@@ -410,6 +524,7 @@ class CharacterSheet extends React.Component {
                           <label>
                             <input type="text"
                               placeholder="Item 8"
+                              value={this.state.inventory.slot8.name}
                               onChange={this.handleNestedInput("inventory", "slot8", "name")}
                             />
                           </label>
@@ -417,11 +532,13 @@ class CharacterSheet extends React.Component {
                             placeholder="Item Description"
                             cols="30"
                             rows="10"
+                            value={this.state.inventory.slot8.description}
                             onChange={this.handleNestedInput("inventory", "slot8", "description")}
                           ></textarea>
                           <label>
                             <input type="number"
                               placeholder="Qty"
+                              value={this.state.inventory.slot8.qty}
                               onChange={this.handleNestedInput("inventory", "slot8", "qty")}
                             />
                           </label>
@@ -431,13 +548,16 @@ class CharacterSheet extends React.Component {
 
                       <div className="character-notes">
                         <h1>Notes</h1>
-                        <textarea className="notes-textarea">
+                        <textarea 
+                          className="notes-textarea"
+                          onChange={this.handleInput("notes")}
+                          value={this.state.notes}>
                         </textarea>
                       </div>
                       
                       <div className='buttons-wrapper'>
-                        <button className='character-save' onClick={this.handleSubmit}><i class="fas fa-check"></i></button>
-                        <button className='character-cancel' onClick={this.handleCancel}><i class="fas fa-times"></i></button>
+                        <button className='character-save' onClick={this.handleSubmit}><i className="fas fa-check"></i></button>
+                        <button className='character-cancel' onClick={this.handleCancel}><i className="fas fa-times"></i></button>
                       </div>
                       
                   </form>

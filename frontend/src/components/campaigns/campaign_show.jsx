@@ -53,6 +53,7 @@ class CampaignShow extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    
     if (prevProps.campaign !== this.props.campaign) {
       this.setState({campaign: this.props.campaign });
     }
@@ -60,17 +61,7 @@ class CampaignShow extends React.Component {
     if (prevProps.characters !== this.props.characters) {
       let {character_ids} = this.props.campaign;
       let {characters} = this.props;
-      // let campaign_characters;
 
-      // for(let c of Object.keys(characters)){
-      //   if(character_ids.includes(c._id)){
-      //     campaign_characters[c._id] = c;
-      //   }
-      // }
-
-      // this.setState({
-      //   campChars: campaign_characters
-      // });
       this.setState({
         campChars: Object.values(characters)
           .filter(char => character_ids.includes(char._id))
@@ -234,7 +225,8 @@ class CampaignShow extends React.Component {
   render() {
     const { campaign, currentUser, campChars, userChar } = this.state;
     let campMessageIndex, campaignCharacters, messageButtons, messageForms = <div></div>;
-    if (campChars.length && currentUser && campaign) {
+    
+    if (campChars && Object.keys(campChars).length && currentUser && campaign) {
       campMessageIndex = <CampaignMessageIndexContainer
         currentUser={currentUser}
         campaign={campaign}
