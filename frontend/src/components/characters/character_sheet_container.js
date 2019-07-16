@@ -21,7 +21,7 @@ const mSP = (state, ownProps) => {
 
 const mDP = dispatch => ({
   createCharacter: character => dispatch(createCharacter(character)),
-  changeCharacter: characterId => dispatch(changeCharacter(characterId)),
+  changeCharacter: character => dispatch(changeCharacter(character)),
   fetchCampaign: campaignId => dispatch(fetchCampaign(campaignId)),
   getCharacter: (id) => dispatch(getCharacter(id))
 });

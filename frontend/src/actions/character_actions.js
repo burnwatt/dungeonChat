@@ -23,9 +23,9 @@ export const getCharacter = (id) => {
   }
 }
 
-export const changeCharacter = (id) => {
+export const changeCharacter = (character) => {
   return dispatch => {
-    return updateCharacter(id).then(payload => dispatch({type: RECEIVE_UPDATED_CHARACTER, character: payload}))
+    return updateCharacter(character).then(payload => dispatch({type: RECEIVE_UPDATED_CHARACTER, character: payload}))
   }
 }
 

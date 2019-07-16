@@ -80,93 +80,19 @@ class CharacterSheet extends React.Component {
           bio: '',
           notes: '',
       }
+
       let targetChar = props.characters[props.match.params.char_id];
+      
       if (targetChar){
         this.state = merge({}, this.state, targetChar.char_attrs);
-        this.forceUpdate();
+        // this.forceUpdate();
       }
-          // this.state = {
-          //   name: targetChar.char_attrs.name || '',
-          //   class: targetChar.char_attrs.class || '',
-          //   race: targetChar.char_attrs.race || '',
-          //   health: targetChar.char_attrs.health || 0,
-          //   magic: targetChar.char_attrs.magic || 0,
-          //   gold: targetChar.char_attrs.gold || 0,
-          //   powers: {
-          //     power1: {
-          //       name: targetChar.char_attrs.powers.power1.name || '',
-          //       description: targetChar.char_attrs.powers.power1.description || '',
-          //     },
-          //     power2: {
-          //       name: targetChar.char_attrs.powers.power2.name || '',
-          //       description: targetChar.char_attrs.powers.power2.description || '',
-          //     },
-          //     power3: {
-          //       name: targetChar.char_attrs.powers.power3.name || '',
-          //       description: targetChar.char_attrs.powers.power3.description || '',
-          //     },
-          //     power4: {
-          //       name: targetChar.char_attrs.powers.power4.name || '',
-          //       description: targetChar.char_attrs.powers.power4.description || '',
-          //     },
-          //     special: {
-          //       name: targetChar.char_attrs.powers.special.name || '',
-          //       description: targetChar.char_attrs.powers.special.description || '',
-          //     }
-          //   },
-          //   inventory: {
-          //     slot1: {
-          //       name: targetChar.char_attrs.inventory.slot1.name || '',
-          //       description: targetChar.char_attrs.inventory.slot1.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot1.qty || 0
-          //     },
-          //     slot2: {
-          //       name: targetChar.char_attrs.inventory.slot2.name || '',
-          //       description: targetChar.char_attrs.inventory.slot2.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot2.qty || 0
-          //     },
-          //     slot3: {
-          //       name: targetChar.char_attrs.inventory.slot3.name || '',
-          //       description: targetChar.char_attrs.inventory.slot3.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot3.qty || 0
-          //     },
-          //     slot4: {
-          //       name: targetChar.char_attrs.inventory.slot4.name || '',
-          //       description: targetChar.char_attrs.inventory.slot4.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot4.qty || 0
-          //     },
-          //     slot5: {
-          //       name: targetChar.char_attrs.inventory.slot5.name || '',
-          //       description: targetChar.char_attrs.inventory.slot5.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot5.qty || 0
-          //     },
-          //     slot6: {
-          //       name: targetChar.char_attrs.inventory.slot6.name || '',
-          //       description: targetChar.char_attrs.inventory.slot6.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot6.qty || 0
-          //     },
-          //     slot7: {
-          //       name: targetChar.char_attrs.inventory.slot7.name || '',
-          //       description: targetChar.char_attrs.inventory.slot7.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot7.qty || 0
-          //     },
-          //     slot8: {
-          //       name: targetChar.char_attrs.inventory.slot8.name || '',
-          //       description: targetChar.char_attrs.inventory.slot8.description || '',
-          //       qty: targetChar.char_attrs.inventory.slot8.qty || 0
-          //     }
-          //   },
-          //   notes: targetChar.char_attrs.notes || '',
-          //   bio: targetChar.char_attrs.bio || ''
-          // }
 
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleCancel = this.handleCancel.bind(this);
     }
 
     handleSubmit(e){
       e.preventDefault();
-      debugger;
       this.props.createCharacter({
           campaign_id: this.props.location.state.campaign._id,
           user_id: this.props.currentUser,
@@ -175,13 +101,13 @@ class CharacterSheet extends React.Component {
     }
 
     handleUpdate(e){
-
+      e.preventDefault();
+      this.props.changeCharacter({
+        campaign_id: this.props.location.state.campaign._id,
+        user_id: this.props.currentUser,
+        char_attrs: this.state
+      }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
     }
-
-    handleCancel(){
-    
-    }
-
 
     handleInput(field) {
         return event => this.setState({ [field]: event.target.value });
@@ -196,7 +122,7 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
-      // debugger
+      debugger
       return (
           <div className= "character-page">
             <div className= "container-margin">

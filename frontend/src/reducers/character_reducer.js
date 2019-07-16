@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
     case RECEIVE_CHARACTER:
       return merge({}, state, { [action.character.data._id]: action.character.data });
     case RECEIVE_UPDATED_CHARACTER:
-      return merge({}, state, { [action.character.data.character._id]: action.character.data.character});
+      return merge({}, state, { [action.character.data._id]: action.character.data});
     default:
       return state;
   }
