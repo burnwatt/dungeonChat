@@ -56,7 +56,7 @@ class CampaignForm extends React.Component {
 
         <form className="campaign-form " onSubmit={this.handleSubmit}>
           <h1>Create Campaign</h1>
-          <input type="file" className="upload_cover_art" placeholder="Add cover art to your campaign"></input>
+          <input type="file" id="upload_cover_art" placeholder="Add cover art to your campaign"></input>
           <div id="campaign-cover-art-container">
             {image}
           </div>
@@ -64,7 +64,7 @@ class CampaignForm extends React.Component {
 
           <div className="name-flex-container">
             <div className="icon-div">
-              <div>A</div>
+              <div><i className="fas fa-dragon"></i></div>
             </div>
             <input className="campaign-name-input"
               type="text"
@@ -77,7 +77,7 @@ class CampaignForm extends React.Component {
 
           <div className="description-flex-container">
             <div className="icon-div">
-              <div>D</div>
+              <div><i className="fas fa-pencil-alt"></i></div>
             </div>
             <input className="campaign-description-input"
               type="text"
@@ -90,7 +90,7 @@ class CampaignForm extends React.Component {
 
           <div className="rules-flex-container"> 
             <div className="icon-div">
-              <div>R</div>
+              <div><i className="fas fa-pencil-alt"></i></div>
             </div>
             <input className="campaign-rules-input"
               type="text"
@@ -103,7 +103,7 @@ class CampaignForm extends React.Component {
 
           <div className="password-flex-container">
             <div className="icon-div">
-              <div>PW</div>
+              <div><i className="fas fa-lock"></i></div>
             </div>
             <input className="campaign-password-input"
               type="text"
@@ -114,10 +114,10 @@ class CampaignForm extends React.Component {
           </div>
           <br />
 
-          <button className="make-private-button" onClick={this.makePrivate}>Make this campaign private</button>
+          <button className="make-private-button btn-glow" onClick={this.makePrivate}>Make this campaign private</button>
 
           <br />
-          <input className="create-campaign-button" type="submit" value="Create Your Campaign" />
+          <input id="create-campaign-button" className="btn-glow" type="submit" value="Create Your Campaign" />
         </form>
       </div>
     )

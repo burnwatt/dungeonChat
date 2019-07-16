@@ -9,6 +9,8 @@ import { closeModal } from '../../actions/ui/modal_actions';
 
 import CampaignForm from "../campaigns/create_campaign_container";
 
+import DiceBoxContainer from "../dice_box/dice_box_container";
+
 function Modal({ modal, closeModal }) {
   if (!modal) {
     return null;
@@ -20,6 +22,9 @@ function Modal({ modal, closeModal }) {
     case 'Campaign Creation Form':
       component = <CampaignForm />;
       break; 
+    case 'Dice Box Modal':
+      component = <DiceBoxContainer />;
+      break;
     default:
       return null;
   }

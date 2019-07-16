@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+socket_server.js.bak
+socket_server.js
 # testing
 /coverage
 
@@ -12,7 +13,7 @@
 /build
 /src/assets/styles/output.css.map
 /src/assets/styles/output.css
-
+/src/assets/styles/.sass-cache
 # misc
 .DS_Store
 .env.local

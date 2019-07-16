@@ -3,7 +3,8 @@ import {
   getUserMessages,
   getCampaignMessages,
   updateMessage,
-  deleteMessage
+  deleteMessage,
+  postMessage
 } from "../util/message_api_util";
 
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
@@ -32,7 +33,6 @@ const delMessage = messageId => ({
   messageId: messageId
 })
 
-
 export const fetchMessages = () => dispatch => getMessages()
   .then(messages => dispatch(receiveMessages(messages)))
   .catch(err => dispatch(receiveMessageErrors(err)));
@@ -47,4 +47,8 @@ export const changeMessage = message => dispatch => updateMessage(message)
 
 export const removeMessage = messageId => dispatch => deleteMessage(messageId)
   .then(() => dispatch(delMessage(messageId)))
+  .catch(err => dispatch(receiveMessageErrors(err)));
+
+export const createMessage = message => dispatch => postMessage(message)
+  .then(message => dispatch(receiveMessage(message)))
   .catch(err => dispatch(receiveMessageErrors(err)));

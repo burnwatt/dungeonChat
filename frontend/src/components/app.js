@@ -11,7 +11,10 @@ import LandingContainer from "./landing/landing_container";
 import CreateCampaignContainer from "./campaigns/create_campaign_container";
 
 import CharacterSheetContainer from "./characters/character_sheet_container"
+import DiceBoxContainer from "./dice_box/dice_box_container";
+import CharacterSheet from "./characters/character_sheet"
 import CampaignShow from "./campaigns/campaign_show_container";
+
 
 import Modal from "./modal/modal";
 
@@ -28,7 +31,11 @@ const App = () => (
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet/new" component={CharacterSheetContainer} />
       <Route exact path="api/characters/:id" component={CharacterSheetContainer} />
+
+      <Route exact path="/character-sheet" component={CharacterSheet} />
       <Route exact path="/campaign/:name" component={CampaignShow} />
+
+      <Route exact path="/dice-box" component={DiceBoxContainer} />
     </Switch>
   </div>
 );
