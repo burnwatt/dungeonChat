@@ -100,6 +100,7 @@ class CharacterSheet extends React.Component {
           formData.append("character_id", character.data._id);
           
           this.props.postImg(formData, "char");
+          return "";
         })
 
     }
