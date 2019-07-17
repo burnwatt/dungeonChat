@@ -138,12 +138,17 @@ class CampaignShow extends React.Component {
   //============================================================================
 
   scribeUser() {
+
     const { currentUser, campaign } = this.state;
     let modCampaign = merge({}, campaign);
     let modUser = merge({}, currentUser);
     let updated = false;
 
     if (currentUser && campaign) {
+
+
+      if (currentUser._id === campaign.created_by) return {msg: "A GM can't abandon their campaign!"}
+
       modCampaign = merge({}, campaign);
       modUser = merge({}, currentUser);
       if (
@@ -184,7 +189,7 @@ class CampaignShow extends React.Component {
     let buttons = []
 
 
-    if (userChar) {
+    if (!userChar || (campaign.created_by !== currentUser._id)) {
       let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
       buttons.push(
         <button key="message-btn-subscribe"
@@ -195,11 +200,11 @@ class CampaignShow extends React.Component {
         </button>
       )
     }
-
+    
     if (campaign.created_by === currentUser._id) {
       buttons.push(
       <i id="message-btn-dice"
-        onClick={() => this.showMessageForm("dm")}S
+        onClick={() => this.showMessageForm("dm")}
         className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
       )
     }
@@ -360,7 +365,9 @@ diceBoxContainer = <DiceBoxContainer
       currentUser={currentUser}
       />
     }
+    let name;
     if (campaign) {
+      name = campaign.name;
       messageButtons = this.getMessageButtons();
       messageForms = this.getMessageForms();
     }
@@ -374,7 +381,7 @@ diceBoxContainer = <DiceBoxContainer
         <div id="campaign-show-container">
 
           <div id="campaign-content">
-            <h1>Campaign Name</h1>
+            <h1>{name}</h1>
             <div id="campaign">
               {campMessageIndex}
             </div>

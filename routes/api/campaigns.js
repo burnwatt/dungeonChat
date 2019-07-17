@@ -28,6 +28,7 @@ const campaignObj = (req) => ({
   rules: req.body.rules || "",
   is_private: req.body.is_private,
   // character_sheet_id: req.character_sheet.id,
+  user_ids: [req.user.id],
   created_by: req.user.id,
   character_ids: req.body.character_ids
 })
