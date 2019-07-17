@@ -1,6 +1,7 @@
 import React from "react";
 import MessageIndexItem from "./message_index_item";
-import { scrollTo, simpleDateSort } from "../../util/frontend_util";
+import { scrollTo, simpleDateSort, keyFilter } from "../../util/frontend_util";
+import merge from "lodash/merge";
 
 import openSocket from "socket.io-client";
 const socket = openSocket("http://localhost:5000");
@@ -32,13 +33,34 @@ class CampaignMessageIndex extends React.Component {
     scrollTo("campaign-message-index-bottom")
   }
 
-  render () {
-    const { characters, currentUser, userChar } = this.props;
+  stateFilter() {
+    const { characters, campaign } = this.props;
     const { messages } = this.state;
-    let msgDat = Object.values(messages).sort(simpleDateSort).map(msg => 
+    let activeUsers = merge(Object.values(characters)
+      .map(char => char.user_id), [campaign.created_by]);
+
+    let checks = [];
+    if (!this.props.viewPorts['Chat']) checks.push('Chat')
+    if (!this.props.viewPorts['Describe']) checks.push('Describe')
+
+    return Object.values(messages)
+      .sort(simpleDateSort)
+      .filter(function(message) {
+        return (activeUsers.includes(message.user_id) && !checks.includes(message.type))
+      })
+  }
+
+  render () {
+    const { characters, currentUser, users, userChar, campaign } = this.props;
+    const { messages } = this.state;
+    
+    let msgDat = this.stateFilter();
+    msgDat = Object.values(msgDat).sort(simpleDateSort)
+      .map(msg => 
       <MessageIndexItem key={msg._id} 
         message={msg}
         characters={characters}
+        users={users}
         userChar={userChar}
         currentUser={currentUser}
       />)

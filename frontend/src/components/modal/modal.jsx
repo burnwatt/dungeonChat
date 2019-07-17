@@ -11,6 +11,8 @@ import CampaignForm from "../campaigns/create_campaign_container";
 
 import DiceBoxContainer from "../dice_box/dice_box_container";
 
+const splash_die = require("../../assets/public/images/die_glow_toomuch.png");
+
 function Modal({ modal, closeModal }) {
   if (!modal) {
     return null;
@@ -24,6 +26,9 @@ function Modal({ modal, closeModal }) {
       break; 
     case 'Dice Box Modal':
       component = <DiceBoxContainer />;
+      break;
+    case 'Spinning':
+      return <img id="spinning" className="spin-fast" src={splash_die} />
       break;
     default:
       return null;

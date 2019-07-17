@@ -9,12 +9,11 @@
 
 
 .message-item {
-  height: 100%;
-  // min-height: 50px;
+  // display: flex;
+  // flex-direction: column;
   width: 90%;
-  margin: 10px 0;
-  border: 1px solid white;
-};
+  margin: 12px 0;
+}
 .message-character-name {
   font-size: 18px;
   font-weight: bold;
@@ -25,6 +24,11 @@
 .right {
   text-align: right;
 }
+.left-body {
+}
+.right-body {
+  margin-left: auto;
+}
 
 .message-date-time {
   font-size: 14px;
@@ -34,13 +38,35 @@
 .message-body {
   border-radius: 8px;
   background: white;
-  margin: 4px;
-  min-height: 48px;
 }
 .message-body-text {
-  color: black;
-  box-sizing: border-box;
-  padding: 8px 20px;;
-  min-height: 48px;
+  // font-family: 'Tinos', serif;
+  font-size: 16px;
   text-align: left;
+  line-height: 1.25;
+  padding: 14px 8px;
+}
+
+
+.message-say .message-body {
+  background: white;
+  color: var(--say-color);
+}
+.message-describe .message-body {
+  background: var(--describe-back);
+  color: var(--describe-color);
+}
+.message-chat .message-body{
+  background: white;
+  color: var(--say-color);
+  max-width: 156px;
+}
+
+.message-dice .message-body {
+  background: var(--dice-back);
+  color: var(--dice-color);
+  border-radius: 12px;
+}
+.message-dice .message-body-text {
+  background-image: linear-gradient(to right, #1E1E28 0%, rgb(49, 25, 25) 42%, rgb(80, 38, 39) 65%, rgb(138, 67, 68) 100%);
 }

@@ -15,7 +15,7 @@
 #campaign-content {
   // background: rgb(50,50,50);
   width: 100%;
-  margin: 0 5%;
+  margin: 0 10%;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,6 @@
   height: 100%;
 }
 
-
 #campaign-content-footer {
   // position: relative;
   width: 100%;
@@ -36,6 +35,8 @@
   // background: rgb(30, 30, 40);
   background: transparent;
   border: 1px solid gray;
+  border-bottom: 8px solid gray;
+  border-radius: 16px;
   
   display: flex;
   flex-direction: column;
@@ -58,25 +59,30 @@
   width: 128px;
   top: 0;
   right: calc(50% - 64px);
+  z-index: 0;
 }
 #campaign-command-logo img {
   width: 100%;
   height: 100%;
 }
-#command-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  filter: opacity(50%);
-}
+// #command-background {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: -1;
+//   // filter: opacity(50%);
+// }
 
 .message-btns {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-end;
+  margin-bottom: 16px;
+  // margin-right: 32px;
+  z-index: 2;
 }
 .message-btn {
   outline: none;
@@ -89,10 +95,20 @@
   border-radius: 4px;
   border: 2px solid gray;
 }
+.message-btn-icons {
+  font-size: 24px;
+  margin: 0 16px 8px 16px;
+  cursor: pointer; 
+}
+
+
 .message-form {
-  // box-sizing: border-box;
-  margin: 16px;
-  min-height: 50px;
+  box-sizing: border-box;
+  margin: 32px 16px;
+  min-height: 56px;
+  max-height: 256px;
+  // height: 100%;
+  z-index: 1;
 }
 .message-form textarea {
   padding-top: 9px;
@@ -104,37 +120,50 @@
   border-radius: 6px;
   border: 2px solid gray;
   padding-left: 10px;
-  line-height: 1.46667;
+  line-height: 1.333;
   font-size: 15px;
 }
 .chat {
   background: white;
+  color: var(--say-color);
 }
 #chat {
   display: none;
 }
 .say {
-  color: black;
-  background: lightgray;
+  background: white;
+  color: var(--say-color);
 }
 #say {
   display: none;
 }
 .describe {
-  color: white;
-  background: gray;
+  background: var(--describe-back);
+  color: var(--describe-color);
 }
 #describe {
   color: white;
   display: none;
 }
 .dm {
-  color: white;
-  background: darkgray;
+  background: var(--describe-back);
+  color: var(--describe-color);
 }
 #dm {
   display: none;
 }
+#subscribe {
+  margin-right: auto;
+  margin-left: 16px;
+}
+
+// .message-say .message-body {
+//   background: white;
+//   color: var(--say-color);
+// }
+// .message-describe .message-body {
+//   background: var(--describe-back);
+//   color: var(--describe-color);
 
 // .chat {
 //   background: white;
@@ -152,12 +181,31 @@
 // SIDE CONTENT!!!
 #campaign-extra {
   
-  background: lightcoral;
-  width: 500px;
-
+  // background: lightcoral;
+  // background: #633939;
+  background: #634848;
+  
+  transition: 0.5s;
+  
+  width: 0px;
+  overflow: hidden;
+  z-index: 100; 
 }
 // #campaign-extra-content {
 //   background: lightcoral;
 //   width: 20px;
 //   height: 500px;
 // }
+
+#open-campaign-extra {
+  position: absolute;
+  z-index: 99;
+  color: lightgray; 
+  width: 20px;
+  height: 20px;
+  right: 30px;
+  top: 45%; 
+  cursor: pointer; 
+  font-size: 22px;
+  
+}

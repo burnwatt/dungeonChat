@@ -66,6 +66,17 @@ const simpleDateSort = function(a, b) {
   return new Date(a.date) - new Date(b.date)
 };
 
+const keyFilter = (objJ, keys) => {
+  return Object.keys(objJ)
+    .filter(key => keys.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = objJ[key];
+      return obj;
+    }, {});
+}
+
+
+
 // (() => {
 //   if (typeof Object.defineProperty === "function"){
 //     try{Object.defineProperty(Array.prototype, "sortBy", {value:sb}); }catch(err){}
@@ -100,7 +111,8 @@ module.exports = {
   timeDiff: timeDiff,
   dateTimeStr: dateTimeStr,
   scrollTo: scrollTo,
-  simpleDateSort: simpleDateSort
+  simpleDateSort: simpleDateSort, 
+  keyFilter: keyFilter
 };
 
 

@@ -124,9 +124,9 @@ class CampaignShow extends React.Component {
       type: which.slice(7)
     })
     this.setState({ [which]: "" });
-    console.log(newMessage);
+ 
     this.props.createMessage(newMessage);
-    return event => event.prevenDefault();
+    // return event => event.prevenDefault();
   }
 
   onMessageEnter(which) {

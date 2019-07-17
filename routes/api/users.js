@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 const keys = require("../../config/keys");
+const Campaign = require("../../models/Campaign");
 const User = require("../../models/User");
 
 const { errRes } = require("../../validation/validation_util");
@@ -17,7 +18,8 @@ const defErrs = {
   emailIncorrect: { email: "This user does not exist!"},
   passwordIncorrect: { password: "Password is incorrect"},
   noUsersFound: { users: "No users found!"},
-  noUserFound: { user: "No user found with that ID!"}
+  noUserFound: { user: "No user found with that ID!"},
+  failedUpdateUser: { user: "Failed to update user!"}
 };
 
 // POST ---------------------
@@ -93,8 +95,23 @@ router.post("/login", (req, res) => {
     })
 
 });
+// UPDATE ------------------------------------------------------------------
+
+router.post("/:id", (req, res) => {
+  User.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    {new: true}
+  ).then(user => res.json(user))
+   .catch(err => errRes(res, 200, defErrs.failedUpdateUser))
+})
+
+
+// /..........................
+
 
 // GET -----------------------
+
 
 // /.................................
 router.get("/", (req, res) => {
@@ -110,6 +127,22 @@ router.get("/:id", (req, res) => {
     .then(user => res.json(user))
     .catch(err => errRes(res, 404, defErrs.noUserFound))
 })
+
+router.get("/campaign/:campaign_id", (req, res) => {
+  Campaign.findOne({ _id: req.params.campaign_id })
+    .then(campaign => {
+      User.find({ _id: { $in: campaign.user_ids } })
+        // .sort({ date: 1 })
+        .then(users => {
+          let wut = {};
+          for (let val of users) {
+            wut[val._id] = val;
+          };
+          res.json(wut);
+        })
+        .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
+    })
+});
 
 // test ...........................
 router.get("/test", (req, res) => res.json({ msg: "This is the users route!!" }));

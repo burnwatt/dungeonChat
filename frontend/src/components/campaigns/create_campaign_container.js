@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { createCampaign } from "../../actions/campaign_actions";
 import CampaignForm from './campaign_form';
+import { closeModal } from '../../actions/ui/modal_actions';
 
 const mSP = (state) => {
   return {
@@ -11,7 +12,8 @@ const mSP = (state) => {
 
 const mDP = dispatch => {
   return {
-    createCampaign: data => dispatch(createCampaign(data))
+    createCampaign: data => dispatch(createCampaign(data)),
+    closeModal: () => dispatch(closeModal())
   };
 };
 

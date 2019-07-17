@@ -1,7 +1,10 @@
 import React from "react";
-import { scrollTo } from "../../util/frontend_util";
+import merge from "lodash/merge";
+import { scrollTo, keyFilter } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
 import CampaignCharactersContainer  from "../characters/campaign_characters_container";
+import DiceBoxContainer from "../dice_box/dice_box_container";
+
 import openSocket from "socket.io-client";
 const socket = openSocket("http://localhost:5000");
 
@@ -19,50 +22,85 @@ class CampaignShow extends React.Component {
       userChar: null,
       campaign: null,
       campMsgs: [],
-      campChars: [],
+      campUsers: {},
+      campChars: {},
       messageDM: "",
       messageDescribe: "",
       messageSay: "",
-      messageChat: ""
+      messageChat: "",
+      viewPorts: { Chat: true, Describe: true }
     }
-
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
-
+    this.scribeUser = this.scribeUser.bind(this);
   }
 
   newMessage() {
     socket.emit("newMessage");
   }
 
+  // ========================================================================
+
+  handleCampaignExtraShow () {
+    let nav = document.getElementById("campaign-extra");
+    let icon = document.getElementById("open-campaign-extra");
+    if (nav.style.width === "") {
+      nav.style.width = "500px";
+      // nav.style.bottom = "64px"
+      icon.style.display = "none";
+    }
+    else {
+      nav.style.width = "";
+      nav.style.bottom = "";
+    }
+  }
+
+  escFunction(event) {
+    if (event.keyCode === 27) {
+      document.getElementById("campaign-extra").style.width = "0";
+      document.getElementById("open-campaign-extra").style.display = "inline-block";
+    }
+  }
+
+
+
+
+
+  // ==========================================================================
+
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
       .then(() => this.setState({currentUser: this.props.currentUser}));
-      
+            
     this.props.fetchCampaignByName(this.props.match.params.name)
+    .then(dat => {
+      this.setState({campaign: dat.campaign.data})
+      this.props.getCampaignCharacters(dat.campaign.data._id)
       .then(dat => {
-        this.setState({campaign: dat.campaign.data})
-        this.props.getCampaignCharacters(dat.campaign.data._id)
-          .then(dat => {
-            this.setState({campChars: dat.characters.data});
-
-          })
-      });
-
+        this.setState({campChars: dat.characters.data});
+      })
+      this.props.fetchCampaignUsers(this.props.campaign._id)
+      .then(dat => this.setState({campUsers: dat.users.data}));
+    });
+    
+    document.addEventListener("keydown", this.escFunction, false);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.campaign !== this.props.campaign) {
-      this.setState({campaign: this.props.campaign });
+      this.setState({ campaign: this.props.campaign });
+    }
+
+    if (this.props.campaign && prevProps.users !== this.props.users) {
+      this.setState({ 
+        campUsers: keyFilter(this.props.users, this.props.campaign.user_ids)
+      })
     }
 
     if (prevProps.characters !== this.props.characters) {
-      let {character_ids} = this.props.campaign;
-      let {characters} = this.props;
       this.setState({
-        campChars: Object.values(characters)
-          .filter(char => character_ids.includes(char._id))
+        campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
         }
       )
 
@@ -75,22 +113,99 @@ class CampaignShow extends React.Component {
             .filter(char => char._id === inter[0])[0]
         })
       }
-
     }
-
   }
 
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
+    this.props.closeModal();
+  }
+
+  // ===========================================================================
+
+  handleDiceShow() {
+    let nav = document.getElementById("dice_box_container");
+    if (nav.style.height === "") {
+      nav.style.height = "314px";
+      // nav.style.bottom = "64px"
+    }
+    else {
+      nav.style.height = "";
+      nav.style.bottom = ""
+    }
+  }
+
+  //============================================================================
+
+  scribeUser() {
+
+    const { currentUser, campaign } = this.state;
+    let modCampaign = merge({}, campaign);
+    let modUser = merge({}, currentUser);
+    let updated = false;
+
+    if (currentUser && campaign) {
+
+
+      if (currentUser._id === campaign.created_by) return {msg: "A GM can't abandon their campaign!"}
+
+      modCampaign = merge({}, campaign);
+      modUser = merge({}, currentUser);
+      if (
+        !currentUser.campaign_ids.includes(campaign._id)
+        && !campaign.user_ids.includes(currentUser._id)
+      ) {
+        modCampaign.user_ids.push(currentUser._id);
+        modUser.campaign_ids.push(campaign._id)
+        updated = true;
+
+      } else if (
+        currentUser.campaign_ids.includes(campaign._id)
+        && campaign.user_ids.includes(currentUser._id)
+      ) {
+        modCampaign.user_ids = modCampaign.user_ids.filter(userId => userId !== currentUser._id);
+        modUser.campaign_ids = modUser.campaign_ids.filter(campaignId => campaignId !== campaign._id);
+        updated = true;
+      }
+      if (updated) {
+        this.props.changeCampaign(modCampaign)
+          .then(dat => {
+            this.setState({ campaign: dat.campaign.data })
+          });
+        this.props.changeUser(modUser)
+          .then(dat => {
+            this.setState({ currentUser: dat.user.data })
+          });
+      }
+    }
+
+    
+  };
+
+
+  // ===========================================================================
   getMessageButtons() {
-    const { campaign, currentUser } = this.state;
+    const { campaign, currentUser, userChar } = this.state;
     let buttons = []
 
+
+    if (!userChar || (campaign.created_by !== currentUser._id)) {
+      let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
+      buttons.push(
+        <button key="message-btn-subscribe"
+          id="subscribe"
+          className="message-btn btn-glow"
+          onClick={this.scribeUser}
+        >{sub}
+        </button>
+      )
+    }
+    
     if (campaign.created_by === currentUser._id) {
       buttons.push(
-        <button key="message-btn-dm"
-          className="message-btn btn-glow"
-          onClick={() => this.showMessageForm("dm")}
-        >DM
-        </button>
+      <i id="message-btn-dice"
+        onClick={() => this.showMessageForm("dm")}
+        className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
       )
     }
 
@@ -110,13 +225,13 @@ class CampaignShow extends React.Component {
         onClick={() => this.showMessageForm("chat")}
       >Chat
       </button>,
-      <button key="message-btn-dice"
-        className="message-btn btn-glow"
-        onClick={() => this.props.openModal("Dice Box Modal")} 
-      >Dice Icon
-      </button>
+      <i id="message-btn-dice" 
+        onClick={this.handleDiceShow} 
+        className="message-btn-icons icon-btn-red fas fa-dice-d20" key="message-btn-dice" />,
+      <i id="message-btn-eye"
+        onClick={() => this.props.openModal("Dice Box Modal")}
+        className="message-btn-icons icon-btn-red fas fa-eye" key="message-btn-eye" />
     ]);
-
 
   }
   handleMessageInput(which) {
@@ -124,8 +239,6 @@ class CampaignShow extends React.Component {
   }
   getMessageForms() {
     let { messageChat, messageSay, messageDescribe, messageDM } = this.state;
-
- 
 
     return (
       <>
@@ -142,7 +255,7 @@ class CampaignShow extends React.Component {
 
         <form id="say" className="message-form">
           <textarea className="say"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageSay.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageSay")}
             onKeyDown={this.onMessageEnter("messageSay")}
@@ -153,7 +266,7 @@ class CampaignShow extends React.Component {
 
         <form id="describe" className="message-form">
           <textarea className="describe"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageDescribe.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDescribe")}
             onKeyDown={this.onMessageEnter("messageDescribe")}
@@ -164,7 +277,7 @@ class CampaignShow extends React.Component {
 
         <form id="dm" className="message-form">
           <textarea className="dm"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageDM.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDM")}
             onKeyDown={this.onMessageEnter("messageDM")}
@@ -190,9 +303,12 @@ class CampaignShow extends React.Component {
       type: which.slice(7)
     })
     this.setState({ [which]: "" });
-    // console.log(newMessage);
+    console.log(newMessage);
     this.props.createMessage(newMessage)
-      .then(() => this.newMessage())
+      .then(() => {
+        this.newMessage();
+        console.log(newMessage);
+      })
     return event => event.prevenDefault();
   }
   onMessageEnter(which) {
@@ -220,16 +336,19 @@ class CampaignShow extends React.Component {
     form.getElementsByClassName(which)[0].select();
   }
 
+  // ===========================================================================
 
   render() {
-    const { campaign, currentUser, campChars, userChar } = this.state;
-    let campMessageIndex, campaignCharacters, messageButtons, messageForms = <div></div>;
-    if (campChars.length && currentUser && campaign) {
+    const { campaign, currentUser, campChars, campUsers, userChar } = this.state;
+    let campMessageIndex, campaignCharacters, messageButtons, messageForms, diceBoxContainer = <div></div>;
+    if (Object.values(campChars).length && Object.values(campUsers).length && currentUser && campaign) {
       campMessageIndex = <CampaignMessageIndexContainer
+        viewPorts={this.state.viewPorts}
         currentUser={currentUser}
         campaign={campaign}
         characters={campChars}
         userChar={userChar}
+        users={campUsers}
       />
 
       campaignCharacters = <CampaignCharactersContainer
@@ -239,33 +358,46 @@ class CampaignShow extends React.Component {
         userChar={userChar}
       />
 
+
+diceBoxContainer = <DiceBoxContainer 
+      campaign={campaign} 
+      userChar={userChar}
+      currentUser={currentUser}
+      />
+    }
+    let name;
+    if (campaign) {
+      name = campaign.name;
       messageButtons = this.getMessageButtons();
       messageForms = this.getMessageForms();
     }
 
-
     return (
       <div id="campaign-show">
+        <div id="open-campaign-extra"
+          onClick={this.handleCampaignExtraShow}
+          ><i className="fas fa-users" />
+        </div>
         <div id="campaign-show-container">
 
           <div id="campaign-content">
-            <h1>Campaign Name</h1>
+            <h1>{name}</h1>
             <div id="campaign">
               {campMessageIndex}
             </div>
 
             <div id="campaign-content-footer">
-              {/* <h1>Command Content Here</h1> */}
               <div id="campaign-command">
-                <img id="command-background" src={fade_in_command}/>
+                {diceBoxContainer}
                 <div id="campaign-command-logo">
                   <img src={splash_die} />
                 </div>
                 {messageForms} 
                 <div className="message-btns">
-                  {messageButtons}
+                {messageButtons}
                 </div>
               </div>
+
             </div>
 
           </div>

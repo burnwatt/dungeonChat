@@ -1,7 +1,7 @@
 const Validator = require("validator");
 const { toValidText } = require("./validation_util");
 
-const TYPES = ["Say", "Describe", "Chat", "DM"];
+const TYPES = ["Say", "Describe", "Chat", "DM", "Dice"];
 
 module.exports = ({ campaign_id, character_id, user_id, type, body }) => {
 

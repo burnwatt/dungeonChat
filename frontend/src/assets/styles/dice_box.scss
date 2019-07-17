@@ -1,0 +1,97 @@
+
+
+#dice_box_container {
+
+  background-color: transparent;
+  animation: fadeIn 0.3s;
+  text-align: center;
+  // padding: 11px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: 0.5s;
+  z-index: 2;
+
+  position: absolute;
+  width: 300px; 
+  height: 0;
+  right: -32px;
+  // bottom: 64px;
+}
+.dice_box_empty {
+  height: 64px;
+  width: 100%;
+  border-radius: 8px;
+  background: transparent;
+}
+
+#dice_box {
+  height: 250px;
+  border-radius: 8px;
+  background: #2D2F30;
+}
+#dice_box h2 {
+  margin-bottom: 8px;
+}
+
+#dice_box_container h3 {
+  // padding-bottom: 11px; 
+  padding: 4px 0 0 0;
+}
+
+#box_within {
+  width: 90%;
+  height: 70px; 
+  border: 1px solid gray;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+
+.die-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.d-bounds {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  width: 40px;
+  height: 48px;
+  font-size: 20px;
+}
+
+.gray-bar {
+  color: black;
+}
+
+#roll-dice-button {
+  width: 85px;
+  height: 35px; 
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+// #roll-dice-button:hover {
+//   cursor: url("/static/media/die_glow_toomuch.0761f911.png")
+// }
+
+.fas.fa-dice {
+  color: black;
+}
+
+
+@keyframes fadeIn {
+	from { 
+		opacity: 0;
+	}
+	to {
+		opacity: 0.9;
+	}
+}
+
+.red.fas.fa-dice-d20 {
+  color: rgb(0, 89, 172);
+  cursor: pointer;
+}
+
