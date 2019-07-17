@@ -15,8 +15,12 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Profile Page, welcome {this.props.currentUser.handle}</h1>
+      <div className='profile-main'>
+        <div className='welcome-message'>
+          <h1>Profile Page</h1>
+          <h2>Welcome {this.props.currentUser.handle}</h2>
+        </div>
+        <i class="fas fa-hat-wizard fa-9x magic hat"></i>
       </div>
     )
   }

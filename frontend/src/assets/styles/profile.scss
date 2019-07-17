@@ -1,0 +1,54 @@
+div.profile-main{
+    display: flex;
+    height: 500px;
+    width: 1000px;
+    margin: 75px;
+}
+div.welcome-message{
+    width:100%;
+}
+
+i.hat{
+    color: rgb(7, 7, 210);
+    margin: 100px;
+}
+
+.magic {
+  -webkit-animation-name: magic;
+  animation-name: magic;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+//keyframes
+@-webkit-keyframes magic {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(2, 2);
+    -webkit-filter: blur(90px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    -webkit-filter: blur(0px);
+  }
+}
+
+@keyframes magic {
+  0% {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: scale(2, 2);
+    -webkit-filter: blur(90px);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
+    -webkit-filter: blur(0px);
+  }
+}
