@@ -16,6 +16,7 @@ class CampaignForm extends React.Component {
 
     this.makePrivate = this.makePrivate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.picture = "";
   }
 
 
@@ -29,8 +30,18 @@ class CampaignForm extends React.Component {
       rules: this.state.rules,
       is_private: this.state.is_private
     };
-    
-    this.props.createCampaign(campaign);
+    debugger
+    this.props.createCampaign(campaign)
+      .then(action => {
+        debugger
+        const picture = this.picture;
+        let formData = new FormData();
+        formData.append("picture", picture);
+        formData.append("campaign_id", action.campaign.data._id);
+
+        this.props.postImg(formData, "camp");
+        return "";
+      });
     // this.setState({ name: '' }) This isn't complete but feel like there
     // Should be some local state clearing functionality upon submission
   }
@@ -46,8 +57,13 @@ class CampaignForm extends React.Component {
 
   }
 
+  handleChangeImg(e) {
+    e.preventDefault()
+    this.picture = e.target.files[0];
+  }
+
   render() {
-    debugger
+   
     // let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
     let isFileUploaded;
     
@@ -71,14 +87,12 @@ class CampaignForm extends React.Component {
 
         <form className="campaign-form " onSubmit={this.handleSubmit}>
           <h1>Create Campaign</h1>
-          <input 
-            id="file-id"
-            type="file" 
-            className="upload_cover_art" 
-            placeholder="Add cover art to your campaign"
-            name="picture" 
-            onChange={this.handleInput("file")}
-            accept="application/x-zip-compressed,image/*"></input>
+          <input
+            id="file"
+            type="file"
+            name="picture"
+            accept="application/x-zip-compressed,image/*"
+            onChange={this.handleChangeImg.bind(this)}></input>
           <div id="campaign-cover-art-container">
             {image}
           </div>

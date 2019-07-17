@@ -1,5 +1,5 @@
 import React from "react";
-import CampaignIndexItem from "./campaign_index_item";
+import CampaignIndexItemContainer from "./campaign_index_item_container";
 import "../../util/util";
 
 class CampaignIndex extends React.Component {
@@ -49,9 +49,9 @@ class CampaignIndex extends React.Component {
     const { campaigns, myCampaigns } = this.state;
     let campDat;
     if (this.state.whichCampaigns === "campaigns") {
-      campDat = campaigns.map(camp => <CampaignIndexItem key={camp._id} campaign={camp} currentUser={this.props.currentUser}/>);
+      campDat = campaigns.map(camp => <CampaignIndexItemContainer key={camp._id} fetchImg={this.props.fetchImg} campaign={camp} currentUser={this.props.currentUser}/>);
     } else if (this.state.whichCampaigns === "myCampaigns") {
-      campDat = myCampaigns.map(camp => <CampaignIndexItem key={camp._id} campaign={camp} />)
+      campDat = myCampaigns.map(camp => <CampaignIndexItemContainer key={camp._id} fetchImg={this.props.fetchImg} campaign={camp} />)
     }
     return campDat;
   }
