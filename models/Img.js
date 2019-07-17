@@ -10,7 +10,7 @@ var ImgSchema = new Schema({
   });
 
   ImgSchema.methods.makeAssociation = function (imgId, aId, type) {
-    debugger
+    // debugger
     switch (type){
       case "char":
         // Character.findOneAndUpdate(

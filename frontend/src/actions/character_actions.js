@@ -30,7 +30,7 @@ export const changeCharacter = (character) => {
 }
 
 export const createCharacter = (character) => {
-  debugger
+  // debugger
   return dispatch => {
     return postCharacter(character).then(payload => {
       dispatch({type: RECEIVE_NEW_CHARACTER, character: payload})

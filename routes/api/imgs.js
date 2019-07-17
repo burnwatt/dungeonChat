@@ -10,7 +10,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, res, cb) {
-    debugger
+    // debugger
     cb(null, '../../frontend/src/assets/public/uploads/')
   }
 });

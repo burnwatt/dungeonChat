@@ -30,7 +30,7 @@ class CampaignForm extends React.Component {
       rules: this.state.rules,
       is_private: this.state.is_private
     };
-    debugger
+    // debugger
     this.props.createCampaign(campaign)
       .then(action => {
         debugger
