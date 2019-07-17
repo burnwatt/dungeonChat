@@ -81,7 +81,7 @@ class Profile extends React.Component {
                 <div className="bio-display"></div>
               </div>
 
-              
+              <i class="fas fa-hat-wizard fa-9x magic hat"></i>
 
             </div>
           </div>

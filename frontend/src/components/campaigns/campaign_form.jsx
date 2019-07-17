@@ -9,12 +9,14 @@ class CampaignForm extends React.Component {
       name: "",
       description: "",
       rules: "",
-      is_private: false, 
+      is_private: false,
+      file: "" 
 
     } 
 
     this.makePrivate = this.makePrivate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.picture = "";
   }
 
 
@@ -28,8 +30,18 @@ class CampaignForm extends React.Component {
       rules: this.state.rules,
       is_private: this.state.is_private
     };
-    
-    this.props.createCampaign(campaign);
+    debugger
+    this.props.createCampaign(campaign)
+      .then(action => {
+        debugger
+        const picture = this.picture;
+        let formData = new FormData();
+        formData.append("picture", picture);
+        formData.append("campaign_id", action.campaign.data._id);
+
+        this.props.postImg(formData, "camp");
+        return "";
+      });
     // this.setState({ name: '' }) This isn't complete but feel like there
     // Should be some local state clearing functionality upon submission
   }
@@ -45,10 +57,29 @@ class CampaignForm extends React.Component {
 
   }
 
-  render() {
+  handleChangeImg(e) {
+    e.preventDefault()
+    this.picture = e.target.files[0];
+  }
 
-    let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
+  render() {
+   
+    // let image = this.state.cover_art_url ? <img id="campaign-cover-art" src="#" alt="whatever"/> : <div></div> ;
+    let isFileUploaded;
     
+    let thePath;
+    
+    
+    let image = this.state.file ? <img id="campaign-cover-art" src={this.state.file} alt="whatever" /> : <div></div>;
+      if (document.getElementById("campaign-cover-art-container")){
+        isFileUploaded = document.getElementById("campaign-cover-art-container").files
+      }
+    
+    if (isFileUploaded) {
+      thePath = document.getElementById("campaign-cover-art-container").files[0].path
+      image = <img id="campaign-cover-art" src={thePath} alt="whatever"/>;
+      
+    }
     
     
     return (
@@ -56,7 +87,12 @@ class CampaignForm extends React.Component {
 
         <form className="campaign-form " onSubmit={this.handleSubmit}>
           <h1>Create Campaign</h1>
-          <input type="file" id="upload_cover_art" placeholder="Add cover art to your campaign"></input>
+          <input
+            id="file"
+            type="file"
+            name="picture"
+            accept="application/x-zip-compressed,image/*"
+            onChange={this.handleChangeImg.bind(this)}></input>
           <div id="campaign-cover-art-container">
             {image}
           </div>

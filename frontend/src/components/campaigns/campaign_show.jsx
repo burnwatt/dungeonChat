@@ -8,11 +8,12 @@ const socket = openSocket("http://localhost:5000");
 // Assets...
 const splash_die = require("../../assets/public/images/die_glow_toomuch.png");
 const fade_in_command = require("../../assets/public/images/components/fade-in-command.png");
+
 class CampaignShow extends React.Component {
 
   constructor(props) {
     super(props);
-
+  
     this.state = {
       loaded: false,
       currentUser: null,
@@ -50,21 +51,77 @@ class CampaignShow extends React.Component {
           })
       });
 
+      // INCOMING CHANGES
+    if (this.props.campaign) {
+      this.props.fetchImg(this.props.campaign.cover_art_url)
+        .then(() => {
+          // debugger
+          var base64Flag = 'data:image/png;base64,';
+          var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+          this.setState({
+            img: base64Flag + imageStr
+          })
+        })
+    }
+
   }
 
+  
+    
+    
+      
+
+
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return window.btoa(binary);
+  };
+
+  
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.campaign !== this.props.campaign) {
-      this.setState({campaign: this.props.campaign });
+          this.setState({campaign: this.props.campaign });
+          
+    if (this.state.img !== prevState.img) {
+      if (this.props.campaign) {
+        this.props.fetchImg(this.props.campaign.cover_art_url)
+          .then(() => {
+            var base64Flag = 'data:image/png;base64,';
+            var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+            this.setState({
+              img: base64Flag + imageStr
+            })
+          })
+      }
+    }
+    // POSSIBLE MERGE CONFLICT
+    // if (this.props.campaign && prevProps.campaign){
+    //   if (prevProps.campaign._id !== this.props.campaign._id) {
+    // // if (prevState.campChars !== this.state.campChars) {
+
+    //   // Get Campaign Characters
+    //   this.props.fetchCampaignByName(this.props.match.params.name);
+    //   // this.props.getCampaignCharacters(this.props.campaign._id)
+      
+    //   }
+    // }
+    
+
+    
     }
 
     if (prevProps.characters !== this.props.characters) {
       let {character_ids} = this.props.campaign;
       let {characters} = this.props;
+
       this.setState({
         campChars: Object.values(characters)
           .filter(char => character_ids.includes(char._id))
-        }
-      )
+      })
 
       if (this.state.currentUser) {
         const { campaign, currentUser } = this.state;
@@ -224,7 +281,8 @@ class CampaignShow extends React.Component {
   render() {
     const { campaign, currentUser, campChars, userChar } = this.state;
     let campMessageIndex, campaignCharacters, messageButtons, messageForms = <div></div>;
-    if (campChars.length && currentUser && campaign) {
+    
+    if (campChars && Object.keys(campChars).length && currentUser && campaign) {
       campMessageIndex = <CampaignMessageIndexContainer
         currentUser={currentUser}
         campaign={campaign}
@@ -232,20 +290,21 @@ class CampaignShow extends React.Component {
         userChar={userChar}
       />
 
-      campaignCharacters = <CampaignCharactersContainer
-        currentUser={currentUser}
-        campaign={campaign}
-        characters={campChars}
-        userChar={userChar}
-      />
+    messageButtons = this.getMessageButtons();
+    messageForms = this.getMessageForms();
+    }
 
-      messageButtons = this.getMessageButtons();
-      messageForms = this.getMessageForms();
+    let image = "#";
+    if (this.state.img) {
+      image = this.state.img;
     }
 
 
-    return (
-      <div id="campaign-show">
+return (
+  <div id="campaign-show">
+     <img
+      src={image}
+      alt='whatever' />
         <div id="campaign-show-container">
 
           <div id="campaign-content">
@@ -273,12 +332,18 @@ class CampaignShow extends React.Component {
           <div id="campaign-extra">
             {/* <h1>Extra Chat Content Here?</h1> */}
             <div id="campaign-extra-content">
-              {campaignCharacters}
+              <CampaignCharactersContainer
+                currentUser={currentUser}
+                campaign={campaign}
+                characters={campChars}
+                userChar={userChar}
+              />
             </div>
           </div>
 
         </div>
       </div>
+
     )
   }
 
