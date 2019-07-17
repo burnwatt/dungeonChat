@@ -1,6 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 const Character = require('./Character')
+const Campaign = require('./Campaign')
 
 var ImgSchema = new Schema({
   img: { data: Buffer, contentType: String }
@@ -24,6 +25,11 @@ var ImgSchema = new Schema({
         Character.updateOne(
           { _id: aId },
           { $set: { "char_attrs.img_id": imgId } }
+        ).then(status => status)
+      case "camp":
+        Campaign.updateOne(
+          {_id: aId},
+          { $set: { "img_id": imgId} }
         ).then(status => status)
       default:
         return null;

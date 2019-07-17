@@ -56,6 +56,10 @@ const CampaignSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  img_id: {
+    type: Schema.Types.ObjectId,
+    refs: 'imgs'
   }
 });
 
