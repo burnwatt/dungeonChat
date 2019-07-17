@@ -14,7 +14,6 @@ class CampaignCharacters extends React.Component {
 
         if (characters){
             chars = Object.values(characters).map(char => {
-                // debugger
                 return <CharacterItem character={char} campaign={campaign} currentUser={currentUser} key={char._id}/>
             });
         } 

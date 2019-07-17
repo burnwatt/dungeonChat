@@ -5,7 +5,6 @@ import wizard from "../../assets/public/images/wizard.png";
 class CharacterSheet extends React.Component {
     constructor(props){
       super(props);
-      debugger;
       this.state = {
         char_attrs: {
               name: '',
@@ -108,7 +107,6 @@ class CharacterSheet extends React.Component {
         this.props.getCharacter(this.props.match.params.char_id)
           .then(char => console.log(char));
       }
-      debugger;
     }
 
     handleInput(field) {
@@ -124,7 +122,6 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
-      // debugger
       return (
           <div className= "character-page">
             <div className= "container-margin">
