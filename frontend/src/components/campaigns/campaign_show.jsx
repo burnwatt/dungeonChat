@@ -8,9 +8,8 @@ import DiceBoxContainer from "../dice_box/dice_box_container";
 import openSocket from "socket.io-client";
 const socket = openSocket("http://localhost:5000");
 
-// Assets...
+
 const splash_die = require("../../assets/public/images/die_glow_toomuch.png");
-const fade_in_command = require("../../assets/public/images/components/fade-in-command.png");
 class CampaignShow extends React.Component {
 
   constructor(props) {
