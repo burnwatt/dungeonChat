@@ -84,22 +84,12 @@ class CharacterSheet extends React.Component {
       }
 
 
-      let targetChar = props.characters[props.match.params.char_id];
+      // let targetChar = props.characters[props.match.params.char_id];
       
-      if (targetChar){
-        this.state = merge({}, this.state, targetChar.char_attrs);
-        this.props.fetchImg(this.state.img_id)
-          .then(() => {
-
-            var base64Flag = 'data:image/png;base64,';
-            var imageStr = this.arrayBufferToBase64(this.props.img.data);
-
-            this.setState({
-              avatar: base64Flag + imageStr
-            })
-          })
-        // this.forceUpdate();
-      }
+      // if (targetChar){
+      //   this.state = merge({}, this.state, targetChar.char_attrs);
+      //   // this.forceUpdate();
+      // }
 
       this.picture = "";
       this.avatar = "";
@@ -148,27 +138,60 @@ class CharacterSheet extends React.Component {
 
 
   componentDidMount() {
-    this.props.fetchImg(this.state.img_id)
-      .then(() => {
+    // debugger
+    if (this.props.characters){
+      let targetChar = this.props.characters[this.props.match.params.char_id];
 
-        var base64Flag = 'data:image/png;base64,';
-        var imageStr = this.arrayBufferToBase64(this.props.img.data);
+    if (targetChar) {
+      this.setState(merge({}, this.state, targetChar.char_attrs));
+      // this.forceUpdate();
+    }
+    }
+    
 
-        this.setState({
-          avatar: base64Flag + imageStr
+    this.props.getCharacter(this.props.match.params.char_id)
+    if (this.state.img_id){
+      this.props.fetchImg(this.state.img_id)
+        .then(() => {
+  
+          var base64Flag = 'data:image/png;base64,';
+          var imageStr = this.arrayBufferToBase64(this.props.img.data);
+  
+          this.setState({
+            avatar: base64Flag + imageStr
+          })
         })
-      })
+    }
   }
   componentDidUpdate() {
-    debugger
+    // debugger
+    
+    if (this.props.characters && Object.keys(this.props.characters).length > 0
+    && !this.state.img_id && this.state.name === "") {
+    let targetChar = this.props.characters[this.props.match.params.char_id];
+
+    if (targetChar) {
+      this.setState(merge({}, this.state, targetChar.char_attrs));
+      // this.forceUpdate();
+    }
+  }
+    
+
+    if (!this.props.img && this.state.avatar === "") {
+      this.props.fetchImg(this.state.img_id);
+    }
     if (this.props.img && this.state.avatar === "") {
+      
+      // debugger
       var base64Flag = 'data:image/png;base64,';
       var imageStr = this.arrayBufferToBase64(this.props.img.data);
 
       this.setState({
         avatar: base64Flag + imageStr
       })
+    
     }
+   
 
   }
 
@@ -198,7 +221,7 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
-      debugger
+      // debugger
       let head, btn;
       
       if (this.props.history.location.pathname === "/character-sheet/new"){
