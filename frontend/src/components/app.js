@@ -26,14 +26,14 @@ const App = () => (
       <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <Route exact path="/profile" component={ProfileContainer} />
-      <Route exact path="/landing" component={LandingContainer} />
+      <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+      <ProtectedRoute exact path="/landing" component={LandingContainer} />
+      <ProtectedRoute exact path="/campaign/:name" component={CampaignShow} />
       <Route exact path="/newcampaign" component={CreateCampaignContainer} />
       <Route exact path="/character-sheet/new" component={CharacterSheetContainer} />
       <Route exact path="/character-sheet/:char_id" component={CharacterSheetContainer} />
 
       <Route exact path="/character-sheet" component={CharacterSheetContainer} />
-      <Route exact path="/campaign/:name" component={CampaignShow} />
 
       <Route exact path="/dice-box" component={DiceBoxContainer} />
     </Switch>
