@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 const Message = require("../../models/Message");
+const Campaign = require("../../models/Campaign");
 const validateMessageInput = require("../../validation/messages");
 const { errRes } = require("../../validation/validation_util");
 

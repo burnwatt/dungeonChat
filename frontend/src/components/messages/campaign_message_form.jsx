@@ -113,7 +113,6 @@ class CampaignShow extends React.Component {
   }
 
   handleSubmit(which) {
-    console.log("here");
     const { currentUser, campaign, userChar } = this.state;
     let character_id = (userChar && ["messageSay", "messageDescribe"].includes(which)) ? userChar._id : null;
     let newMessage = Object.assign({

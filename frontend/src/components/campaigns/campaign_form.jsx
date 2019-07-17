@@ -30,6 +30,7 @@ class CampaignForm extends React.Component {
     };
     
     this.props.createCampaign(campaign);
+    this.props.closeModal();
     // this.setState({ name: '' }) This isn't complete but feel like there
     // Should be some local state clearing functionality upon submission
   }

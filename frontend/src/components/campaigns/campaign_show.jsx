@@ -1,9 +1,9 @@
 import React from "react";
-import { scrollTo } from "../../util/frontend_util";
+import merge from "lodash/merge";
+import { scrollTo, keyFilter } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
 import CampaignCharactersContainer  from "../characters/campaign_characters_container";
 import DiceBoxContainer from "../dice_box/dice_box_container";
-
 
 import openSocket from "socket.io-client";
 const socket = openSocket("http://localhost:5000");
@@ -22,24 +22,58 @@ class CampaignShow extends React.Component {
       userChar: null,
       campaign: null,
       campMsgs: [],
-      campChars: [],
+      campUsers: {},
+      campChars: {},
       messageDM: "",
       messageDescribe: "",
       messageSay: "",
-      messageChat: ""
+      messageChat: "",
+      viewPorts: { Chat: true, Describe: true }
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMessageInput = this.handleMessageInput.bind(this);
+    this.scribeUser = this.scribeUser.bind(this);
   }
 
   newMessage() {
     socket.emit("newMessage");
   }
 
+  // ========================================================================
+
+  handleCampaignExtraShow () {
+    let nav = document.getElementById("campaign-extra");
+    let icon = document.getElementById("open-campaign-extra");
+    if (nav.style.width === "") {
+      nav.style.width = "500px";
+      // nav.style.bottom = "64px"
+      icon.style.display = "none";
+    }
+    else {
+      nav.style.width = "";
+      nav.style.bottom = "";
+    }
+  }
+
+  escFunction(event) {
+    if (event.keyCode === 27) {
+      document.getElementById("campaign-extra").style.width = "0";
+      document.getElementById("open-campaign-extra").style.display = "inline-block";
+    }
+  }
+
+
+
+
+
+  // ==========================================================================
+
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
       .then(() => this.setState({currentUser: this.props.currentUser}));
+    document.addEventListener("keydown", this.escFunction, false);
+
       
     this.props.fetchCampaignByName(this.props.match.params.name)
       .then(dat => {
@@ -47,23 +81,27 @@ class CampaignShow extends React.Component {
         this.props.getCampaignCharacters(dat.campaign.data._id)
           .then(dat => {
             this.setState({campChars: dat.characters.data});
-
           })
+        this.props.fetchCampaignUsers(this.props.campaign._id)
+          .then(dat => this.setState({campUsers: dat.users.data}));
       });
 
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.campaign !== this.props.campaign) {
-      this.setState({campaign: this.props.campaign });
+      this.setState({ campaign: this.props.campaign });
+    }
+
+    if (this.props.campaign && prevProps.users !== this.props.users) {
+      this.setState({ 
+        campUsers: keyFilter(this.props.users, this.props.campaign.user_ids)
+      })
     }
 
     if (prevProps.characters !== this.props.characters) {
-      let {character_ids} = this.props.campaign;
-      let {characters} = this.props;
       this.setState({
-        campChars: Object.values(characters)
-          .filter(char => character_ids.includes(char._id))
+        campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
         }
       )
 
@@ -76,12 +114,11 @@ class CampaignShow extends React.Component {
             .filter(char => char._id === inter[0])[0]
         })
       }
-
     }
-
   }
 
   componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
     this.props.closeModal();
   }
 
@@ -99,20 +136,66 @@ class CampaignShow extends React.Component {
     }
   }
 
+  //============================================================================
+
+  scribeUser() {
+    const { currentUser, campaign } = this.state;
+    let modCampaign = merge({}, campaign);
+    let modUser = merge({}, currentUser);
+    let updated = false;
+
+    if (currentUser && campaign) {
+      modCampaign = merge({}, campaign);
+      modUser = merge({}, currentUser);
+      if (
+        !currentUser.campaign_ids.includes(campaign._id)
+        && !campaign.user_ids.includes(currentUser._id)
+      ) {
+        modCampaign.user_ids.push(currentUser._id);
+        modUser.campaign_ids.push(campaign._id)
+        updated = true;
+
+      } else if (
+        currentUser.campaign_ids.includes(campaign._id)
+        && campaign.user_ids.includes(currentUser._id)
+      ) {
+        modCampaign.user_ids = modCampaign.user_ids.filter(userId => userId !== currentUser._id);
+        modUser.campaign_ids = modUser.campaign_ids.filter(campaignId => campaignId !== campaign._id);
+        updated = true;
+      }
+      if (updated) {
+        this.props.changeCampaign(modCampaign)
+          .then(dat => {
+            this.setState({ campaign: dat.campaign.data })
+          });
+        this.props.changeUser(modUser)
+          .then(dat => {
+            this.setState({ currentUser: dat.user.data })
+          });
+      }
+    }
+
+    
+  };
+
+
   // ===========================================================================
   getMessageButtons() {
-    const { campaign, currentUser } = this.state;
+    const { campaign, currentUser, userChar } = this.state;
     let buttons = []
 
-    let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
-    buttons.push(
-      <button key="message-btn-subscribe"
-        id="subscribe"
-        className="message-btn btn-glow"
-        onClick={() => this.showMessageForm("subscribe")}
-      >{sub}
-      </button> 
-    )
+
+    if (userChar) {
+      let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
+      buttons.push(
+        <button key="message-btn-subscribe"
+          id="subscribe"
+          className="message-btn btn-glow"
+          onClick={this.scribeUser}
+        >{sub}
+        </button>
+      )
+    }
 
     if (campaign.created_by === currentUser._id) {
       buttons.push(
@@ -168,7 +251,7 @@ class CampaignShow extends React.Component {
 
         <form id="say" className="message-form">
           <textarea className="say"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageSay.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageSay")}
             onKeyDown={this.onMessageEnter("messageSay")}
@@ -179,7 +262,7 @@ class CampaignShow extends React.Component {
 
         <form id="describe" className="message-form">
           <textarea className="describe"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageDescribe.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDescribe")}
             onKeyDown={this.onMessageEnter("messageDescribe")}
@@ -190,7 +273,7 @@ class CampaignShow extends React.Component {
 
         <form id="dm" className="message-form">
           <textarea className="dm"
-            rows={`${2 + Math.floor(messageChat.length / 125)}`}
+            rows={`${2 + Math.floor(messageDM.length / 125)}`}
             type="text"
             onChange={this.handleMessageInput("messageDM")}
             onKeyDown={this.onMessageEnter("messageDM")}
@@ -252,14 +335,16 @@ class CampaignShow extends React.Component {
   // ===========================================================================
 
   render() {
-    const { campaign, currentUser, campChars, userChar } = this.state;
-    let campMessageIndex, campaignCharacters, messageButtons, messageForms = <div></div>;
-    if (campChars.length && currentUser && campaign) {
+    const { campaign, currentUser, campChars, campUsers, userChar } = this.state;
+    let campMessageIndex, campaignCharacters, messageButtons, messageForms, diceBoxContainer = <div></div>;
+    if (Object.values(campChars).length && Object.values(campUsers).length && currentUser && campaign) {
       campMessageIndex = <CampaignMessageIndexContainer
+        viewPorts={this.state.viewPorts}
         currentUser={currentUser}
         campaign={campaign}
         characters={campChars}
         userChar={userChar}
+        users={campUsers}
       />
 
       campaignCharacters = <CampaignCharactersContainer
@@ -271,11 +356,21 @@ class CampaignShow extends React.Component {
 
       messageButtons = this.getMessageButtons();
       messageForms = this.getMessageForms();
+
+      diceBoxContainer = <DiceBoxContainer 
+      campaign={campaign} 
+      userChar={userChar}
+      currentUser={currentUser}
+      />
     }
 
 
     return (
       <div id="campaign-show">
+        <div id="open-campaign-extra"
+          onClick={this.handleCampaignExtraShow}
+          ><i className="fas fa-users" />
+        </div>
         <div id="campaign-show-container">
 
           <div id="campaign-content">
@@ -286,7 +381,7 @@ class CampaignShow extends React.Component {
 
             <div id="campaign-content-footer">
               <div id="campaign-command">
-                <DiceBoxContainer />
+                {diceBoxContainer}
                 <div id="campaign-command-logo">
                   <img src={splash_die} />
                 </div>

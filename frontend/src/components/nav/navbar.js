@@ -12,14 +12,18 @@ class NavBar extends React.Component {
   logoutUser(event) {
     event.preventDefault();
     this.props.logout();
-    this.props.history.push("/login");
+    // this.props.history.push("/login");
+  }
+
+  componentWillMount() {
+    
   }
   
   getLinks() {
     if (this.props.location.pathname === '/login' || this.props.location.pathname === '/signup') {
       return <div className='null-div'></div>
     }
-    if (this.props.session && this.props.session.isAuthenticated) {
+    if (this.props.session && this.props.session.isAuthenticated || this.props.loggedIn) {
       return (
         <nav className='nav-bar'>
           <div className='nav-left'>

@@ -63,9 +63,9 @@ router.post("/", passport.authenticate("jwt", { session: false }), (req, res) =>
 // UPDATE
 
 // update .....................
-router.post("/update", passport.authenticate("jwt", { session: false }), (req, res) => {
+router.post("/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
   Campaign.findOneAndUpdate(
-    { _id: req.body.id },
+    { _id: req.params.id },
     req.body,
     {new: true}
   ).then(campaign => res.json(campaign))

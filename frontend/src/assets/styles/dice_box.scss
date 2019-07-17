@@ -9,7 +9,7 @@
   box-sizing: border-box;
   overflow: hidden;
   transition: 0.5s;
-  // z-index: 1;
+  z-index: 2;
 
   position: absolute;
   width: 300px; 
@@ -28,28 +28,37 @@
   height: 250px;
   border-radius: 8px;
   background: #2D2F30;
-
+}
+#dice_box h2 {
+  margin-bottom: 8px;
 }
 
 #dice_box_container h3 {
   // padding-bottom: 11px; 
+  padding: 4px 0 0 0;
 }
 
 #box_within {
-  width: 100%;
+  width: 90%;
   height: 70px; 
   border: 1px solid gray;
   display: inline-block;
+  margin-bottom: 5px;
 }
 
-#die-row {
+
+.die-row {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 .d-bounds {
-  width: 32px;
-  height: 32px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  width: 40px;
+  height: 48px;
+  font-size: 20px;
 }
 
 .gray-bar {
@@ -83,4 +92,6 @@
 
 .red.fas.fa-dice-d20 {
   color: rgb(0, 89, 172);
+  cursor: pointer;
 }
+
