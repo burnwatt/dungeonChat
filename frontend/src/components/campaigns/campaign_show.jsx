@@ -72,20 +72,19 @@ class CampaignShow extends React.Component {
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
       .then(() => this.setState({currentUser: this.props.currentUser}));
-    document.addEventListener("keydown", this.escFunction, false);
-
-      
+            
     this.props.fetchCampaignByName(this.props.match.params.name)
+    .then(dat => {
+      this.setState({campaign: dat.campaign.data})
+      this.props.getCampaignCharacters(dat.campaign.data._id)
       .then(dat => {
-        this.setState({campaign: dat.campaign.data})
-        this.props.getCampaignCharacters(dat.campaign.data._id)
-          .then(dat => {
-            this.setState({campChars: dat.characters.data});
-          })
-        this.props.fetchCampaignUsers(this.props.campaign._id)
-          .then(dat => this.setState({campUsers: dat.users.data}));
-      });
-
+        this.setState({campChars: dat.characters.data});
+      })
+      this.props.fetchCampaignUsers(this.props.campaign._id)
+      .then(dat => this.setState({campUsers: dat.users.data}));
+    });
+    
+    document.addEventListener("keydown", this.escFunction, false);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -200,7 +199,7 @@ class CampaignShow extends React.Component {
     if (campaign.created_by === currentUser._id) {
       buttons.push(
       <i id="message-btn-dice"
-        onClick={() => this.showMessageForm("dm")}
+        onClick={() => this.showMessageForm("dm")}S
         className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
       )
     }
@@ -354,16 +353,17 @@ class CampaignShow extends React.Component {
         userChar={userChar}
       />
 
-      messageButtons = this.getMessageButtons();
-      messageForms = this.getMessageForms();
 
-      diceBoxContainer = <DiceBoxContainer 
+diceBoxContainer = <DiceBoxContainer 
       campaign={campaign} 
       userChar={userChar}
       currentUser={currentUser}
       />
     }
-
+    if (campaign) {
+      messageButtons = this.getMessageButtons();
+      messageForms = this.getMessageForms();
+    }
 
     return (
       <div id="campaign-show">
