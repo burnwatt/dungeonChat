@@ -8,6 +8,7 @@
   height: 41px;
   justify-content: center;
   font-family: 'Luckiest Guy', cursive;
+  z-index: 999;
 }
 
 #session-nav div.container{
@@ -31,7 +32,7 @@
   opacity: 0.6;
   padding-right: 10px;
   display: flex;
-  align-items: center;
+  // align-items: center;
 }
 
 #session-nav a{
