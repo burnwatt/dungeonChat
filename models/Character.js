@@ -21,6 +21,10 @@ const CharacterSchema = new Schema({
   deleted: {
     type: Boolean,
     default: false
+  },
+  img_id: {
+    type: Schema.Types.ObjectId,
+    refs: 'imgs'
   }
 });
 

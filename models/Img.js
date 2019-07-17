@@ -17,6 +17,10 @@ var ImgSchema = new Schema({
         //   { char_attrs: { img_id: imgId } },
         //   { new: true }.then()
         // )
+        // Character.updateOne(
+        //   { _id: aId },
+        //   { img_id: imgId }
+        // ).then(status => status)
         Character.updateOne(
           { _id: aId },
           { $set: { "char_attrs.img_id": imgId } }
