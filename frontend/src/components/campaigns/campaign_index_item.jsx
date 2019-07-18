@@ -11,6 +11,8 @@ class CampaignIndexItem extends React.Component {
       avatar: ""
     }
     this.sendToCampaignPage = this.sendToCampaignPage.bind(this);
+    this.stop = false;
+    this.convertAvatar = false;
   }
 
   sendToCampaignPage() {
@@ -34,31 +36,34 @@ class CampaignIndexItem extends React.Component {
     
   }
 
-  componentDidUpdate(){
+  componentDidUpdate(prevProps){
+    let base64Flag;
+    let imageStr;
     // debugger
     if (this.state.avatar === "" && this.props.img && this.props.img.data) {
-      var base64Flag = 'data:image/png;base64,';
-      var imageStr = this.arrayBufferToBase64(this.props.img.data);
+      base64Flag = 'data:image/png;base64,';
+      imageStr = this.arrayBufferToBase64(this.props.img.data);
 
       this.setState({
         avatar: base64Flag + imageStr
       })
     }
-    // if (this.props.img._id !== this.campaign.img_id){
+    // if (prevProps.img !== this.props.img && this.stop === false){
     //   this.props.fetchImg(this.props.campaign.img_id)
-    //     .then(() => {
-
-    //       var base64Flag = 'data:image/png;base64,';
-    //       var imageStr = this.arrayBufferToBase64(this.props.img.data);
-
-    //       this.setState({
-    //         avatar: base64Flag + imageStr
-    //       })
-    //     })
+    //   this.stop = true;
+    //   this.convertAvatar = true;
     // }
-    
-  }
+    // if (this.convertAvatar === true){
+    //   debugger
+    //   base64Flag = 'data:image/png;base64,';
+    //   imageStr = this.arrayBufferToBase64(this.props.img.data);
 
+    //   this.setState({
+    //     avatar: base64Flag + imageStr
+    //   })
+    //   this.convertAvatar = false;
+    // }
+  }
   arrayBufferToBase64(buffer) {
     var binary = '';
     var bytes = [].slice.call(new Uint8Array(buffer));
