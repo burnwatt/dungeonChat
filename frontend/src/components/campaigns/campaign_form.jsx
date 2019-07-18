@@ -42,6 +42,7 @@ class CampaignForm extends React.Component {
         this.props.postImg(formData, "camp");
         return "";
       });
+      debugger
     // this.setState({ name: '' }) This isn't complete but feel like there
     // Should be some local state clearing functionality upon submission
   }

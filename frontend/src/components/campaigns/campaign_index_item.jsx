@@ -44,6 +44,18 @@ class CampaignIndexItem extends React.Component {
         avatar: base64Flag + imageStr
       })
     }
+    // if (this.props.img._id !== this.campaign.img_id){
+    //   this.props.fetchImg(this.props.campaign.img_id)
+    //     .then(() => {
+
+    //       var base64Flag = 'data:image/png;base64,';
+    //       var imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+    //       this.setState({
+    //         avatar: base64Flag + imageStr
+    //       })
+    //     })
+    // }
     
   }
 

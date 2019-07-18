@@ -142,10 +142,10 @@ class CharacterSheet extends React.Component {
     if (this.props.characters){
       let targetChar = this.props.characters[this.props.match.params.char_id];
 
-    if (targetChar) {
-      this.setState(merge({}, this.state, targetChar.char_attrs));
-      // this.forceUpdate();
-    }
+      if (targetChar) {
+        this.setState(merge({}, this.state, targetChar.char_attrs));
+        // this.forceUpdate();
+      }
     }
     
 

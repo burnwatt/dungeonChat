@@ -3,7 +3,7 @@ const fs = require('fs');
 const Img = require("../../models/Img")
 
 const router = express.Router();
-
+const { errRes } = require("../../validation/validation_util");
 
 
 const multer = require('multer');

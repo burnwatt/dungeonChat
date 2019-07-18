@@ -60,7 +60,6 @@ class CampaignIndex extends React.Component {
 
   render() {
     // const campDat = this.getCampaignDat();
-
     return (
       <div id="campaigns-content">
         <input type="text" className="search-bar" placeholder="Find a campaign" />

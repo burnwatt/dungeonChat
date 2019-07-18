@@ -2,8 +2,8 @@ import React from "react";
 import { scrollTo } from "../../util/frontend_util";
 import CampaignMessageIndexContainer from "../messages/campaign_message_index_container.js";
 import CampaignCharactersContainer  from "../characters/campaign_characters_container";
-import openSocket from "socket.io-client";
-const socket = openSocket("http://localhost:5000");
+// import openSocket from "socket.io-client";
+// const socket = openSocket("http://localhost:5000");
 
 // Assets...
 const splash_die = require("../../assets/public/images/die_glow_toomuch.png");
@@ -33,9 +33,9 @@ class CampaignShow extends React.Component {
 
   }
 
-  newMessage() {
-    socket.emit("newMessage");
-  }
+  // newMessage() {
+  //   socket.emit("newMessage");
+  // }
 
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
@@ -248,8 +248,8 @@ class CampaignShow extends React.Component {
     })
     this.setState({ [which]: "" });
     // console.log(newMessage);
-    this.props.createMessage(newMessage)
-      .then(() => this.newMessage())
+    this.props.createMessage(newMessage);
+      // .then(() => this.newMessage())
     return event => event.prevenDefault();
   }
   onMessageEnter(which) {
