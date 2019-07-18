@@ -415,6 +415,11 @@ class CampaignShow extends React.Component {
       messageForms = this.getMessageForms();
     }
 
+    let image = "#";
+    if (this.state.img) {
+      image = this.state.img;
+    }
+
     return (
       <div id="campaign-show">
         <img

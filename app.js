@@ -22,10 +22,10 @@ const imgs = require("./routes/api/imgs")
 //------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 //require the http module
-// const http = require("http").Server(app);
+const http = require("http").Server(app);
 
 // require the socket.io module
-// const io = require("socket.io");
+const io = require("socket.io");
 // -----------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
@@ -54,18 +54,18 @@ app.use("/api/imgs", imgs);
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-// socket = io(http);
+socket = io(http);
 
-// socket.on("connection", client => {
-//   console.log("user connected");
+socket.on("connection", client => {
+  console.log("user connected");
 
-//   client.on("here", () => console.log("here"));
+  client.on("here", () => console.log("here"));
 
-//   client.on("newMessage", function () {
-//     client.broadcast.emit("received");
-//   });
+  client.on("newMessage", function () {
+    client.broadcast.emit("received");
+  });
 
-// });
+});
 
 // -----------------------------------------------------------------------------
 //------------------------------------------------------------------------------

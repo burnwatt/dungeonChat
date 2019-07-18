@@ -185,8 +185,7 @@ footer {
   left: 0;
   top: 0;
   width: 100%;
-  height: 30px;
-  z-index: 100; }
+  height: 30px; }
 
 .nav-bar {
   display: flex;
@@ -233,7 +232,8 @@ footer {
   display: flex;
   height: 41px;
   justify-content: center;
-  font-family: 'Luckiest Guy', cursive; }
+  font-family: 'Luckiest Guy', cursive;
+  z-index: 999; }
 
 #session-nav div.container {
   display: flex;
@@ -250,8 +250,7 @@ footer {
   cursor: pointer;
   opacity: 0.6;
   padding-right: 10px;
-  display: flex;
-  align-items: center; }
+  display: flex; }
 
 #session-nav a {
   color: white; }
@@ -656,6 +655,9 @@ hr {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
+.upload-img {
+  padding-top: 100px; }
+
 .campaign_form_container {
   background-image: url("../../assets//public//images/landing-back-v1.png");
   height: 100vh;
@@ -955,35 +957,50 @@ hr {
 .character-save {
   font-size: 12px;
   border: 0.5px solid #b50303;
-  border-radius: 7px;
+  border-radius: 100px;
   background: #b50303;
   color: white;
   text-decoration: none;
-  padding: 15px 20px;
-  width: 100px;
-  height: 25px;
-  margin: 5px;
-  vertical-align: center; }
+  width: 55px;
+  height: 55px;
+  margin: 10px; }
+  .character-save i {
+    font-size: 2.5em; }
+  .character-save span {
+    display: none; }
 
 .character-save:hover {
   border: .5px solid white;
-  background: rgba(13, 13, 13, 0.75); }
+  background: rgba(43, 41, 41, 0.75); }
+  .character-save:hover i {
+    display: none; }
+  .character-save:hover span {
+    display: inline;
+    cursor: pointer; }
 
 .character-cancel {
   font-size: 12px;
   border: .5px solid white;
-  border-radius: 7px;
+  border-radius: 100px;
   background: transparent;
   color: white;
   text-decoration: none;
-  padding: 15px 20px;
-  width: 100px;
-  height: 25px;
-  margin: 5px; }
+  width: 55px;
+  height: 55px;
+  margin: 10px; }
+  .character-cancel i {
+    font-size: 2.5em; }
+  .character-cancel span {
+    display: none; }
 
 .character-cancel:hover {
   border: .5px solid white;
   background: rgba(13, 13, 13, 0.75); }
+  .character-cancel:hover i {
+    display: none; }
+  .character-cancel:hover span {
+    display: inline;
+    cursor: pointer; }
 
 #campaign-index-item-modal-container {
   position: absolute;
@@ -1239,7 +1256,8 @@ hr {
 
 .charIcon {
   color: red;
-  margin: 7px; }
+  margin: 5px 20px;
+  font-size: 1.5em; }
 
 .char-name {
   display: flex;
@@ -1494,6 +1512,49 @@ div.bio-display {
   border: .5px solid white;
   background: rgba(13, 13, 13, 0.75); }
 
+div.profile-main {
+  display: flex;
+  height: 500px;
+  width: 1000px;
+  margin: 75px; }
+
+div.welcome-message {
+  width: 100%; }
+
+i.hat {
+  color: #0707d2;
+  margin: 100px; }
+
+.magic {
+  -webkit-animation-name: magic;
+  animation-name: magic;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; }
+
+@-webkit-keyframes magic {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(2, 2);
+    -webkit-filter: blur(90px); }
+  100% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    -webkit-filter: blur(0px); } }
+@keyframes magic {
+  0% {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: scale(2, 2);
+    -webkit-filter: blur(90px); }
+  100% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
+    -webkit-filter: blur(0px); } }
 .modal-background {
   position: fixed;
   top: 0;
