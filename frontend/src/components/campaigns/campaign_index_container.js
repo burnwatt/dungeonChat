@@ -8,6 +8,8 @@ import CampaignIndex from "../campaigns/campaign_index";
 
 import { openModal, closeModal } from "../../actions/ui/modal_actions";
 
+import { fetchImg } from '../../actions/img_actions';
+
 const mSP = state => ({
   users: state.users,
   campaigns: Object.values(state.campaigns),
@@ -19,7 +21,8 @@ const mDP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchUserCampaigns: user_id => dispatch(fetchUserCampaigns(user_id)),
   openModal: (modal) => dispatch(openModal(modal)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  fetchImg: (id) => dispatch(fetchImg(id))
 });
 
 export default connect(mSP, mDP)(CampaignIndex);

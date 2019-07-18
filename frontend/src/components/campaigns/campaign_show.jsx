@@ -14,7 +14,7 @@ class CampaignShow extends React.Component {
 
   constructor(props) {
     super(props);
-
+  
     this.state = {
       loaded: false,
       currentUser: null,
@@ -35,9 +35,9 @@ class CampaignShow extends React.Component {
     this.scribeUser = this.scribeUser.bind(this);
   }
 
-  newMessage() {
-    socket.emit("newMessage");
-  }
+  // newMessage() {
+  //   socket.emit("newMessage");
+  // }
 
   // ========================================================================
 
@@ -84,8 +84,37 @@ class CampaignShow extends React.Component {
     });
     
     document.addEventListener("keydown", this.escFunction, false);
+
+    // Brad's images
+    if (this.props.campaign) {
+      this.props.fetchImg(this.props.campaign.cover_art_url)
+        .then(() => {
+          // debugger
+          var base64Flag = 'data:image/png;base64,';
+          var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+          this.setState({
+            img: base64Flag + imageStr
+          })
+        })
+    }
+
   }
 
+  
+    
+    
+      
+
+
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return window.btoa(binary);
+  };
+
+  
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.campaign !== this.props.campaign) {
       this.setState({ campaign: this.props.campaign });
@@ -113,6 +142,23 @@ class CampaignShow extends React.Component {
         })
       }
     }
+
+    // Brad's images
+    if (this.state.img !== prevState.img) {
+      if (this.props.campaign) {
+        this.props.fetchImg(this.props.campaign.cover_art_url)
+          .then(() => {
+            var base64Flag = 'data:image/png;base64,';
+            var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+            this.setState({
+              img: base64Flag + imageStr
+            })
+          })
+      }
+    }
+
+
   }
 
   componentWillUnmount() {
@@ -306,7 +352,7 @@ class CampaignShow extends React.Component {
     this.props.createMessage(newMessage)
       .then(() => {
         this.newMessage();
-        console.log(newMessage);
+        // console.log(newMessage);
       })
     return event => event.prevenDefault();
   }
@@ -350,20 +396,18 @@ class CampaignShow extends React.Component {
         users={campUsers}
       />
 
-      campaignCharacters = <CampaignCharactersContainer
-        currentUser={currentUser}
-        campaign={campaign}
-        characters={campChars}
-        userChar={userChar}
-      />
+    messageButtons = this.getMessageButtons();
+    messageForms = this.getMessageForms();
 
 
-diceBoxContainer = <DiceBoxContainer 
+    diceBoxContainer = <DiceBoxContainer 
       campaign={campaign} 
       userChar={userChar}
       currentUser={currentUser}
-      />
-    }
+    />
+    
+  }
+    
     let name;
     if (campaign) {
       name = campaign.name;
@@ -373,6 +417,10 @@ diceBoxContainer = <DiceBoxContainer
 
     return (
       <div id="campaign-show">
+        <img
+          src={image}
+          alt='whatever'
+        />
         <div id="open-campaign-extra"
           onClick={this.handleCampaignExtraShow}
           ><i className="fas fa-users" />
@@ -404,12 +452,18 @@ diceBoxContainer = <DiceBoxContainer
           <div id="campaign-extra">
             {/* <h1>Extra Chat Content Here?</h1> */}
             <div id="campaign-extra-content">
-              {campaignCharacters}
+              <CampaignCharactersContainer
+                currentUser={currentUser}
+                campaign={campaign}
+                characters={campChars}
+                userChar={userChar}
+              />
             </div>
           </div>
 
         </div>
       </div>
+
     )
   }
 

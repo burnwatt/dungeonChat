@@ -27,7 +27,7 @@ class NavBar extends React.Component {
       return (
         <nav className='nav-bar'>
           <div className='nav-left'>
-            <Link to='/games'>
+            <Link to='/landing'>
               <i className="fas fa-dungeon"></i>
               <span>Dungeon Chat</span>
             </Link>

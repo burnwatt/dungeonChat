@@ -52,9 +52,22 @@ export const fetchCampaignByName = name => dispatch => getCampaignByName(name)
   .then(campaign => dispatch(receiveCampaign(campaign)))
   .catch(err => dispatch(receiveCampaignErrors(err)));
 
+// export const createCampaign = campaign => {
+//   debugger
+//   return dispatch => {
+//     return postCampaign(campaign).then(campaign => {
+//       dispatch(receiveCampaign(campaign))
+//       return campaign;
+//     })
+//      .catch(err => dispatch(receiveCampaignErrors(err)))
+//   }
+// }
+
 export const createCampaign = campaign => dispatch => postCampaign(campaign)
   .then(campaign => dispatch(receiveCampaign(campaign)))
   .catch(err => dispatch(receiveCampaignErrors(err)));
+    
+ 
 
 export const changeCampaign = campaign => dispatch => updateCampaign(campaign)
   .then(campaign => dispatch(receiveCampaign(campaign)))

@@ -7,8 +7,12 @@ class CampaignIndexItem extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      avatar: ""
+    }
     this.sendToCampaignPage = this.sendToCampaignPage.bind(this);
+    this.stop = false;
+    this.convertAvatar = false;
   }
 
   sendToCampaignPage() {
@@ -18,16 +22,70 @@ class CampaignIndexItem extends React.Component {
       pathname: `/campaign/${name}`
     })
   }
+  componentDidMount(){
+    this.props.fetchImg(this.props.campaign.img_id)
+      .then(() => {
+
+        var base64Flag = 'data:image/png;base64,';
+        var imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+        this.setState({
+          avatar: base64Flag + imageStr
+        })
+      })
+    
+  }
+
+  componentDidUpdate(prevProps){
+    let base64Flag;
+    let imageStr;
+    // debugger
+    if (this.state.avatar === "" && this.props.img && this.props.img.data) {
+      base64Flag = 'data:image/png;base64,';
+      imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+      this.setState({
+        avatar: base64Flag + imageStr
+      })
+    }
+    // if (prevProps.img !== this.props.img && this.stop === false){
+    //   this.props.fetchImg(this.props.campaign.img_id)
+    //   this.stop = true;
+    //   this.convertAvatar = true;
+    // }
+    // if (this.convertAvatar === true){
+    //   debugger
+    //   base64Flag = 'data:image/png;base64,';
+    //   imageStr = this.arrayBufferToBase64(this.props.img.data);
+
+    //   this.setState({
+    //     avatar: base64Flag + imageStr
+    //   })
+    //   this.convertAvatar = false;
+    // }
+  }
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return window.btoa(binary);
+  };
+  
 
   render() {
     const { name, cover_art_url, description, rules, 
       character_ids, user_ids, date, party_limit} = this.props.campaign;
     
-    const image = <img src={ d10 } alt="whatever"/>;
+    let image = <img src={ d10 } alt="whatever"/>;
     const chars = `${character_ids.length}/${party_limit}`;
 
     const tdiff = timeDiff(new Date, date);
     const newHeader = (tdiff.days < 3) ? "New" : "";
+
+    
+    if (this.props.campaign.img_id) {
+      image = <img src={this.state.avatar} alt="whatever" />
+    }
 
     return (
       <div onClick={this.sendToCampaignPage} className="campaign-index-item btn-glow">

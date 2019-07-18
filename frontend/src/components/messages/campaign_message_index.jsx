@@ -3,8 +3,8 @@ import MessageIndexItem from "./message_index_item";
 import { scrollTo, simpleDateSort, keyFilter } from "../../util/frontend_util";
 import merge from "lodash/merge";
 
-import openSocket from "socket.io-client";
-const socket = openSocket("http://localhost:5000");
+// import openSocket from "socket.io-client";
+// const socket = openSocket("http://localhost:5000");
 
 
 class CampaignMessageIndex extends React.Component {
@@ -13,14 +13,14 @@ class CampaignMessageIndex extends React.Component {
     super(props);
     this.state = { messages: [] };
 
-    this.onReceived();
+    // this.onReceived();
   }
 
-  onReceived () {
-    socket.on("received", () => {
-      this.props.fetchCampaignMessages(this.props.campaign._id)
-    })
-  }
+  // onReceived () {
+  //   socket.on("received", () => {
+  //     this.props.fetchCampaignMessages(this.props.campaign._id)
+  //   })
+  // }
 
   componentDidMount() {
     this.props.fetchCampaignMessages(this.props.campaign._id);

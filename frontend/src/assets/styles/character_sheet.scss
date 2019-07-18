@@ -93,13 +93,9 @@
   }
 }
 
-
-
 .notes-textarea{
   width: 100%;
 }
-
-
 
 .character-inventory{
   display: flex;
@@ -116,6 +112,7 @@
     margin: 0px;
   }
 }
+
 .inventory-slot{
   display: flex;
   flex-direction:column;
@@ -132,6 +129,7 @@
   border-bottom: #bf7f01;
   border-style: double;
 }
+
 .character-page .character-inventory h1{
   margin-bottom: 10px;
   margin-top: 10px;
@@ -165,7 +163,6 @@
   width: fit-content;
   // justify-content: flex-end;
   // transform: translate(0px, 10px);
-
   
 }
 
@@ -239,35 +236,58 @@
 .character-save{
   font-size: 12px;
   border: .5px solid rgb(181, 3, 3);
-  border-radius: 7px;
+  border-radius: 100px;
   background:rgb(181, 3, 3);
   color: white;
   text-decoration: none;
-  padding: 15px 20px;
-  width: 100px;
-  height: 25px;
-  margin: 5px;
-  vertical-align: center;
+  width: 55px;
+  height: 55px;
+  margin: 10px;
+  i{
+    font-size: 2.5em;
+  }
+  span{
+    display: none;
+  }
 }
 
 .character-save:hover{
   border: .5px solid white;
-  background:rgba(13, 13, 13, .75);
+  background:rgba(43, 41, 41, 0.75);
+  i{
+    display: none;
+  }
+  span{
+    display: inline;
+    cursor: pointer;
+  }
 }
 
 .character-cancel{
   font-size: 12px;
   border: .5px solid white;
-  border-radius: 7px;
+  border-radius: 100px;
   background:transparent;
   color: white;
   text-decoration: none;
-  padding: 15px 20px;
-  width: 100px;
-  height: 25px;
-  margin: 5px;    
+  width: 55px;
+  height: 55px;
+  margin: 10px;
+  i{
+    font-size: 2.5em;
+  }
+  span{
+    display: none;
+  }    
 }
 .character-cancel:hover{
   border: .5px solid white;
   background:rgba(13, 13, 13, .75);
+  i{
+    display: none;
+  }
+  span{
+    display: inline;
+    cursor: pointer;
+  }
 }

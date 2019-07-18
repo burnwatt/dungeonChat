@@ -23,15 +23,19 @@ export const getCharacter = (id) => {
   }
 }
 
-export const changeCharacter = (id) => {
+export const changeCharacter = (character) => {
   return dispatch => {
-    return updateCharacter(id).then(payload => dispatch({type: RECEIVE_UPDATED_CHARACTER, character: payload}))
+    return updateCharacter(character).then(payload => dispatch({type: RECEIVE_UPDATED_CHARACTER, character: payload}))
   }
 }
 
 export const createCharacter = (character) => {
+  // debugger
   return dispatch => {
-    return postCharacter(character).then(payload => dispatch({type: RECEIVE_NEW_CHARACTER, character: payload}))
+    return postCharacter(character).then(payload => {
+      dispatch({type: RECEIVE_NEW_CHARACTER, character: payload})
+      return payload
+    })
   }
 }
 

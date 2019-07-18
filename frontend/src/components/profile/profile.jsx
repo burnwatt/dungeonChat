@@ -47,11 +47,13 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-page">
+        {/* <i class="fas fa-hat-wizard fa-9x magic hat"></i> */}
+        {/* <i className="fas fa-user-ninja fa-3x"></i> */}
         <div className="profile-container-margin">
           <div className='profile-sheet-main'>
             <div className="profile-name-and-avatar">
               <div className="profile-avatar">
-                <div><div><i className="fas fa-user-ninja fa-3x"></i></div></div>
+                <div><div><i class="fas fa-hat-wizard fa-9x magic hat"></i></div></div>
               </div>
               <div className="profile-name">
                 <div>PlaceholderName</div>

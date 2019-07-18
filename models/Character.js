@@ -10,6 +10,7 @@ const CharacterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  img: { data: Buffer, contentType: String },
   char_attrs: {
     type: Object,
   },
@@ -20,6 +21,10 @@ const CharacterSchema = new Schema({
   deleted: {
     type: Boolean,
     default: false
+  },
+  img_id: {
+    type: Schema.Types.ObjectId,
+    refs: 'imgs'
   }
 });
 
