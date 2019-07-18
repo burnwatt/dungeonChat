@@ -12,7 +12,7 @@ socket_server.js
 # production
 /build
 /src/assets/styles/output.css.map
-/src/assets/styles/output.css
+# /src/assets/styles/output.css
 /src/assets/styles/.sass-cache
 # misc
 .DS_Store
