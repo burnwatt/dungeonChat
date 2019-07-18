@@ -12,7 +12,6 @@ import CreateCampaignContainer from "./campaigns/create_campaign_container";
 
 import CharacterSheetContainer from "./characters/character_sheet_container"
 import DiceBoxContainer from "./dice_box/dice_box_container";
-// import CharacterSheet from "./characters/character_sheet";
 import CampaignShow from "./campaigns/campaign_show_container";
 
 
