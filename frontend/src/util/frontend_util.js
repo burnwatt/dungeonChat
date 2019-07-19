@@ -67,12 +67,14 @@ const simpleDateSort = function(a, b) {
 };
 
 const keyFilter = (objJ, keys) => {
-  return Object.keys(objJ)
+  let d = Object.keys(objJ)
     .filter(key => keys.includes(key))
     .reduce((obj, key) => {
       obj[key] = objJ[key];
       return obj;
     }, {});
+  console.log(d);
+  return d;
 }
 
 

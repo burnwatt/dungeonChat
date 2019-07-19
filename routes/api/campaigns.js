@@ -82,7 +82,13 @@ router.get("/test", (req, res) => res.json({ msg: "This is the campaigns router.
 router.get("/", (req, res) => {
   Campaign.find()
     .sort({ date: 1 })
-    .then(campaigns => res.json(campaigns))
+    .then(campaigns => {
+      camps = {};
+      for (let camp of campaigns) {
+        camps[camp._id] = camp;
+      };
+      return res.json(camps);
+    })
     .catch(err => errRes(res, 404, defErrs.noCampaignsFound))
 });
 

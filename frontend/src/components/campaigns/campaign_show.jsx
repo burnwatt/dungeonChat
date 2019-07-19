@@ -63,49 +63,83 @@ class CampaignShow extends React.Component {
   }
 
 
-
-
-
   // ==========================================================================
 
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
       .then(() => this.setState({currentUser: this.props.currentUser}));
-            
     this.props.fetchCampaignByName(this.props.match.params.name)
-    .then(dat => {
-      this.setState({campaign: dat.campaign.data})
-      this.props.getCampaignCharacters(dat.campaign.data._id)
-      .then(dat => {
-        this.setState({campChars: dat.characters.data});
-      })
-      this.props.fetchCampaignUsers(this.props.campaign._id)
-      .then(dat => this.setState({campUsers: dat.users.data}));
-    });
-    
     document.addEventListener("keydown", this.escFunction, false);
 
-    // Brad's images
-    if (this.props.campaign) {
-      this.props.fetchImg(this.props.campaign.cover_art_url)
-        .then(() => {
-          // debugger
-          var base64Flag = 'data:image/png;base64,';
-          var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+    // // Brad's images
+    // if (this.props.campaign) {
+    //   this.props.fetchImg(this.props.campaign.cover_art_url)
+    //     .then(() => {
+    //       // debugger
+    //       var base64Flag = 'data:image/png;base64,';
+    //       var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
 
-          this.setState({
-            img: base64Flag + imageStr
-          })
-        })
-    }
+    //       this.setState({
+    //         img: base64Flag + imageStr
+    //       })
+    //     })
+    // }
 
   }
 
-  
-    
-    
-      
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.campaign !== this.props.campaign) {
+      this.setState({ campaign: this.props.campaign });
 
+      const { campaign, currentUser } = this.props;
+
+      this.props.getCampaignCharacters(campaign._id)
+        .then(() => {
+          this.setState({
+            campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
+          })
+        })
+
+      this.props.fetchCampaignUsers(campaign._id)
+        .then(dat => {
+          this.setState({
+            campUsers: keyFilter(this.props.users, this.props.campaign.user_ids)
+          });     
+        }
+        )
+    }
+
+    if (prevState.campChars !== this.state.campChars) {
+      let userChar = Object.values(keyFilter(this.state.campChars, this.props.currentUser.character_ids))[0];
+      if (userChar) this.setState({ userChar: userChar});
+    }
+
+    // if ((prevProps.characters !== this.props.characters)) {
+    //   this.setState({
+    //     campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
+    //   })
+    // }
+
+    // // Brad's images
+    // if (this.state.img !== prevState.img) {
+    //   if (this.props.campaign) {
+    //     this.props.fetchImg(this.props.campaign.cover_art_url)
+    //       .then(() => {
+    //         var base64Flag = 'data:image/png;base64,';
+    //         var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
+
+    //         this.setState({
+    //           img: base64Flag + imageStr
+    //         })
+    //       })
+    //   }
+    // }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.escFunction, false);
+    this.props.closeModal();
+  }
 
   arrayBufferToBase64(buffer) {
     var binary = '';
@@ -113,58 +147,6 @@ class CampaignShow extends React.Component {
     bytes.forEach((b) => binary += String.fromCharCode(b));
     return window.btoa(binary);
   };
-
-  
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.campaign !== this.props.campaign) {
-      this.setState({ campaign: this.props.campaign });
-    }
-
-    if (this.props.campaign && prevProps.users !== this.props.users) {
-      this.setState({ 
-        campUsers: keyFilter(this.props.users, this.props.campaign.user_ids)
-      })
-    }
-
-    if (prevProps.characters !== this.props.characters) {
-      this.setState({
-        campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
-        }
-      )
-
-      if (this.state.currentUser) {
-        const { campaign, currentUser } = this.state;
-        let inter = campaign.character_ids
-          .filter(id => currentUser.character_ids.includes(id));
-        if (inter.length) this.setState({
-          userChar: Object.values(this.props.characters)
-            .filter(char => char._id === inter[0])[0]
-        })
-      }
-    }
-
-    // Brad's images
-    if (this.state.img !== prevState.img) {
-      if (this.props.campaign) {
-        this.props.fetchImg(this.props.campaign.cover_art_url)
-          .then(() => {
-            var base64Flag = 'data:image/png;base64,';
-            var imageStr = this.arrayBufferToBase64(this.props.cover_art[1]);
-
-            this.setState({
-              img: base64Flag + imageStr
-            })
-          })
-      }
-    }
-
-
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.escFunction, false);
-    this.props.closeModal();
-  }
 
   // ===========================================================================
 
@@ -411,8 +393,8 @@ class CampaignShow extends React.Component {
     let name;
     if (campaign) {
       name = campaign.name;
-      messageButtons = this.getMessageButtons();
-      messageForms = this.getMessageForms();
+      // messageButtons = this.getMessageButtons();
+      // messageForms = this.getMessageForms();
     }
 
     let image = "#";
@@ -444,9 +426,9 @@ class CampaignShow extends React.Component {
                 <div id="campaign-command-logo">
                   <img src={splash_die} />
                 </div>
-                {messageForms} 
+                {/* {messageForms}  */}
                 <div className="message-btns">
-                {messageButtons}
+                {/* {messageButtons} */}
                 </div>
               </div>
 

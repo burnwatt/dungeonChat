@@ -221,7 +221,6 @@ class CharacterSheet extends React.Component {
     }
 
     render(){
-      // debugger
       let head, btn;
       
       if (this.props.history.location.pathname === "/character-sheet/new"){

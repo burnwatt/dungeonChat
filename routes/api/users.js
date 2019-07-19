@@ -138,6 +138,7 @@ router.get("/campaign/:campaign_id", (req, res) => {
           for (let val of users) {
             wut[val._id] = val;
           };
+          // console.log(wut);
           res.json(wut);
         })
         .catch(err => errRes(res, 500, defErrs.failedMessagesRetrival))
