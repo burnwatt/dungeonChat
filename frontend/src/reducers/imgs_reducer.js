@@ -8,7 +8,8 @@ export default (state = {}, action) => {
   // debugger
   switch (action.type) {
     case RECEIVE_IMAGE:
-      return {[action.img.data._id]: action.img.data.img.data}
+      // return {[action.img.data._id]: action.img.data.img.data}
+      return {[action.img.data._id]: action.img.data.img}
     default:
       return state;
   }

@@ -33,10 +33,12 @@ class CampaignForm extends React.Component {
     
     this.props.createCampaign(campaign)
       .then(action => {
+        // debugger 
         const picture = this.picture;
         let formData = new FormData();
         formData.append("picture", picture);
         formData.append("campaign_id", action.campaign.data._id);
+        formData.append("contentType", picture.type);
 
         this.props.postImg(formData, "camp");
         return "";

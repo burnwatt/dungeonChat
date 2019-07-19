@@ -24,7 +24,7 @@ const defErrs = {
 router.route('/img_data')
   .post(upload.single('picture'), function (req, res) {
     var new_img = new Img;
-    debugger
+    // debugger
     // var new_img = new Img({ data: { type: 'Buffer', data: { img: {data: "image here"} } } });
     new_img.img.data = fs.readFileSync(req.file.path)
     new_img.img.contentType = 'image/png';
@@ -57,10 +57,10 @@ router.route('/char')
 
 router.route('/camp')
   .post(upload.single('picture'), function (req, res) {
-    debugger
+    // debugger
     var new_img = new Img;
     new_img.img.data = fs.readFileSync(req.file.path)
-    new_img.img.contentType = 'image/png';
+    new_img.img.contentType = req.body.contentType;
     new_img.save();
     new_img.makeAssociation(new_img._id, req.body.campaign_id, "camp")
     // res.json({ message: 'New image added to the db!' });
