@@ -20,13 +20,13 @@
   to { opacity: 1; }
 }
 
-/* 
+
 .fadein {
   animation-name: fadein;
   animation-duration: 500ms;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
-} */
+} 
 
 // Global Colors
 :root {
@@ -41,6 +41,8 @@
   --say-color: #1b1e26;
   --dice-back: #d6caca;
   --dice-color: rgb(241, 121, 123);
+
+  --command-height: 128px;
 }
 
 .modal {

@@ -73,7 +73,7 @@ const keyFilter = (objJ, keys) => {
       obj[key] = objJ[key];
       return obj;
     }, {});
-  console.log(d);
+  // console.log(d);
   return d;
 }
 

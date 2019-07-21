@@ -61,14 +61,14 @@ class CampaignShow extends React.Component {
       document.getElementById("open-campaign-extra").style.display = "inline-block";
     }
   }
-
-
   // ==========================================================================
 
   componentDidMount() {
     this.props.fetchUser(this.props.currentUser.id)
       .then(() => this.setState({currentUser: this.props.currentUser}));
     this.props.fetchCampaignByName(this.props.match.params.name)
+
+
     document.addEventListener("keydown", this.escFunction, false);
 
     // // Brad's images
@@ -89,21 +89,21 @@ class CampaignShow extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.campaign !== this.props.campaign) {
-      this.setState({ campaign: this.props.campaign });
+      const { campaign } = this.props;
+      this.setState({ campaign: campaign });
 
-      const { campaign, currentUser } = this.props;
 
       this.props.getCampaignCharacters(campaign._id)
         .then(() => {
           this.setState({
-            campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
+            campChars: keyFilter(this.props.characters, campaign.character_ids)
           })
         })
 
       this.props.fetchCampaignUsers(campaign._id)
         .then(dat => {
           this.setState({
-            campUsers: keyFilter(this.props.users, this.props.campaign.user_ids)
+            campUsers: keyFilter(this.props.users, campaign.user_ids)
           });     
         }
         )
@@ -114,11 +114,11 @@ class CampaignShow extends React.Component {
       if (userChar) this.setState({ userChar: userChar});
     }
 
-    // if ((prevProps.characters !== this.props.characters)) {
-    //   this.setState({
-    //     campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
-    //   })
-    // }
+    if ((prevProps.characters !== this.props.characters)) {
+      this.setState({
+        campChars: keyFilter(this.props.characters, this.props.campaign.character_ids)
+      })
+    }
 
     // // Brad's images
     // if (this.state.img !== prevState.img) {
@@ -205,62 +205,71 @@ class CampaignShow extends React.Component {
           });
       }
     }
-
-    
   };
 
 
   // ===========================================================================
+
   getMessageButtons() {
-    const { campaign, currentUser, userChar } = this.state;
+    const { campaign, currentUser} = this.state;
+    const userChar = !!this.state.userChar;
+    const isDM = (campaign.created_by === currentUser._id);
+    
     let buttons = []
-
-
-    if (!userChar || (campaign.created_by !== currentUser._id)) {
+    if (!userChar && !isDM) {
       let sub = (currentUser.campaign_ids.includes(campaign._id)) ? "Leave" : "Join";
       buttons.push(
         <button key="message-btn-subscribe"
           id="subscribe"
           className="message-btn btn-glow"
-          onClick={this.scribeUser}
+          // onClick={this.scribeUser}
+          onClick={() => this.props.openModal("Character Sheet Modal")}
         >{sub}
         </button>
       )
     }
-    
-    if (campaign.created_by === currentUser._id) {
-      buttons.push(
-      <i id="message-btn-dice"
-        onClick={() => this.showMessageForm("dm")}
-        className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
-      )
-    }
 
-    return buttons.concat([
-      <button key="message-btn-describe"
-        className="message-btn btn-glow"
-        onClick={() => this.showMessageForm("describe")}
-      >Describe
-      </button>,
-      <button key="message-btn-say"
-        className="message-btn btn-glow"
-        onClick={() => this.showMessageForm("say")}
-      >Say
-      </button>,
+    if (isDM) {
+      buttons.push(
+        <i id="message-btn-dm"
+          onClick={() => this.showMessageForm("dm")}
+          className="message-btn-icons icon-btn-red fas fa-scroll" key="message-btn-dm" />
+      )
+    };
+
+    if (userChar) {
+      buttons = buttons.concat([
+        <button key="message-btn-describe"
+          className="message-btn btn-glow"
+          onClick={() => this.showMessageForm("describe")}
+          >Describe
+        </button>,
+          <button key="message-btn-say"
+            className="message-btn btn-glow"
+            onClick={() => this.showMessageForm("say")}
+          >Say
+        </button>
+      ]);
+    };
+    buttons = buttons.concat([
       <button key="message-btn-chat"
         className="message-btn btn-glow"
         onClick={() => this.showMessageForm("chat")}
-      >Chat
+        >Chat
       </button>,
-      <i id="message-btn-dice" 
-        onClick={this.handleDiceShow} 
+      <i id="message-btn-dice"
+        onClick={this.handleDiceShow}
         className="message-btn-icons icon-btn-red fas fa-dice-d20" key="message-btn-dice" />,
       <i id="message-btn-eye"
         onClick={() => this.props.openModal("Dice Box Modal")}
         className="message-btn-icons icon-btn-red fas fa-eye" key="message-btn-eye" />
-    ]);
+      ]);
 
+
+    return buttons
   }
+
+
   handleMessageInput(which) {
     return event => this.setState({ [which]: event.target.value });
   }
@@ -333,8 +342,7 @@ class CampaignShow extends React.Component {
     console.log(newMessage);
     this.props.createMessage(newMessage)
       .then(() => {
-        this.newMessage();
-        // console.log(newMessage);
+        // this.newMessage();
       })
     return event => event.prevenDefault();
   }
@@ -368,7 +376,13 @@ class CampaignShow extends React.Component {
   render() {
     const { campaign, currentUser, campChars, campUsers, userChar } = this.state;
     let campMessageIndex, campaignCharacters, messageButtons, messageForms, diceBoxContainer = <div></div>;
-    if (Object.values(campChars).length && Object.values(campUsers).length && currentUser && campaign) {
+
+    let loaded = false;
+    if (campaign && currentUser && Object.values(campUsers).length) {
+      if (campaign.character_ids.length && Object.values(campUsers).length) loaded = true;
+    }
+
+    if (loaded) {
       campMessageIndex = <CampaignMessageIndexContainer
         viewPorts={this.state.viewPorts}
         currentUser={currentUser}
@@ -378,36 +392,38 @@ class CampaignShow extends React.Component {
         users={campUsers}
       />
 
-    messageButtons = this.getMessageButtons();
-    messageForms = this.getMessageForms();
 
-
-    diceBoxContainer = <DiceBoxContainer 
-      campaign={campaign} 
-      userChar={userChar}
-      currentUser={currentUser}
-    />
+      diceBoxContainer = <DiceBoxContainer 
+        campaign={campaign} 
+        userChar={userChar}
+        currentUser={currentUser}
+      />
     
-  }
+    }
     
     let name;
     if (campaign) {
       name = campaign.name;
-      // messageButtons = this.getMessageButtons();
-      // messageForms = this.getMessageForms();
     }
 
-    let image = "#";
-    if (this.state.img) {
-      image = this.state.img;
+    // let image = "#";
+    // if (this.state.img) {
+    //   image = this.state.img;
+    // }
+    if ((campaign && currentUser) && (userChar || (campaign.created_by === currentUser._id))) {
+      document.getElementById("campaign-content-footer").style.height = "256px";
+      messageButtons = this.getMessageButtons();
+      messageForms = this.getMessageForms();
+    } else if (campaign && currentUser) {
+      messageButtons = this.getMessageButtons();
     }
 
     return (
       <div id="campaign-show">
-        <img
+        {/* <img
           src={image}
           alt='whatever'
-        />
+        /> */}
         <div id="open-campaign-extra"
           onClick={this.handleCampaignExtraShow}
           ><i className="fas fa-users" />
@@ -426,9 +442,9 @@ class CampaignShow extends React.Component {
                 <div id="campaign-command-logo">
                   <img src={splash_die} />
                 </div>
-                {/* {messageForms}  */}
-                <div className="message-btns">
-                {/* {messageButtons} */}
+                {messageForms} 
+                <div className="message-btns fadein">
+                {messageButtons}
                 </div>
               </div>
 

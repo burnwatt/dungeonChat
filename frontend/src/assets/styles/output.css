@@ -580,13 +580,12 @@ hr {
     opacity: 0; }
   to {
     opacity: 1; } }
-/* 
 .fadein {
   animation-name: fadein;
   animation-duration: 500ms;
   animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-} */
+  animation-timing-function: ease-in; }
+
 :root {
   --frost_trans: rgba(255, 255, 255, 0.1);
   --gray_trans: rgba(255, 255, 255, 0.05);
@@ -597,7 +596,8 @@ hr {
   --describe-back: #40464b;
   --say-color: #1b1e26;
   --dice-back: #d6caca;
-  --dice-color: rgb(241, 121, 123); }
+  --dice-color: rgb(241, 121, 123);
+  --command-height: 128px; }
 
 .modal {
   display: none;
@@ -1042,7 +1042,7 @@ hr {
 
 #campaign-content-footer {
   width: 100%;
-  height: 256px;
+  height: 128px;
   background: transparent;
   border: 1px solid gray;
   border-bottom: 8px solid gray;
@@ -1050,7 +1050,8 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+  transition: 500ms; }
 
 #campaign-command {
   position: relative;
