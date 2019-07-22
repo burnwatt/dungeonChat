@@ -17,8 +17,10 @@ const mSP = (state, ownProps) => {
   
   let image = "";
   image = Object.values(state.imgs)[0];
+  
   return {
     currentUser: state.session.user.id,
+    campaigns: state.campaigns,
     characters: state.characters,
     img: image
   }

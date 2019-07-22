@@ -124,7 +124,7 @@ router.get("/campaign/:campaign_id", (req, res) => {
 // UPDATE --------------------------------------
 router.post("/update/:id", passport.authenticate("jwt", { session: false }), (req, res) => {
     Character.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-        .then(char => res.json({msg: 'Update Sucessful', character: char}))
+        .then(char => res.json(char))
         .catch(err => errRes(res, 200, defErrs.failedUpdateCharacter))
 });
 module.exports = router;

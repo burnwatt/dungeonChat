@@ -99,35 +99,39 @@ class CharacterSheet extends React.Component {
       this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-  handleSubmit(e) {
-    // debugger
-    e.preventDefault()
-    this.props.createCharacter({
-      campaign_id: this.props.location.state.campaign._id,
-      user_id: this.props.currentUser,
-      // char_attrs: this.state.char_attrs,
-      char_attrs: this.state,
-    }).then(character => {
+    handleSubmit(e) {
       // debugger
-      const picture = this.picture;
-      let formData = new FormData();
-      formData.append("picture", picture);
-      formData.append("character_id", character.data._id);
+      e.preventDefault()
+      this.props.createCharacter({
+        campaign_id: this.props.location.state.campaign._id,
+        user_id: this.props.currentUser,
+        // char_attrs: this.state.char_attrs,
+        char_attrs: this.state,
+      }).then(character => {
+        // debugger
+        const picture = this.picture;
+        let formData = new FormData();
+        formData.append("picture", picture);
+        formData.append("character_id", character.data._id);
 
-      this.props.postImg(formData, "char");
-      return "";
-    }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
+        this.props.postImg(formData, "char");
+        return "";
+      }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
 
-  }
+    }
 
     handleUpdate(e){
       e.preventDefault();
+      let char = Object.values(this.props.characters).filter(char => char._id === this.props.match.params.char_id)[0];
+      // let camp = Object.values(this.props.campaigns)[0];
+      let camp = Object.values(this.props.campaigns).filter(camp => camp._id === char.campaign_id)[0];
       debugger
       this.props.changeCharacter({
-        campaign_id: this.props.location.state.campaign._id,
-        user_id: this.props.currentUser,
+        _id: char._id,
+        campaign_id: char.campaign_id,
+        user_id: char.user_id,
         char_attrs: this.state
-      }).then(this.props.history.push(`/campaign/${this.props.location.state.campaign.name}`));
+      }).then(this.props.history.push(`/campaign/${camp.name}`));
     }
 
     handleChangeImg(e){

@@ -10,7 +10,6 @@ import merge from "lodash/merge";
 const initialState = {};
 
 export default function(state = initialState, action) {
-  // debugger
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_CHARACTERS:

@@ -24,6 +24,7 @@ export const getCharacter = (id) => {
 }
 
 export const changeCharacter = (character) => {
+  debugger
   return dispatch => {
     return updateCharacter(character).then(payload => dispatch({type: RECEIVE_UPDATED_CHARACTER, character: payload}))
   }
