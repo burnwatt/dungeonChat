@@ -28,5 +28,5 @@ export const fetchCampaignCharacters = campaign_id => (
 
 //update character
 export const updateCharacter = character => (
-    axios.post(`/api/characters/update/${character.id}`, character)
+    axios.post(`/api/characters/update/${character._id}`, character)
 );
