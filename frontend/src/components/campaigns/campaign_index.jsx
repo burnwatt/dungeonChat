@@ -11,13 +11,25 @@ class CampaignIndex extends React.Component {
       myCampaigns: [],
       isLoaded: false,
    };
-
    this.setCampaignDisplay = this.setCampaignDisplay.bind(this);
+   this.shouldFetchImgs = true;
   }
-
+  
   componentDidMount() {
+    // this.props.clearImgState
+    
+    // this.props.fetchImgs()
+    //   .then(imgs => {
+    //     this.props.fetchUser(this.props.currentUser.id);
+    //     this.props.fetchCampaigns();
+
+    //   })
+    
     this.props.fetchUser(this.props.currentUser.id);
     this.props.fetchCampaigns();
+    
+    
+    
   }
   componentDidUpdate(prevProps) {
     if (prevProps.campaigns !== this.props.campaigns) {
@@ -27,6 +39,12 @@ class CampaignIndex extends React.Component {
         myCampaigns = campaigns.filter(camp => currentUser.campaign_ids.includes(camp._id));
       }
       this.setState({ campaigns: campaigns, myCampaigns: myCampaigns })
+    }
+    if (this.props.campaigns.length > 0 && this.shouldFetchImgs === true){
+      this.props.fetchImgs()
+      this.shouldFetchImgs = false
+
+      debugger
     }
   }
 
@@ -53,9 +71,21 @@ class CampaignIndex extends React.Component {
     const { campaigns, myCampaigns } = this.state;
     let campDat;
     if (this.state.whichCampaigns === "campaigns") {
-      campDat = campaigns.map(camp => <CampaignIndexItemContainer key={camp._id} fetchImg={this.props.fetchImg} campaign={camp} currentUser={this.props.currentUser}/>);
+      // debugger
+      campDat = campaigns.map(camp => {
+        
+        return(
+          <CampaignIndexItemContainer 
+          key={camp._id}
+          id={camp._id} 
+          img={this.props.imgs[camp.img_id]} 
+          // fetchImg={this.props.fetchImg} 
+          campaign={camp} 
+          currentUser={this.props.currentUser}/>
+          );
+      })
     } else if (this.state.whichCampaigns === "myCampaigns") {
-      campDat = myCampaigns.map(camp => <CampaignIndexItemContainer key={camp._id} fetchImg={this.props.fetchImg} campaign={camp} />)
+      campDat = myCampaigns.map(camp => <CampaignIndexItemContainer key={camp._id} img={this.props.imgs[camp.img_id]} fetchImg={this.props.fetchImg} campaign={camp} />)
     }
     return campDat;
   }
@@ -63,6 +93,7 @@ class CampaignIndex extends React.Component {
 
 
   render() {
+    
     // const campDat = this.getCampaignDat();
     return (
       <div id="campaigns-content">

@@ -23,46 +23,54 @@ class CampaignIndexItem extends React.Component {
     })
   }
   componentDidMount(){
-    this.props.fetchImg(this.props.campaign.img_id)
-      .then(() => {
-
-        var base64Flag = 'data:image/png;base64,';
-        var imageStr = this.arrayBufferToBase64(this.props.img.data);
-
-        this.setState({
-          avatar: base64Flag + imageStr
-        })
-      })
     
+
+    // this.props.fetchImg(this.props.campaign.img_id)
+    //   .then(() => {
+    //     // debugger
+    //     if (this.props.img.data){
+    //       var base64Flag = `data:${this.props.img.contentType};base64,`;
+    //     var imageStr = this.arrayBufferToBase64(this.props.img.data.data);
+
+    //     this.setState({
+    //       avatar: base64Flag + imageStr
+    //     })
+    //     }
+    //     this.convertAvatar = true;
+    //   })
+    if (this.props.id === '5d2fab74e78be49a1d5c8dda') {
+      // debugger
+    }
+    let base64Flag;
+    let imageStr;
+    // debugger
+    if (this.state.avatar === "" && this.props.img && this.props.img.img.data) {
+      base64Flag = `data:${this.props.img.contentType};base64,`;
+      imageStr = this.arrayBufferToBase64(this.props.img.img.data.data);
+
+      this.setState({
+        avatar: base64Flag + imageStr
+      })
+      this.convertAvatar = true;
+    }
   }
 
   componentDidUpdate(prevProps){
     let base64Flag;
     let imageStr;
-    // debugger
-    if (this.state.avatar === "" && this.props.img && this.props.img.data) {
-      base64Flag = 'data:image/png;base64,';
-      imageStr = this.arrayBufferToBase64(this.props.img.data);
+    if (this.props.id === '5d2fab74e78be49a1d5c8dda') {
+      // debugger
+    }
+    if (this.state.avatar === "" && this.props.img) {
+      base64Flag = `data:${this.props.img.img.contentType};base64,`;
+      imageStr = this.arrayBufferToBase64(this.props.img.img.data.data);
 
       this.setState({
         avatar: base64Flag + imageStr
       })
+      this.convertAvatar = true;
     }
-    // if (prevProps.img !== this.props.img && this.stop === false){
-    //   this.props.fetchImg(this.props.campaign.img_id)
-    //   this.stop = true;
-    //   this.convertAvatar = true;
-    // }
-    // if (this.convertAvatar === true){
-    //   debugger
-    //   base64Flag = 'data:image/png;base64,';
-    //   imageStr = this.arrayBufferToBase64(this.props.img.data);
-
-    //   this.setState({
-    //     avatar: base64Flag + imageStr
-    //   })
-    //   this.convertAvatar = false;
-    // }
+    
   }
   arrayBufferToBase64(buffer) {
     var binary = '';
@@ -75,17 +83,21 @@ class CampaignIndexItem extends React.Component {
   render() {
     const { name, cover_art_url, description, rules, 
       character_ids, user_ids, date, party_limit} = this.props.campaign;
-    
-    let image = <img src={ d10 } alt="whatever"/>;
-    const chars = `${character_ids.length}/${party_limit}`;
-
-    const tdiff = timeDiff(new Date, date);
-    const newHeader = (tdiff.days < 3) ? "New" : "";
-
-    
-    if (this.props.campaign.img_id) {
-      image = <img src={this.state.avatar} alt="whatever" />
-    }
+      
+      let image = <img src={ d10 } alt="whatever"/>;
+      const chars = `${character_ids.length}/${party_limit}`;
+      
+      const tdiff = timeDiff(new Date, date);
+      const newHeader = (tdiff.days < 3) ? "New" : "";
+      
+      
+      if (this.props.campaign.img_id && this.convertAvatar === true) {
+        image = <img src={this.state.avatar} alt="whatever" />
+      }
+      
+       if (this.props.id === '5d2fab74e78be49a1d5c8dda') {
+        //  debugger
+       }
 
     return (
       <div onClick={this.sendToCampaignPage} className="campaign-index-item btn-glow">

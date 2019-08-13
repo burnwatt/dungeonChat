@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require('fs');
 const Img = require("../../models/Img")
+const Campaign = require('../../models/Campaign')
 
 const router = express.Router();
 const { errRes } = require("../../validation/validation_util");
@@ -24,7 +25,7 @@ const defErrs = {
 router.route('/img_data')
   .post(upload.single('picture'), function (req, res) {
     var new_img = new Img;
-    debugger
+    // debugger
     // var new_img = new Img({ data: { type: 'Buffer', data: { img: {data: "image here"} } } });
     new_img.img.data = fs.readFileSync(req.file.path)
     new_img.img.contentType = 'image/png';
@@ -57,10 +58,10 @@ router.route('/char')
 
 router.route('/camp')
   .post(upload.single('picture'), function (req, res) {
-    debugger
+    // debugger
     var new_img = new Img;
     new_img.img.data = fs.readFileSync(req.file.path)
-    new_img.img.contentType = 'image/png';
+    new_img.img.contentType = req.body.contentType;
     new_img.save();
     new_img.makeAssociation(new_img._id, req.body.campaign_id, "camp")
     // res.json({ message: 'New image added to the db!' });
@@ -82,5 +83,40 @@ router.get('/img_data/:id', (req, res) => {
     })
     .catch(err => errRes(res, 404, defErrs.noIdImgs))
 })
+
+
+router.get('/', (req, res) => {
+  Campaign.find()
+    .then(camps => {
+      // debugger
+      let campImgIds = [];
+      camps.map(camp => {
+        if (camp.img_id){
+          campImgIds.push(camp.img_id);
+        };
+      })
+      
+      Img.find({ _id: {$in: campImgIds}})
+        .then(imgs => {
+          images = {};
+
+          for (let img of imgs) {
+            images[img._id] = img;
+          };
+          // debugger
+          res.json(images);
+        })
+      
+      
+      
+    
+
+
+
+
+    })
+    .catch(err => errRes(res, 404, defErrs.noIdImgs))
+})
+
 
 module.exports = router;

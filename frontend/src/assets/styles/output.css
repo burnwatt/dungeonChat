@@ -507,7 +507,14 @@ hr {
   box-sizing: border-box; }
 
 .campaign-item-contents {
-  position: relative; }
+  position: relative;
+  width: 224px;
+  height: 224px; }
+
+.campaign-item-contents img {
+  width: 224px;
+  height: 224px;
+  object-fit: cover; }
 
 .campaign-index-item img {
   width: 100%; }
