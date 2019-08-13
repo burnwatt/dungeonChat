@@ -14,4 +14,4 @@ const mSP = state => {
 
 
 
-export default connect(mSP, null)(CampaignIndexItem);
+export default connect(null, null)(CampaignIndexItem);

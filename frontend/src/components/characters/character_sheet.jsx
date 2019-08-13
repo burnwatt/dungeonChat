@@ -155,7 +155,7 @@ class CharacterSheet extends React.Component {
         .then(() => {
   
           var base64Flag = 'data:image/png;base64,';
-          var imageStr = this.arrayBufferToBase64(this.props.img.data);
+          var imageStr = this.arrayBufferToBase64(this.props.img.data.data);
   
           this.setState({
             avatar: base64Flag + imageStr
@@ -184,7 +184,7 @@ class CharacterSheet extends React.Component {
       
       // debugger
       var base64Flag = 'data:image/png;base64,';
-      var imageStr = this.arrayBufferToBase64(this.props.img.data);
+      var imageStr = this.arrayBufferToBase64(this.props.img.data.data);
 
       this.setState({
         avatar: base64Flag + imageStr

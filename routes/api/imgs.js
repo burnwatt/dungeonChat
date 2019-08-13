@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require('fs');
 const Img = require("../../models/Img")
+const Campaign = require('../../models/Campaign')
 
 const router = express.Router();
 const { errRes } = require("../../validation/validation_util");
@@ -82,5 +83,40 @@ router.get('/img_data/:id', (req, res) => {
     })
     .catch(err => errRes(res, 404, defErrs.noIdImgs))
 })
+
+
+router.get('/', (req, res) => {
+  Campaign.find()
+    .then(camps => {
+      // debugger
+      let campImgIds = [];
+      camps.map(camp => {
+        if (camp.img_id){
+          campImgIds.push(camp.img_id);
+        };
+      })
+      
+      Img.find({ _id: {$in: campImgIds}})
+        .then(imgs => {
+          images = {};
+
+          for (let img of imgs) {
+            images[img._id] = img;
+          };
+          // debugger
+          res.json(images);
+        })
+      
+      
+      
+    
+
+
+
+
+    })
+    .catch(err => errRes(res, 404, defErrs.noIdImgs))
+})
+
 
 module.exports = router;
