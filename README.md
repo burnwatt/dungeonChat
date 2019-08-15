@@ -9,6 +9,15 @@ Enter DungeonChat, an online gaming platform that allows you to create and play 
 
 DungeonChat gives DM's the ability to create their own unique campaigns/stories while characters can join and play along via a shared chat/channel.  Functionality is built into the chat to roll dice and make decisions about the campaign direction, express character exposition, and even chat with spectators viewing the game.
 
+# Technologies Used
+* MongoDB
+* Express
+* React
+* Node.js
+* sockets.io
+* Multer
+* AWS S3 for image hosting
+
 # Project Team
 * Brad Barnes
 * Josh Burnwatt
@@ -41,56 +50,5 @@ DungeonChat gives DM's the ability to create their own unique campaigns/stories 
 ## Search
 * Users can search for games by title
 
-# Work Breakdown
-## July 8 (**all**)
-* [x] Develop Project Proposal (**Group**)
-* [x] Determine initial schema/routes (**Group**)
-* [x] Project Setup (**Steven**)
-   * [x] MongoDB
-   * [x] Nodes
-   * [x] server/webpack
-* [x] Backend User Auth  (**Steven**)
-* [x] Determine individual tasks for coming days (**Group**)
-
-## July 9
-* [x] Finalize schema (**Group**)
-* [x] Splash components/styling (**Brad/Josh**)
-* [x] Session components/styling (**Brad/Josh**)
-* [x] Campaigns Backend/Landing Page (**Michael/Steven**)
-
-
-## July 10
-* [x] Git Branching and Troubleshooting (**GROUP**)
-* [ ] Campaigns backend/routes (**Michael/Steven**)
-* [ ] Campaigns components/styling (**Michael/Steven**)
-* [ ] Characters redux backend/routes (**Brad/Josh**)
-* [ ] Characher sheet form and styling (**Brad/Josh**)
-
-## July 11
-* [ ] Campaigns backend/routes (**Michael/Steven**)
-* [ ] Campaigns components/styling (**Michael/Steven**)
-* [ ] Characters redux backend/routes (**Brad/Josh**)
-* [ ] Character sheet form and styling (**Brad/Josh**)
-
-## July 12
-* [ ] Finalize Campaign features (**Michael/Steven**)
-* [ ] Finalize Character features (**Brad/Josh**)
-* [ ] Set up messaging backend (**GROUP**)
-* [ ] Build initial chat page structure and styling (**GROUP**)
-
-## July 13-14 (Weekend)
-
-## July 15
-
-## July 16
-
-# Technologies Used
-* MongoDB
-* Express
-* React
-* Node.js
-* sockets.io
-
 # Technological Challenges
 * Using git branches with team
-
