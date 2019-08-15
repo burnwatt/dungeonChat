@@ -79,7 +79,7 @@ class DiceBox extends React.Component {
   getDice(size) {
     return (
       <div id={size} className="d-bounds" key={`d-show-${size}`}
-        onClick={() => this.handleClick(size)}>
+        onClick={() => this.handleClick(size, "choose")}>
         <h3>{size}</h3>
         <i className={`red fas fa-dice-d20`} />
       </div>
@@ -88,7 +88,8 @@ class DiceBox extends React.Component {
 
   getDisplayDice(size, n) {
     return (
-      <div className="d-bounds" key={`d-count-${size}`}>
+      <div className="d-bounds" key={`d-count-${size}`}
+        onClick={() => this.handleClick(size, "show")}>
         <h3>{size}</h3>
         <i className={`red fas fa-dice-d20`} />
         <h3 className="d-display-count">{`x${n}`}</h3>
@@ -96,10 +97,14 @@ class DiceBox extends React.Component {
     )
   }
 
-  handleClick(dieType) {
-    this.setState({ [dieType]: this.state[dieType] + 1 })
+  handleClick(dieType, displayType) {
+    debugger
+    if (displayType === "choose") {
+      this.setState({ [dieType]: this.state[dieType] + 1 });
+    } else {
+      this.setState({ [dieType]: this.state[dieType] - 1 });
+    }
   }
-
 
   render() {
     let selectedDice = [];
